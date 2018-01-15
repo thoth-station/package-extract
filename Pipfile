@@ -15,3 +15,7 @@ daiquiri = "*"
 [dev-packages]
 
 pytest = ">=3"
+pytest-timeout = "*"
+pytest-cov = "*"
+pydocstyle = "*"
+pylint = "*"
