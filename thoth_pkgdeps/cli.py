@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Command line interface for thoth-pkgdeps."""
 
 import logging
 import sys
@@ -9,7 +10,7 @@ import click
 import daiquiri
 
 from thoth_pkgdeps import __version__ as thothg_pkgdeps_version
-from thoth_pkgdeps.handlers import HandlerBase
+from thoth_pkgdeps.core import extract_build_log
 
 _LOG = logging.getLogger(__name__)
 _DEFAULT_NO_COLOR_FORMAT = "%(asctime)s [%(process)d] %(levelname)-8.8s %(name)s: %(message)s"
@@ -79,15 +80,7 @@ def cli(ctx=None, verbose: int = 0, no_color: bool = True):
 @click.option('--no-pretty', is_flag=True,
               help="Do not print results nicely.")
 def cli_extract(input_file, no_pretty=False):
-    result = []
-    content = input_file.read()
-    for handler in HandlerBase.instantiate_handlers():
-        # TODO: instantiate with arguments provided from CLI, allow multiple instances of a handler type
-        result.append({
-            'handler': handler.__class__.__name__.lower(),
-            'result': handler.run(content)
-        })
-
+    result = extract_build_log(input_file)
     _print_command_result(result, not no_pretty)
 
 
