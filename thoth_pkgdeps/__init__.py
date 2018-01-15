@@ -1,5 +1,7 @@
 """Extraction of installed packages for project Thoth."""
 
+from .core import extract_build_log
+
 __version__ = '1.0.0rc1'
 __title__ = 'thoth_pkgdeps'
 __author__ = 'Fridolin Pokorny'
