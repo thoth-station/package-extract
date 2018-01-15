@@ -1,6 +1,6 @@
 import attr
 
-from .base import HandlerBase
+from .yum import HandlerBase
 
 
 @attr.s
@@ -12,4 +12,5 @@ class DNF(HandlerBase):
         return {}
 
 
-HandlerBase.register(DNF)
+# It looks like the output of dnf is same as for yum. Omit implementation and registering for now.
+# HandlerBase.register(DNF)
