@@ -1,0 +1,48 @@
+Step 1/3 : FROM fedora:26
+ ---> 1ba39c7494fb
+Step 2/3 : RUN dnf install -y python3-pip && dnf clean all
+ ---> Running in 2e48b6815f85
+Fedora 26 - x86_64 - Updates                     68 MB/s |  19 MB     00:00
+Fedora 26 - x86_64                               77 MB/s |  53 MB     00:00
+Last metadata expiration check: 0:00:04 ago on Mon Jan 15 11:16:33 2018.
+Package python3-pip-9.0.1-9.fc26.noarch is already installed, skipping.
+Dependencies resolved.
+Nothing to do.
+Complete!
+18 files removed
+ ---> a880ae1af5e0
+Removing intermediate container 2e48b6815f85
+Step 3/3 : RUN pip3 install selinon
+ ---> Running in 7164b5747711
+WARNING: Running pip install with root privileges is generally not a good idea. Try `pip3 install --user` instead.
+Collecting selinon
+  Downloading selinon-1.0.0rc3-py3-none-any.whl (324kB)
+Collecting codegen (from selinon)
+  Downloading codegen-1.0.tar.gz
+Collecting jsonschema (from selinon)
+  Downloading jsonschema-2.6.0-py2.py3-none-any.whl
+Collecting rainbow-logging-handler (from selinon)
+  Downloading rainbow_logging_handler-2.2.2.zip
+Collecting pyyaml (from selinon)
+  Downloading PyYAML-3.12.tar.gz (253kB)
+Collecting graphviz (from selinon)
+  Downloading graphviz-0.8.2-py2.py3-none-any.whl
+Collecting click (from selinon)
+  Downloading click-6.7-py2.py3-none-any.whl (71kB)
+Collecting logutils (from rainbow-logging-handler->selinon)
+  Downloading logutils-0.3.5.tar.gz
+Collecting colorama (from rainbow-logging-handler->selinon)
+  Downloading colorama-0.3.9-py2.py3-none-any.whl
+Installing collected packages: codegen, jsonschema, logutils, colorama, rainbow-logging-handler, pyyaml, graphviz, click, selinon
+  Running setup.py install for codegen: started
+    Running setup.py install for codegen: finished with status 'done'
+  Running setup.py install for logutils: started
+    Running setup.py install for logutils: finished with status 'done'
+  Running setup.py install for rainbow-logging-handler: started
+    Running setup.py install for rainbow-logging-handler: finished with status 'done'
+  Running setup.py install for pyyaml: started
+    Running setup.py install for pyyaml: finished with status 'done'
+Successfully installed click-6.7 codegen-1.0 colorama-0.3.9 graphviz-0.8.2 jsonschema-2.6.0 logutils-0.3.5 pyyaml-3.12 rainbow-logging-handler-2.2.2 selinon-1.0.0rc3
+ ---> 093457cdf231
+Removing intermediate container 7164b5747711
+Successfully built 093457cdf231

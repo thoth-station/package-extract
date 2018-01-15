@@ -1,0 +1,47 @@
+Sending build context to Docker daemon   361 kB
+Step 1/3 : FROM fedora:26
+ ---> 1ba39c7494fb
+Step 2/3 : RUN dnf install -y python3-pip && dnf clean all
+ ---> Running in 2d7f171fc42e
+Fedora 26 - x86_64 - Updates                     75 MB/s |  19 MB     00:00    
+Fedora 26 - x86_64                               79 MB/s |  53 MB     00:00    
+Last metadata expiration check: 0:00:04 ago on Mon Jan 15 12:03:50 2018.
+[91mPackage python3-pip-9.0.1-9.fc26.noarch is already installed, skipping.
+[0mDependencies resolved.
+Nothing to do.
+Complete!
+18 files removed
+ ---> 7fc4042f3a2c
+Removing intermediate container 2d7f171fc42e
+Step 3/3 : RUN pip3 install tensorflow-gpu
+ ---> Running in f462685db5ff
+[91mWARNING: Running pip install with root privileges is generally not a good idea. Try `pip3 install --user` instead.
+[0mCollecting tensorflow-gpu
+  Downloading tensorflow_gpu-1.4.1-cp36-cp36m-manylinux1_x86_64.whl (170.3MB)
+Collecting numpy>=1.12.1 (from tensorflow-gpu)
+  Downloading numpy-1.14.0-cp36-cp36m-manylinux1_x86_64.whl (17.2MB)
+Requirement already satisfied: six>=1.10.0 in /usr/lib/python3.6/site-packages (from tensorflow-gpu)
+Collecting wheel>=0.26 (from tensorflow-gpu)
+  Downloading wheel-0.30.0-py2.py3-none-any.whl (49kB)
+Collecting tensorflow-tensorboard<0.5.0,>=0.4.0rc1 (from tensorflow-gpu)
+  Downloading tensorflow_tensorboard-0.4.0rc3-py3-none-any.whl (1.7MB)
+Collecting enum34>=1.1.6 (from tensorflow-gpu)
+  Downloading enum34-1.1.6-py3-none-any.whl
+Collecting protobuf>=3.3.0 (from tensorflow-gpu)
+  Downloading protobuf-3.5.1-cp36-cp36m-manylinux1_x86_64.whl (6.4MB)
+Collecting markdown>=2.6.8 (from tensorflow-tensorboard<0.5.0,>=0.4.0rc1->tensorflow-gpu)
+  Downloading Markdown-2.6.11-py2.py3-none-any.whl (78kB)
+Collecting werkzeug>=0.11.10 (from tensorflow-tensorboard<0.5.0,>=0.4.0rc1->tensorflow-gpu)
+  Downloading Werkzeug-0.14.1-py2.py3-none-any.whl (322kB)
+Collecting html5lib==0.9999999 (from tensorflow-tensorboard<0.5.0,>=0.4.0rc1->tensorflow-gpu)
+  Downloading html5lib-0.9999999.tar.gz (889kB)
+Collecting bleach==1.5.0 (from tensorflow-tensorboard<0.5.0,>=0.4.0rc1->tensorflow-gpu)
+  Downloading bleach-1.5.0-py2.py3-none-any.whl
+Requirement already satisfied: setuptools in /usr/lib/python3.6/site-packages (from protobuf>=3.3.0->tensorflow-gpu)
+Installing collected packages: numpy, wheel, markdown, werkzeug, html5lib, bleach, protobuf, tensorflow-tensorboard, enum34, tensorflow-gpu
+  Running setup.py install for html5lib: started
+    Running setup.py install for html5lib: finished with status 'done'
+Successfully installed bleach-1.5.0 enum34-1.1.6 html5lib-0.9999999 markdown-2.6.11 numpy-1.14.0 protobuf-3.5.1 tensorflow-gpu-1.4.1 tensorflow-tensorboard-0.4.0rc3 werkzeug-0.14.1 wheel-0.30.0
+ ---> 51d29b10a64d
+Removing intermediate container f462685db5ff
+Successfully built 51d29b10a64d

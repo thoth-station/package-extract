@@ -1,0 +1,16 @@
+Sending build context to Docker daemon 354.3 kB
+Step 1/3 : FROM fedora:26
+ ---> 1ba39c7494fb
+Step 2/3 : RUN dnf install -y python3-pip && dnf clean all
+ ---> Using cache
+ ---> a880ae1af5e0
+Step 3/3 : RUN pip3 install daiquiri
+ ---> Running in f62f6a25719c
+[91mWARNING: Running pip install with root privileges is generally not a good idea. Try `pip3 install --user` instead.
+[0mCollecting daiquiri
+  Downloading daiquiri-1.3.0-py2.py3-none-any.whl
+Installing collected packages: daiquiri
+Successfully installed daiquiri-1.3.0
+ ---> f4bc81aee79d
+Removing intermediate container f62f6a25719c
+Successfully built f4bc81aee79d

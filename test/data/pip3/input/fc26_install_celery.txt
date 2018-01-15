@@ -1,0 +1,35 @@
+Sending build context to Docker daemon 355.3 kB
+Step 1/3 : FROM fedora:26
+ ---> 1ba39c7494fb
+Step 2/3 : RUN dnf install -y python3-pip && dnf clean all
+ ---> Running in 1459f61179a5
+Fedora 26 - x86_64 - Updates                     66 MB/s |  19 MB     00:00    
+Fedora 26 - x86_64                               69 MB/s |  53 MB     00:00    
+Last metadata expiration check: 0:00:05 ago on Mon Jan 15 11:58:16 2018.
+[91mPackage python3-pip-9.0.1-9.fc26.noarch is already installed, skipping.
+[0mDependencies resolved.
+Nothing to do.
+Complete!
+18 files removed
+ ---> 9c3c26d866df
+Removing intermediate container 1459f61179a5
+Step 3/3 : RUN pip3 install celery
+ ---> Running in 0375d32491cf
+[91mWARNING: Running pip install with root privileges is generally not a good idea. Try `pip3 install --user` instead.
+[0mCollecting celery
+  Downloading celery-4.1.0-py2.py3-none-any.whl (400kB)
+Collecting billiard<3.6.0,>=3.5.0.2 (from celery)
+  Downloading billiard-3.5.0.3-py3-none-any.whl (89kB)
+Collecting kombu<5.0,>=4.0.2 (from celery)
+  Downloading kombu-4.1.0-py2.py3-none-any.whl (181kB)
+Collecting pytz>dev (from celery)
+  Downloading pytz-2017.3-py2.py3-none-any.whl (511kB)
+Collecting amqp<3.0,>=2.1.4 (from kombu<5.0,>=4.0.2->celery)
+  Downloading amqp-2.2.2-py2.py3-none-any.whl (48kB)
+Collecting vine>=1.1.3 (from amqp<3.0,>=2.1.4->kombu<5.0,>=4.0.2->celery)
+  Downloading vine-1.1.4-py2.py3-none-any.whl
+Installing collected packages: billiard, vine, amqp, kombu, pytz, celery
+Successfully installed amqp-2.2.2 billiard-3.5.0.3 celery-4.1.0 kombu-4.1.0 pytz-2017.3 vine-1.1.4
+ ---> 414f3f5faec5
+Removing intermediate container 0375d32491cf
+Successfully built 414f3f5faec5
