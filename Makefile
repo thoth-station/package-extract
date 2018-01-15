@@ -24,6 +24,10 @@ clean:
 	rm -rf venv venv-coala coverage.xml
 	rm -rf dist thoth_pkgdeps.egg-info build docs/
 
+.PHONY: devenv
+devenv:
+	pipenv install --dev
+
 .PHONY: pytest
 pytest:
 	@echo ">>> Executing testsuite"

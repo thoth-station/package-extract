@@ -1,0 +1,16 @@
+language: python
+python:
+- '3.4'
+- '3.5'
+- '3.5-dev'
+- '3.6'
+- '3.6-dev'
+- 'pypy3'
+#- '3.7-dev'
+#- 'nightly'
+install:
+- pip3 install pipenv
+- make devenv
+script: make check
+after_success:
+- bash <(curl -s https://codecov.io/bash)
