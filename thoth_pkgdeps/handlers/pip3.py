@@ -1,7 +1,10 @@
-import attr
+"""Parse packages installed using pip3."""
+
 import logging
 import re
 import typing
+
+import attr
 
 from .base import HandlerBase
 
@@ -32,6 +35,8 @@ class PIP3(HandlerBase):
 
             return package_name, None, version
 
+        # TODO: indirect dependencies have '->'
+
         # See https://www.python.org/dev/peps/pep-0440/#version-specifiers for all possible values
         for ver_spec in ('~=', '!=', '===', '==', '<=', '>=', '>', '<'):
             split_result = package_specifier.rsplit(ver_spec, maxsplit=1)
@@ -58,12 +63,14 @@ class PIP3(HandlerBase):
         matched = [entry for entry in result if entry['package'] == package_name]
 
         if len(matched) > 1:
-            _LOG.warning('Package %r was installed multiple times in versions %s',
+            _LOG.warning('Package %r was installed multiple times in versions %s', package_name,
                          tuple(entry['version'] for entry in matched))
 
         if package_version not in (entry['version'] for entry in matched):
             _LOG.info('Installation of Python package %r using pip with version specifiers %s installed version %s',
-                      [(entry['version_specifier'], entry['version']) for entry in matched], package_version)
+                      package_name,
+                      [(entry['version_specifier'], entry['version']) for entry in matched],
+                      package_version)
 
     def run(self, input_text: str) -> list:
         """Find and parse installed packages and their versions from a build log."""
@@ -87,7 +94,7 @@ class PIP3(HandlerBase):
                 packages = line[len('Successfully installed '):].split(' ')
                 for package in packages:
                     package_name, version = package.rsplit('-', maxsplit=1)
-                    self._ceck_entry(result, package_name, version)
+                    self._check_entry(result, package_name, version)
                 continue
 
         return result

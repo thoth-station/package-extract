@@ -1,10 +1,11 @@
+"""A base class for implementing extraction handlers."""
+
 import abc
 import typing
 
 import attr
 
-
-_HandlerBaseType = typing.TypeVar('T', bound='Repository')
+_HandlerBaseType = typing.TypeVar('T', bound='Repository')  # pylint: disable=invalid-name
 
 
 @attr.s

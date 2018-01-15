@@ -1,9 +1,10 @@
 """Handle output of yum command - parse installed packages."""
 
-import attr
 import logging
-import typing
 import re
+import typing
+
+import attr
 
 from .base import HandlerBase
 

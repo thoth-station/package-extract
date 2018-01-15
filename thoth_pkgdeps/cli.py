@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Command line interface for thoth-pkgdeps."""
 
+import json
 import logging
 import sys
-import json
 import typing
 
 import click
-import daiquiri
 
+import daiquiri
 from thoth_pkgdeps import __version__ as thothg_pkgdeps_version
 from thoth_pkgdeps.core import extract_build_log
 
@@ -80,7 +80,8 @@ def cli(ctx=None, verbose: int = 0, no_color: bool = True):
 @click.option('--no-pretty', is_flag=True,
               help="Do not print results nicely.")
 def cli_extract(input_file, no_pretty=False):
-    result = extract_build_log(input_file)
+    """Extract installed packages from a build log."""
+    result = extract_build_log(input_file.read())
     _print_command_result(result, not no_pretty)
 
 

@@ -1,3 +1,5 @@
+"""Parse packages installed using dnf."""
+
 import attr
 
 from .yum import HandlerBase

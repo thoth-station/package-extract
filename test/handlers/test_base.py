@@ -1,19 +1,14 @@
+"""Testing base handler."""
+
 import pytest
 
 from thoth_pkgdeps.handlers import HandlerBase
 
-
-def raw_and_recover_changes(func):
-    def wrapper(*args, **kwargs):
-        base_handlers = HandlerBase.handlers
-        HandlerBase.handlers = []
-        func(*args, **kwargs)
-        HandlerBase.handlers = base_handlers
-
-    return wrapper
+from ..case import raw_and_recover_changes
 
 
 class TestHandlerBase:
+    """Test :class:thoth_pkgdeps.handlers.HandlerBase."""
     class FooHandler(HandlerBase):
         def run(self, input_text):
             return ["foo"]
