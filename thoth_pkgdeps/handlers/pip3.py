@@ -39,8 +39,6 @@ class PIP3(HandlerBase):
 
             return package_name, version
 
-        # TODO: indirect dependencies have '->'
-
         # See https://www.python.org/dev/peps/pep-0440/#version-specifiers for all possible values.
         version_start_idx = None
         for ver_spec in ('~=', '!=', '===', '==', '<=', '>=', '>', '<'):
