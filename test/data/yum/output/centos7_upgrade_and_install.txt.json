@@ -1,0 +1,83 @@
+[
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "gcc",
+    "repository": "updates",
+    "size": "16M",
+    "upgrading": false,
+    "version": "4.8.5-16.el7_4.1"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "cpp",
+    "repository": "updates",
+    "size": "5.9M",
+    "upgrading": false,
+    "version": "4.8.5-16.el7_4.1"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "glibc-devel",
+    "repository": "updates",
+    "size": "1.1M",
+    "upgrading": false,
+    "version": "2.17-196.el7_4.2"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "glibc-headers",
+    "repository": "updates",
+    "size": "676k",
+    "upgrading": false,
+    "version": "2.17-196.el7_4.2"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "kernel-headers",
+    "repository": "updates",
+    "size": "6.0M",
+    "upgrading": false,
+    "version": "3.10.0-693.11.6.el7"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "libgomp",
+    "repository": "updates",
+    "size": "154k",
+    "upgrading": false,
+    "version": "4.8.5-16.el7_4.1"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "libmpc",
+    "repository": "base",
+    "size": "51k",
+    "upgrading": false,
+    "version": "1.0.1-3.el7"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "mpfr",
+    "repository": "base",
+    "size": "203k",
+    "upgrading": false,
+    "version": "3.1.1-4.el7"
+  }
+]
+

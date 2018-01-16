@@ -14,6 +14,4 @@ class TestYUM(TestCase):
     def test_run(self):
         HandlerBase.register(YUM)
         for output, expected_output in self.get_handler_output(YUM, 'yum'):
-            pass
-            # TODO: implement
-            # assert output == expected_output
+            assert output == expected_output

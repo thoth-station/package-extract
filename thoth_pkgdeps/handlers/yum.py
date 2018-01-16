@@ -83,7 +83,7 @@ class YUM(HandlerBase):
                     'upgrading': upgrading
                 })
                 _LOG.debug("Found installed package report: %s", reported_packages[-1])
-            elif lines[index_increment].startswith('Installing dependencies:'):
+            elif lines[index_increment].startswith(('Installing dependencies:', 'Installing for dependencies:')):
                 if is_dependency:
                     _LOG.warning("Dependency listing heading was already present in the output, seen again")
                 is_dependency = True

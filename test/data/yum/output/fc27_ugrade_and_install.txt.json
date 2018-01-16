@@ -1,0 +1,1032 @@
+[
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "audit-libs",
+    "repository": "updates",
+    "size": "111k",
+    "upgrading": true,
+    "version": "2.8.2-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "bash",
+    "repository": "updates",
+    "size": "1.5M",
+    "upgrading": true,
+    "version": "4.4.12-13.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "ca-certificates",
+    "repository": "updates",
+    "size": "406k",
+    "upgrading": true,
+    "version": "2017.2.20-1.0.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": 1,
+    "name": "compat-openssl10",
+    "repository": "updates",
+    "size": "1.1M",
+    "upgrading": true,
+    "version": "1.0.2m-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "coreutils",
+    "repository": "updates",
+    "size": "1.2M",
+    "upgrading": true,
+    "version": "8.27-17.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "coreutils-common",
+    "repository": "updates",
+    "size": "1.9M",
+    "upgrading": true,
+    "version": "8.27-17.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "crypto-policies",
+    "repository": "updates",
+    "size": "37k",
+    "upgrading": true,
+    "version": "20170816-2.gite0a4066.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "curl",
+    "repository": "updates",
+    "size": "311k",
+    "upgrading": true,
+    "version": "7.55.1-8.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": 1,
+    "name": "dbus",
+    "repository": "updates",
+    "size": "266k",
+    "upgrading": true,
+    "version": "1.12.0-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": 1,
+    "name": "dbus-libs",
+    "repository": "updates",
+    "size": "178k",
+    "upgrading": true,
+    "version": "1.12.0-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "device-mapper",
+    "repository": "updates",
+    "size": "357k",
+    "upgrading": true,
+    "version": "1.02.144-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "device-mapper-libs",
+    "repository": "updates",
+    "size": "390k",
+    "upgrading": true,
+    "version": "1.02.144-1.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "dnf",
+    "repository": "updates",
+    "size": "350k",
+    "upgrading": true,
+    "version": "2.7.5-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "dnf-conf",
+    "repository": "updates",
+    "size": "68k",
+    "upgrading": true,
+    "version": "2.7.5-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "dnf-yum",
+    "repository": "updates",
+    "size": "50k",
+    "upgrading": true,
+    "version": "2.7.5-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "expat",
+    "repository": "updates",
+    "size": "103k",
+    "upgrading": true,
+    "version": "2.2.5-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "gawk",
+    "repository": "updates",
+    "size": "1.1M",
+    "upgrading": true,
+    "version": "4.1.4-8.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "gdbm",
+    "repository": "updates",
+    "size": "158k",
+    "upgrading": true,
+    "version": "1.14-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "glib2",
+    "repository": "updates",
+    "size": "2.4M",
+    "upgrading": true,
+    "version": "2.54.2-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "glibc",
+    "repository": "updates",
+    "size": "3.6M",
+    "upgrading": true,
+    "version": "2.26-21.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "glibc-common",
+    "repository": "updates",
+    "size": "844k",
+    "upgrading": true,
+    "version": "2.26-21.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "glibc-langpack-en",
+    "repository": "updates",
+    "size": "276k",
+    "upgrading": true,
+    "version": "2.26-21.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "gnupg2",
+    "repository": "updates",
+    "size": "2.3M",
+    "upgrading": true,
+    "version": "2.2.3-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "gnupg2-smime",
+    "repository": "updates",
+    "size": "276k",
+    "upgrading": true,
+    "version": "2.2.3-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "gnutls",
+    "repository": "updates",
+    "size": "761k",
+    "upgrading": true,
+    "version": "3.5.16-4.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "ima-evm-utils",
+    "repository": "updates",
+    "size": "56k",
+    "upgrading": true,
+    "version": "1.0-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "info",
+    "repository": "updates",
+    "size": "192k",
+    "upgrading": true,
+    "version": "6.4-6.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "krb5-libs",
+    "repository": "updates",
+    "size": "809k",
+    "upgrading": true,
+    "version": "1.15.2-4.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libcrypt-nss",
+    "repository": "updates",
+    "size": "39k",
+    "upgrading": true,
+    "version": "2.26-21.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libcurl",
+    "repository": "updates",
+    "size": "272k",
+    "upgrading": true,
+    "version": "7.55.1-8.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libdb",
+    "repository": "updates",
+    "size": "753k",
+    "upgrading": true,
+    "version": "5.3.28-27.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libdb-utils",
+    "repository": "updates",
+    "size": "144k",
+    "upgrading": true,
+    "version": "5.3.28-27.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libdnf",
+    "repository": "updates",
+    "size": "132k",
+    "upgrading": true,
+    "version": "0.11.1-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libgcrypt",
+    "repository": "updates",
+    "size": "453k",
+    "upgrading": true,
+    "version": "1.8.1-3.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libreport-filesystem",
+    "repository": "updates",
+    "size": "16k",
+    "upgrading": true,
+    "version": "2.9.3-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libselinux",
+    "repository": "updates",
+    "size": "173k",
+    "upgrading": true,
+    "version": "2.7-3.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libsemanage",
+    "repository": "updates",
+    "size": "156k",
+    "upgrading": true,
+    "version": "2.7-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libsepol",
+    "repository": "updates",
+    "size": "332k",
+    "upgrading": true,
+    "version": "2.7-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libsolv",
+    "repository": "updates",
+    "size": "368k",
+    "upgrading": true,
+    "version": "0.6.30-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libsss_idmap",
+    "repository": "updates",
+    "size": "87k",
+    "upgrading": true,
+    "version": "1.16.0-5.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libsss_nss_idmap",
+    "repository": "updates",
+    "size": "94k",
+    "upgrading": true,
+    "version": "1.16.0-5.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "libzstd",
+    "repository": "updates",
+    "size": "207k",
+    "upgrading": true,
+    "version": "1.3.3-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "lua-libs",
+    "repository": "updates",
+    "size": "116k",
+    "upgrading": true,
+    "version": "5.3.4-7.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "nettle",
+    "repository": "updates",
+    "size": "292k",
+    "upgrading": true,
+    "version": "3.4-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "nss",
+    "repository": "updates",
+    "size": "856k",
+    "upgrading": true,
+    "version": "3.34.0-1.0.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "nss-pem",
+    "repository": "updates",
+    "size": "77k",
+    "upgrading": true,
+    "version": "1.0.3-6.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "nss-softokn",
+    "repository": "updates",
+    "size": "391k",
+    "upgrading": true,
+    "version": "3.34.0-1.0.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "nss-softokn-freebl",
+    "repository": "updates",
+    "size": "235k",
+    "upgrading": true,
+    "version": "3.34.0-1.0.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "nss-sysinit",
+    "repository": "updates",
+    "size": "63k",
+    "upgrading": true,
+    "version": "3.34.0-1.0.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "nss-tools",
+    "repository": "updates",
+    "size": "519k",
+    "upgrading": true,
+    "version": "3.34.0-1.0.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "nss-util",
+    "repository": "updates",
+    "size": "89k",
+    "upgrading": true,
+    "version": "3.34.0-1.0.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "openldap",
+    "repository": "updates",
+    "size": "360k",
+    "upgrading": true,
+    "version": "2.4.45-4.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": 1,
+    "name": "openssl-libs",
+    "repository": "updates",
+    "size": "1.3M",
+    "upgrading": true,
+    "version": "1.1.0g-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "p11-kit",
+    "repository": "updates",
+    "size": "263k",
+    "upgrading": true,
+    "version": "0.23.9-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "p11-kit-trust",
+    "repository": "updates",
+    "size": "134k",
+    "upgrading": true,
+    "version": "0.23.9-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "pcre",
+    "repository": "updates",
+    "size": "204k",
+    "upgrading": true,
+    "version": "8.41-3.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "pcre2",
+    "repository": "updates",
+    "size": "234k",
+    "upgrading": true,
+    "version": "10.30-4.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "publicsuffix-list-dafsa",
+    "repository": "updates",
+    "size": "46k",
+    "upgrading": true,
+    "version": "20171228-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "python3",
+    "repository": "updates",
+    "size": "68k",
+    "upgrading": true,
+    "version": "3.6.3-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "python3-dnf",
+    "repository": "updates",
+    "size": "454k",
+    "upgrading": true,
+    "version": "2.7.5-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "python3-hawkey",
+    "repository": "updates",
+    "size": "57k",
+    "upgrading": true,
+    "version": "0.11.1-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "python3-libs",
+    "repository": "updates",
+    "size": "8.6M",
+    "upgrading": true,
+    "version": "3.6.3-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "python3-pip",
+    "repository": "updates",
+    "size": "1.8M",
+    "upgrading": true,
+    "version": "9.0.1-14.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "python3-setuptools",
+    "repository": "updates",
+    "size": "604k",
+    "upgrading": true,
+    "version": "37.0.0-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "sssd-client",
+    "repository": "updates",
+    "size": "143k",
+    "upgrading": true,
+    "version": "1.16.0-5.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "systemd",
+    "repository": "updates",
+    "size": "3.5M",
+    "upgrading": true,
+    "version": "234-9.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "systemd-libs",
+    "repository": "updates",
+    "size": "465k",
+    "upgrading": true,
+    "version": "234-9.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "systemd-pam",
+    "repository": "updates",
+    "size": "180k",
+    "upgrading": true,
+    "version": "234-9.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": false,
+    "epoch": null,
+    "name": "tzdata",
+    "repository": "updates",
+    "size": "444k",
+    "upgrading": true,
+    "version": "2017c-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": 2,
+    "name": "vim-minimal",
+    "repository": "updates",
+    "size": "537k",
+    "upgrading": true,
+    "version": "8.0.1427-1.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "gcc",
+    "repository": "fedora",
+    "size": "21M",
+    "upgrading": false,
+    "version": "7.2.1-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": false,
+    "epoch": null,
+    "name": "python3-devel",
+    "repository": "updates",
+    "size": "866k",
+    "upgrading": false,
+    "version": "3.6.3-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "binutils",
+    "repository": "fedora",
+    "size": "5.9M",
+    "upgrading": false,
+    "version": "2.29-6.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "cmake-rpm-macros",
+    "repository": "updates",
+    "size": "36k",
+    "upgrading": false,
+    "version": "3.10.1-4.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "cpp",
+    "repository": "fedora",
+    "size": "9.2M",
+    "upgrading": false,
+    "version": "7.2.1-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "dwz",
+    "repository": "fedora",
+    "size": "106k",
+    "upgrading": false,
+    "version": "0.12-5.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "fedora-rpm-macros",
+    "repository": "fedora",
+    "size": "6.7k",
+    "upgrading": false,
+    "version": "26-3.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "fpc-srpm-macros",
+    "repository": "fedora",
+    "size": "7.1k",
+    "upgrading": false,
+    "version": "1.1-3.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "ghc-srpm-macros",
+    "repository": "fedora",
+    "size": "7.9k",
+    "upgrading": false,
+    "version": "1.4.2-6.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "glibc-devel",
+    "repository": "updates",
+    "size": "988k",
+    "upgrading": false,
+    "version": "2.26-21.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "glibc-headers",
+    "repository": "updates",
+    "size": "502k",
+    "upgrading": false,
+    "version": "2.26-21.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "gnat-srpm-macros",
+    "repository": "fedora",
+    "size": "8.4k",
+    "upgrading": false,
+    "version": "4-4.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "go-srpm-macros",
+    "repository": "fedora",
+    "size": "8.0k",
+    "upgrading": false,
+    "version": "2-10.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "isl",
+    "repository": "fedora",
+    "size": "835k",
+    "upgrading": false,
+    "version": "0.16.1-3.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "kernel-headers",
+    "repository": "updates",
+    "size": "1.2M",
+    "upgrading": false,
+    "version": "4.14.13-300.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "libgomp",
+    "repository": "fedora",
+    "size": "198k",
+    "upgrading": false,
+    "version": "7.2.1-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "libmpc",
+    "repository": "fedora",
+    "size": "56k",
+    "upgrading": false,
+    "version": "1.0.2-8.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "libpkgconf",
+    "repository": "updates",
+    "size": "31k",
+    "upgrading": false,
+    "version": "1.3.12-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "ocaml-srpm-macros",
+    "repository": "fedora",
+    "size": "7.8k",
+    "upgrading": false,
+    "version": "5-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "openblas-srpm-macros",
+    "repository": "fedora",
+    "size": "6.6k",
+    "upgrading": false,
+    "version": "2-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "perl-srpm-macros",
+    "repository": "fedora",
+    "size": "9.3k",
+    "upgrading": false,
+    "version": "1-24.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "pkgconf",
+    "repository": "updates",
+    "size": "31k",
+    "upgrading": false,
+    "version": "1.3.12-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "pkgconf-m4",
+    "repository": "updates",
+    "size": "13k",
+    "upgrading": false,
+    "version": "1.3.12-2.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "pkgconf-pkg-config",
+    "repository": "updates",
+    "size": "13k",
+    "upgrading": false,
+    "version": "1.3.12-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "python-rpm-macros",
+    "repository": "updates",
+    "size": "10k",
+    "upgrading": false,
+    "version": "3-23.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "python-srpm-macros",
+    "repository": "updates",
+    "size": "9.7k",
+    "upgrading": false,
+    "version": "3-23.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "python3-rpm-generators",
+    "repository": "updates",
+    "size": "25k",
+    "upgrading": false,
+    "version": "4.14.0-1.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "python3-rpm-macros",
+    "repository": "updates",
+    "size": "9.5k",
+    "upgrading": false,
+    "version": "3-23.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "qt5-srpm-macros",
+    "repository": "fedora",
+    "size": "8.5k",
+    "upgrading": false,
+    "version": "5.9.1-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "redhat-rpm-config",
+    "repository": "updates",
+    "size": "62k",
+    "upgrading": false,
+    "version": "67-2.fc27"
+  },
+  {
+    "arch": "noarch",
+    "dependency": true,
+    "epoch": null,
+    "name": "rust-srpm-macros",
+    "repository": "fedora",
+    "size": "7.7k",
+    "upgrading": false,
+    "version": "4-3.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "unzip",
+    "repository": "fedora",
+    "size": "189k",
+    "upgrading": false,
+    "version": "6.0-36.fc27"
+  },
+  {
+    "arch": "x86_64",
+    "dependency": true,
+    "epoch": null,
+    "name": "zip",
+    "repository": "fedora",
+    "size": "270k",
+    "upgrading": false,
+    "version": "3.0-20.fc27"
+  }
+]
