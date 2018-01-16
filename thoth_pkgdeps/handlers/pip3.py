@@ -14,7 +14,7 @@ _RE_COLLECTING_DEPENDENCY_FROM = re.compile(r'Collecting ([+a-zA-Z_\-.():/0-9>=<
                                             r'\(from ([a-zA-Z_\-.():/0-9>=<, ]+)\)')
 _RE_COLLECTING_DEPENDENCY_REMOTE = re.compile(r'Collecting ([+a-zA-Z_\-.():/0-9>=<;,"]+) '
                                               r'from ([a-zA-Z_\-.():/0-9>=<, ]+)')
-_RE_DOWNLOADING_ARTIFACT = re.compile(r'Downloading ([+a-zA-Z_\-.:/0-9>=<;,"]+)( \(([a-zA-Z.,0-9]+)\))?')
+_RE_DOWNLOADING_ARTIFACT = re.compile(r'  Downloading ([+a-zA-Z_\-.:/0-9>=<;,"]+)( \(([a-zA-Z.,0-9]+)\))?')
 _RE_ALREADY_SATISFIED = re.compile(r'Requirement already satisfied: ([+a-zA-Z_\-.():/0-9>=<;,"]+) in '
                                    r'([+a-zA-Z_\-.():/0-9>=<;,"]+) \(from ([a-zA-Z_\-.():/0-9>=<, ]+)\)')
 _RE_ESCAPE_SEQ = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]')
@@ -124,7 +124,7 @@ class PIP3(HandlerBase):
         index = 0
         lines = input_text.split('\n')
         while index < len(lines):
-            line = self._remove_escape_seq(lines[index]).strip()
+            line = self._remove_escape_seq(lines[index])
             match_result = _RE_COLLECTING_DEPENDENCY_FROM.fullmatch(line)
             if match_result:
                 dependency = self._parse_package(match_result.group(1))
