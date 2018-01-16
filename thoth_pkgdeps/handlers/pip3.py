@@ -12,6 +12,8 @@ _RE_PACKAGE_NAME = re.compile(r'[a-zA-Z0-9_]')
 _RE_COLLECTING_DEPENDENCY = re.compile(r'Collecting ([+a-zA-Z_\-.():/0-9>=<;,"]+)')
 _RE_COLLECTING_DEPENDENCY_FROM = re.compile(r'Collecting ([+a-zA-Z_\-.():/0-9>=<;,"]+) '
                                             r'\(from ([a-zA-Z_\-.():/0-9>=<, ]+)\)')
+_RE_COLLECTING_DEPENDENCY_REMOTE = re.compile(r'Collecting ([+a-zA-Z_\-.():/0-9>=<;,"]+) '
+                                              r'from ([a-zA-Z_\-.():/0-9>=<, ]+)')
 _RE_DOWNLOADING_ARTIFACT = re.compile(r'  Downloading ([+a-zA-Z_\-.:/0-9>=<;,"]+)( \(([a-zA-Z.,0-9]+)\))?')
 _RE_ALREADY_SATISFIED = re.compile(r'Requirement already satisfied: ([+a-zA-Z_\-.():/0-9>=<;,"]+) in '
                                    r'([+a-zA-Z_\-.():/0-9>=<;,"]+) \(from ([a-zA-Z_\-.():/0-9>=<, ]+)\)')
@@ -147,6 +149,15 @@ class PIP3(HandlerBase):
                 dependency['from'] = self._parse_package(match_result.group(3), is_from=True)
                 dependency['already_satisfied'] = match_result.group(2)
                 result.append(dependency)
+
+            match_result = _RE_COLLECTING_DEPENDENCY_REMOTE.fullmatch(line)
+            if match_result:
+                dependency = self._parse_package(match_result.group(1))
+                dependency['artifact'] = self._parse_artifact(lines[index + 1])
+                # The 'from' part is not reported - it looks same as dependency['artifact']['name'].
+                result.append(dependency)
+                index += 1
+                continue
 
             if line.startswith('Successfully installed '):
                 packages = line[len('Successfully installed '):].split(' ')
