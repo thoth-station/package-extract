@@ -1,1 +1,123 @@
-null
+[
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "http://download.pytorch.org/whl/cpu/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl",
+      "size": "45.7MB"
+    },
+    "package": "torch",
+    "version_installed": "0.3.0.post4",
+    "version_specified": "==0.3.0.post4"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "PyYAML-3.12.tar.gz",
+      "size": "253kB"
+    },
+    "from": [
+      {
+        "package": "torch",
+        "version_specified": "==0.3.0.post4"
+      }
+    ],
+    "package": "pyyaml",
+    "version_installed": "3.12",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "numpy-1.14.0-cp36-cp36m-manylinux1_x86_64.whl",
+      "size": "17.2MB"
+    },
+    "from": [
+      {
+        "package": "torch",
+        "version_specified": "==0.3.0.post4"
+      }
+    ],
+    "package": "numpy",
+    "version_installed": "1.14.0",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "torchvision-0.2.0-py2.py3-none-any.whl",
+      "size": "48kB"
+    },
+    "from": null,
+    "package": "torchvision",
+    "version_installed": "0.2.0",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": "/usr/lib64/python3.6/site-packages",
+    "from": [
+      {
+        "package": "torchvision",
+        "version_specified": null
+      }
+    ],
+    "package": "torch",
+    "version_installed": null,
+    "version_specified": null
+  },
+  {
+    "already_satisfied": "/usr/lib/python3.6/site-packages",
+    "from": [
+      {
+        "package": "torchvision",
+        "version_specified": null
+      }
+    ],
+    "package": "six",
+    "version_installed": null,
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "Pillow-5.0.0-cp36-cp36m-manylinux1_x86_64.whl",
+      "size": "5.9MB"
+    },
+    "from": [
+      {
+        "package": "torchvision",
+        "version_specified": null
+      }
+    ],
+    "package": "pillow",
+    "version_installed": "5.0.0",
+    "version_specified": ">=4.1.1"
+  },
+  {
+    "already_satisfied": "/usr/lib64/python3.6/site-packages",
+    "from": [
+      {
+        "package": "torchvision",
+        "version_specified": null
+      }
+    ],
+    "package": "numpy",
+    "version_installed": null,
+    "version_specified": null
+  },
+  {
+    "already_satisfied": "/usr/lib64/python3.6/site-packages",
+    "from": [
+      {
+        "package": "torch",
+        "version_specified": null
+      },
+      {
+        "package": "torchvision",
+        "version_specified": null
+      }
+    ],
+    "package": "pyyaml",
+    "version_installed": null,
+    "version_specified": null
+  }
+]

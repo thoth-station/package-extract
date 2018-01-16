@@ -1,1 +1,13 @@
-null
+[
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "click-6.7-py2.py3-none-any.whl",
+      "size": "71kB"
+    },
+    "from": null,
+    "package": "click",
+    "version_installed": "6.7",
+    "version_specified": null
+  }
+]

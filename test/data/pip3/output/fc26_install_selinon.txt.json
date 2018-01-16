@@ -1,1 +1,149 @@
-null
+[
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "selinon-1.0.0rc3-py3-none-any.whl",
+      "size": "324kB"
+    },
+    "from": null,
+    "package": "selinon",
+    "version_installed": "1.0.0rc3",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "codegen-1.0.tar.gz",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "selinon",
+        "version_specified": null
+      }
+    ],
+    "package": "codegen",
+    "version_installed": "1.0",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "jsonschema-2.6.0-py2.py3-none-any.whl",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "selinon",
+        "version_specified": null
+      }
+    ],
+    "package": "jsonschema",
+    "version_installed": "2.6.0",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "rainbow_logging_handler-2.2.2.zip",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "selinon",
+        "version_specified": null
+      }
+    ],
+    "package": "rainbow-logging-handler",
+    "version_installed": "2.2.2",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "PyYAML-3.12.tar.gz",
+      "size": "253kB"
+    },
+    "from": [
+      {
+        "package": "selinon",
+        "version_specified": null
+      }
+    ],
+    "package": "pyyaml",
+    "version_installed": "3.12",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "graphviz-0.8.2-py2.py3-none-any.whl",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "selinon",
+        "version_specified": null
+      }
+    ],
+    "package": "graphviz",
+    "version_installed": "0.8.2",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "click-6.7-py2.py3-none-any.whl",
+      "size": "71kB"
+    },
+    "from": [
+      {
+        "package": "selinon",
+        "version_specified": null
+      }
+    ],
+    "package": "click",
+    "version_installed": "6.7",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "logutils-0.3.5.tar.gz",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "rainbow-logging-handler",
+        "version_specified": null
+      },
+      {
+        "package": "selinon",
+        "version_specified": null
+      }
+    ],
+    "package": "logutils",
+    "version_installed": "0.3.5",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "colorama-0.3.9-py2.py3-none-any.whl",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "rainbow-logging-handler",
+        "version_specified": null
+      },
+      {
+        "package": "selinon",
+        "version_specified": null
+      }
+    ],
+    "package": "colorama",
+    "version_installed": "0.3.9",
+    "version_specified": null
+  }
+]

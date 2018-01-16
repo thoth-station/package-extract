@@ -1,1 +1,97 @@
-null
+[
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "Flask-0.12.2-py2.py3-none-any.whl",
+      "size": "83kB"
+    },
+    "from": null,
+    "package": "flask",
+    "version_installed": "0.12.2",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "click-6.7-py2.py3-none-any.whl",
+      "size": "71kB"
+    },
+    "from": [
+      {
+        "package": "flask",
+        "version_specified": null
+      }
+    ],
+    "package": "click",
+    "version_installed": "6.7",
+    "version_specified": ">=2.0"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "Jinja2-2.10-py2.py3-none-any.whl",
+      "size": "126kB"
+    },
+    "from": [
+      {
+        "package": "flask",
+        "version_specified": null
+      }
+    ],
+    "package": "Jinja2",
+    "version_installed": "2.10",
+    "version_specified": ">=2.4"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "Werkzeug-0.14.1-py2.py3-none-any.whl",
+      "size": "322kB"
+    },
+    "from": [
+      {
+        "package": "flask",
+        "version_specified": null
+      }
+    ],
+    "package": "Werkzeug",
+    "version_installed": "0.14.1",
+    "version_specified": ">=0.7"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "itsdangerous-0.24.tar.gz",
+      "size": "46kB"
+    },
+    "from": [
+      {
+        "package": "flask",
+        "version_specified": null
+      }
+    ],
+    "package": "itsdangerous",
+    "version_installed": "0.24",
+    "version_specified": ">=0.21"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "MarkupSafe-1.0.tar.gz",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "Jinja2",
+        "version_specified": ">=2.4"
+      },
+      {
+        "package": "flask",
+        "version_specified": null
+      }
+    ],
+    "package": "MarkupSafe",
+    "version_installed": "1.0",
+    "version_specified": ">=0.23"
+  }
+]

@@ -1,1 +1,105 @@
-null
+[
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "celery-4.1.0-py2.py3-none-any.whl",
+      "size": "400kB"
+    },
+    "from": null,
+    "package": "celery",
+    "version_installed": "4.1.0",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "billiard-3.5.0.3-py3-none-any.whl",
+      "size": "89kB"
+    },
+    "from": [
+      {
+        "package": "celery",
+        "version_specified": null
+      }
+    ],
+    "package": "billiard",
+    "version_installed": "3.5.0.3",
+    "version_specified": "<3.6.0,>=3.5.0.2"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "kombu-4.1.0-py2.py3-none-any.whl",
+      "size": "181kB"
+    },
+    "from": [
+      {
+        "package": "celery",
+        "version_specified": null
+      }
+    ],
+    "package": "kombu",
+    "version_installed": "4.1.0",
+    "version_specified": "<5.0,>=4.0.2"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "pytz-2017.3-py2.py3-none-any.whl",
+      "size": "511kB"
+    },
+    "from": [
+      {
+        "package": "celery",
+        "version_specified": null
+      }
+    ],
+    "package": "pytz",
+    "version_installed": "2017.3",
+    "version_specified": ">dev"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "amqp-2.2.2-py2.py3-none-any.whl",
+      "size": "48kB"
+    },
+    "from": [
+      {
+        "package": "kombu",
+        "version_specified": "<5.0,>=4.0.2"
+      },
+      {
+        "package": "celery",
+        "version_specified": null
+      }
+    ],
+    "package": "amqp",
+    "version_installed": "2.2.2",
+    "version_specified": "<3.0,>=2.1.4"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "vine-1.1.4-py2.py3-none-any.whl",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "amqp",
+        "version_specified": "<3.0,>=2.1.4"
+      },
+      {
+        "package": "kombu",
+        "version_specified": "<5.0,>=4.0.2"
+      },
+      {
+        "package": "celery",
+        "version_specified": null
+      }
+    ],
+    "package": "vine",
+    "version_installed": "1.1.4",
+    "version_specified": ">=1.1.3"
+  }
+]

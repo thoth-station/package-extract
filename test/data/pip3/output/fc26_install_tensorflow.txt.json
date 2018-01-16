@@ -1,1 +1,201 @@
-null
+[
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "tensorflow-1.4.1-cp36-cp36m-manylinux1_x86_64.whl",
+      "size": "41.2MB"
+    },
+    "from": null,
+    "package": "tensorflow",
+    "version_installed": "1.4.1",
+    "version_specified": null
+  },
+  {
+    "already_satisfied": "/usr/lib/python3.6/site-packages",
+    "from": [
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "six",
+    "version_installed": null,
+    "version_specified": ">=1.10.0"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "enum34-1.1.6-py3-none-any.whl",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "enum34",
+    "version_installed": "1.1.6",
+    "version_specified": ">=1.1.6"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "wheel-0.30.0-py2.py3-none-any.whl",
+      "size": "49kB"
+    },
+    "from": [
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "wheel",
+    "version_installed": "0.30.0",
+    "version_specified": ">=0.26"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "protobuf-3.5.1-cp36-cp36m-manylinux1_x86_64.whl",
+      "size": "6.4MB"
+    },
+    "from": [
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "protobuf",
+    "version_installed": "3.5.1",
+    "version_specified": ">=3.3.0"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "numpy-1.14.0-cp36-cp36m-manylinux1_x86_64.whl",
+      "size": "17.2MB"
+    },
+    "from": [
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "numpy",
+    "version_installed": "1.14.0",
+    "version_specified": ">=1.12.1"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "tensorflow_tensorboard-0.4.0rc3-py3-none-any.whl",
+      "size": "1.7MB"
+    },
+    "from": [
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "tensorflow-tensorboard",
+    "version_installed": "0.4.0rc3",
+    "version_specified": "<0.5.0,>=0.4.0rc1"
+  },
+  {
+    "already_satisfied": "/usr/lib/python3.6/site-packages",
+    "from": [
+      {
+        "package": "protobuf",
+        "version_specified": ">=3.3.0"
+      },
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "setuptools",
+    "version_installed": null,
+    "version_specified": null
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "html5lib-0.9999999.tar.gz",
+      "size": "889kB"
+    },
+    "from": [
+      {
+        "package": "tensorflow-tensorboard",
+        "version_specified": "<0.5.0,>=0.4.0rc1"
+      },
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "html5lib",
+    "version_installed": "0.9999999",
+    "version_specified": "==0.9999999"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "bleach-1.5.0-py2.py3-none-any.whl",
+      "size": null
+    },
+    "from": [
+      {
+        "package": "tensorflow-tensorboard",
+        "version_specified": "<0.5.0,>=0.4.0rc1"
+      },
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "bleach",
+    "version_installed": "1.5.0",
+    "version_specified": "==1.5.0"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "Markdown-2.6.11-py2.py3-none-any.whl",
+      "size": "78kB"
+    },
+    "from": [
+      {
+        "package": "tensorflow-tensorboard",
+        "version_specified": "<0.5.0,>=0.4.0rc1"
+      },
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "markdown",
+    "version_installed": "2.6.11",
+    "version_specified": ">=2.6.8"
+  },
+  {
+    "already_satisfied": null,
+    "artifact": {
+      "name": "Werkzeug-0.14.1-py2.py3-none-any.whl",
+      "size": "322kB"
+    },
+    "from": [
+      {
+        "package": "tensorflow-tensorboard",
+        "version_specified": "<0.5.0,>=0.4.0rc1"
+      },
+      {
+        "package": "tensorflow",
+        "version_specified": null
+      }
+    ],
+    "package": "werkzeug",
+    "version_installed": "0.14.1",
+    "version_specified": ">=0.11.10"
+  }
+]

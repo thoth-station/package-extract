@@ -14,6 +14,4 @@ class TestPIP3(TestCase):
     def test_run(self):
         HandlerBase.register(PIP3)
         for output, expected_output in self.get_handler_output(PIP3, 'pip3'):
-            pass
-            # TODO: implement
-            # assert output == expected_output
+            assert output == expected_output
