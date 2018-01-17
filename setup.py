@@ -38,7 +38,7 @@ setup(
     maintainer='Fridolin Pokorny',
     maintainer_email='fridolin@redhat.com',
     description='Tool and library for extracting packages from a docker build log',
-    #long_description=get_long_description(),
+    long_description=get_long_description(),
     url='https://github.com/fridex/thoth-pkgdeps',
     license='ASL v2.0',
     keywords='docker image openshift tool library',
