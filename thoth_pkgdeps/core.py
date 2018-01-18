@@ -25,7 +25,7 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
     return result
 
 
-def extract_image(image_name: str, timeout: int) -> dict:
+def extract_image(image_name: str, timeout: int = None) -> dict:
     """Extract dependencies from an image."""
     with tempdir() as dir_path:
         download_image(image_name, dir_path, timeout=timeout)
