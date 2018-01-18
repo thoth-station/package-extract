@@ -1,4 +1,4 @@
-"""Various utilities for thoth-pkgdeps tools."""
+"""Manipulation with an image and image scanning."""
 
 import json
 import logging
@@ -30,6 +30,7 @@ def _normalize_mercator_output(path: str, output: dict) -> dict:
 
 
 def _parse_repoquery(output: str) -> dict:
+    """Parse repoquery output."""
     result = {}
 
     package = None
@@ -55,6 +56,7 @@ def _parse_repoquery(output: str) -> dict:
 
 
 def _run_rpm_repoquery(path: str, timeout: int = None):
+    """Run repoquery and return it's output (parsed)."""
     cmd = 'repoquery --deplist --installed --installroot {!r}'.format(path)
     output = run_command(cmd, timeout=timeout)
     return _parse_repoquery(output)
@@ -118,7 +120,7 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
 def download_image(image_name: str, dir_path: str, timeout: int = None) -> None:
     """Download an image to dir_path."""
     _LOGGER.debug("Downloading image %s", image_name)
-    cmd = "skopeo copy docker://{image_name} dir:/{dir}".format(image_name=image_name, dir=dir_path)
+    cmd = 'skopeo copy docker://{image_name} dir:/{dir}'.format(image_name=image_name, dir=dir_path)
     stdout = run_command(cmd, timeout=timeout)
     _LOGGER.debug("skopeo stdout: %s", stdout)
 
