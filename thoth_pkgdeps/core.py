@@ -1,8 +1,16 @@
 """Implementation of core routines for thoth-pkgdeps."""
 
+import logging
+import os
 import typing
 
-from thoth_pkgdeps.handlers import HandlerBase
+from .handlers import HandlerBase
+from .image import construct_rootfs
+from .image import download_image
+from .image import run_analyzers
+from .utils import tempdir
+
+_LOGGER = logging.getLogger(__name__)
 
 
 def extract_buildlog(input_text: str) -> typing.List[dict]:
@@ -15,3 +23,14 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
         })
 
     return result
+
+
+def extract_image(image_name: str, timeout: int) -> dict:
+    """Extract dependencies from an image."""
+    with tempdir() as dir_path:
+        download_image(image_name, dir_path, timeout=timeout)
+
+        rootfs_path = os.path.join(dir_path, 'rootfs')
+        construct_rootfs(dir_path, rootfs_path)
+
+        return run_analyzers(rootfs_path)

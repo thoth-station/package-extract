@@ -1,10 +1,27 @@
 TEMPFILE := $(shell mktemp -u)
+GOAPTH ?= go env GOPATH
+MERCATOR_GO_PATH = $(GOPATH)/src/github.com/fabric8-analytics/mercator-go
 
+all: install
+
+
+$(GOPATH):
+	mkdir -p $(GOPATH)/src
 
 .PHONY: install
-install:
+install: mercator
 	pip3 install -r requirements.txt
 	python3 setup.py install
+
+.PHONY: mercator
+mercator: $(BINPATH)
+	[ -d $(MERCATOR_GO_PATH) ] || \
+          git clone https://github.com/fabric8-analytics/mercator-go $(MERCATOR_GO_PATH)
+	cd $(MERCATOR_GO_PATH) &&\
+	  go get &&\
+	  make RUBY=NO NPM=NO PYTHON=YES JAVA=NO GRADLE=NO DOTNET=NO RUST=NO HASKELL=NO GOLANG=NO build &&\
+	  make install &&\
+	  cd $(PWD)
 
 .PHONY: uninstall
 uninstall:
@@ -52,6 +69,6 @@ pydocstyle:
 check: pytest pylint pydocstyle coala
 
 
+# Friendly aliases.
 .PHONY: test
 test: check
-

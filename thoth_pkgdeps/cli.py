@@ -11,6 +11,7 @@ import click
 import daiquiri
 from thoth_pkgdeps import __version__ as thothg_pkgdeps_version
 from thoth_pkgdeps.core import extract_buildlog
+from thoth_pkgdeps.core import extract_image
 
 _LOG = logging.getLogger(__name__)
 _DEFAULT_NO_COLOR_FORMAT = "%(asctime)s [%(process)d] %(levelname)-8.8s %(name)s: %(message)s"
@@ -82,6 +83,20 @@ def cli(ctx=None, verbose: int = 0, no_color: bool = True):
 def cli_extract_buildlog(input_file, no_pretty=False):
     """Extract installed packages from a build log."""
     result = extract_buildlog(input_file.read())
+    _print_command_result(result, not no_pretty)
+
+
+@cli.command('extract-image')
+@click.option('--image', '-i', type=str, required=True,
+              help="Image name from which packages should be extracted.")
+@click.option('--no-pretty', is_flag=True,
+              help="Do not print results nicely.")
+@click.option('--timeout', '-t', type=int, required=False, default=None, show_default=True,
+              help="Soft timeout for extraction - timeout is set to commands run, the actual execution time of "
+                   "this tool will be bigger.")
+def cli_extract_image(image, timeout=None, no_pretty=False):
+    """Extract installed packages from an image."""
+    result = extract_image(image, timeout)
     _print_command_result(result, not no_pretty)
 
 
