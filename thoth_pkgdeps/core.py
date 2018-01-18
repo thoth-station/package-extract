@@ -5,7 +5,7 @@ import typing
 from thoth_pkgdeps.handlers import HandlerBase
 
 
-def extract_build_log(input_text: str) -> typing.List[dict]:
+def extract_buildlog(input_text: str) -> typing.List[dict]:
     """Extract Docker image build log and get all installed packages based on ecosystem."""
     result = []
     for handler in HandlerBase.instantiate_handlers():
