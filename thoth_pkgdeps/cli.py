@@ -87,11 +87,11 @@ def cli_extract_buildlog(input_file, no_pretty=False):
 
 
 @cli.command('extract-image')
-@click.option('--image', '-i', type=str, required=True,
+@click.option('--image', '-i', type=str, required=True, envvar='THOTH_IMAGE',
               help="Image name from which packages should be extracted.")
 @click.option('--no-pretty', is_flag=True,
               help="Do not print results nicely.")
-@click.option('--timeout', '-t', type=int, required=False, default=None, show_default=True,
+@click.option('--timeout', '-t', type=int, required=False, default=None, show_default=True, envvar='THOTH_TIMEOUT',
               help="Soft timeout for extraction - timeout is set to commands run, the actual execution time of "
                    "this tool will be bigger.")
 def cli_extract_image(image, timeout=None, no_pretty=False):
