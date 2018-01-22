@@ -1,6 +1,6 @@
 FROM fedora:27
+CMD ["extract-image"]
 ENTRYPOINT ["thoth-pkgdeps"]
-CMD ["thoth-pkgdeps"]
 ENV \
  LANG=en_US.UTF-8 \
  THOTH_PKGDEPS_TMP_DIR='/tmp/thoth-pkgdeps-install' \
