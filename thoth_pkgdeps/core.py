@@ -28,7 +28,7 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
 def extract_image(image_name: str, timeout: int = None) -> dict:
     """Extract dependencies from an image."""
     with tempdir() as dir_path:
-        download_image(image_name, dir_path, timeout=timeout)
+        download_image(image_name, dir_path, timeout=timeout or None)
 
         rootfs_path = os.path.join(dir_path, 'rootfs')
         construct_rootfs(dir_path, rootfs_path)
