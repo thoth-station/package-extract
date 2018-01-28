@@ -18,18 +18,13 @@ _DEFAULT_NO_COLOR_FORMAT = "%(asctime)s [%(process)d] %(levelname)-8.8s %(name)s
 _DEFAULT_COLOR_FORMAT = "%(asctime)s [%(process)d] %(color)s%(levelname)-8.8s %(name)s: %(message)s%(color_stop)s"
 
 
-def _setup_logging(verbose: int, no_color: bool) -> None:
+def _setup_logging(verbose: bool, no_color: bool) -> None:
     """Set up logging facilities.
 
-    :param verbose: verbosity level
+    :param verbose: be verbose
     :param no_color: do not use color in output
     """
-    level = logging.WARNING
-    if verbose == 1:
-        level = logging.INFO
-    elif verbose > 1:
-        level = logging.DEBUG
-
+    level = logging.DEBUG if verbose else logging.INFO
     formatter = daiquiri.formatter.ColorFormatter(fmt=_DEFAULT_COLOR_FORMAT)
     if no_color:
         formatter = logging.Formatter(fmt=_DEFAULT_NO_COLOR_FORMAT)
@@ -61,8 +56,8 @@ def _print_command_result(result: typing.Union[dict, list], pretty=True) -> None
 
 @click.group()
 @click.pass_context
-@click.option('-v', '--verbose', count=True,
-              help="Be verbose about what's going on (can be supplied multiple times).")
+@click.option('-v', '--verbose', is_flag=True, envvar='THOTH_ANALYZER_DEBUG',
+              help="Be verbose about what's going on.")
 @click.option('--version', is_flag=True, is_eager=True, callback=_print_version, expose_value=False,
               help="Print thoth_pkgdeps version and exit.")
 @click.option('--no-color', '-C', is_flag=True,
