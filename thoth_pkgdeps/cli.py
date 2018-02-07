@@ -7,6 +7,7 @@ import sys
 import typing
 
 import click
+import requests
 
 import daiquiri
 from thoth_pkgdeps import __version__ as thothg_pkgdeps_version
@@ -43,15 +44,26 @@ def _print_version(ctx, _, value):
     ctx.exit()
 
 
-def _print_command_result(result: typing.Union[dict, list], pretty=True) -> None:
-    """Print results, nicely if requested."""
+def _print_command_result(result: typing.Union[dict, list], output: str = None, pretty: bool = True) -> None:
+    """Print or submit results, nicely if requested."""
+    if isinstance(output, str) and output.startswith(('http://', 'https://')):
+        _LOG.info("Submitting results to %r", output)
+        requests.post(output, json=result)
+        return
+
     kwargs = {}
     if pretty:
         kwargs['sort_keys'] = True
         kwargs['separators'] = (',', ': ')
         kwargs['indent'] = 2
+    content = json.dumps(result, **kwargs)
 
-    click.echo("{!s}".format(json.dumps(result, **kwargs)))
+    if output is None or output == '-':
+        sys.stdout.write(content)
+    else:
+        _LOG.info("Writing results to %r", output)
+        with open(output, 'w') as output_file:
+            output_file.write(content)
 
 
 @click.group()
@@ -75,10 +87,12 @@ def cli(ctx=None, verbose: int = 0, no_color: bool = True):
               help="Input file - build logs to be checked.")
 @click.option('--no-pretty', is_flag=True,
               help="Do not print results nicely.")
-def cli_extract_buildlog(input_file, no_pretty=False):
+@click.option('--output', '-o', type=str, envvar='THOTH_ANALYZER_OUTPUT', default=None,
+              help="Output file or remote API to print results to, in case of URL a POST request is issued.")
+def cli_extract_buildlog(input_file, no_pretty=False, output=None):
     """Extract installed packages from a build log."""
     result = extract_buildlog(input_file.read())
-    _print_command_result(result, not no_pretty)
+    _print_command_result(result, output, not no_pretty)
 
 
 @cli.command('extract-image')
@@ -86,13 +100,16 @@ def cli_extract_buildlog(input_file, no_pretty=False):
               help="Image name from which packages should be extracted.")
 @click.option('--no-pretty', is_flag=True,
               help="Do not print results nicely.")
-@click.option('--timeout', '-t', type=int, required=False, default=None, show_default=True, envvar='THOTH_ANALYZER_TIMEOUT',
+@click.option('--timeout', '-t', type=int, required=False, default=None, show_default=True,
+              envvar='THOTH_ANALYZER_TIMEOUT',
               help="Soft timeout for extraction - timeout is set to commands run, the actual execution time of "
                    "this tool will be bigger.")
-def cli_extract_image(image, timeout=None, no_pretty=False):
+@click.option('--output', '-o', type=str, envvar='THOTH_ANALYZER_OUTPUT', default=None,
+              help="Output file or remote API to print results to, in case of URL a POST request is issued.")
+def cli_extract_image(image, timeout=None, no_pretty=False, output=None):
     """Extract installed packages from an image."""
     result = extract_image(image, timeout)
-    _print_command_result(result, not no_pretty)
+    _print_command_result(result, output, not no_pretty)
 
 
 if __name__ == '__main__':

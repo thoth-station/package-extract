@@ -10,6 +10,7 @@ name = "pypi"
 click = "*"
 attrs = "*"
 daiquiri = "*"
+requests = "*"
 
 
 [dev-packages]
