@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Command line interface for thoth-pkgdeps."""
 
+import datetime
 import json
 import logging
+import platform
 import sys
 import typing
 
@@ -44,11 +46,23 @@ def _print_version(ctx, _, value):
     ctx.exit()
 
 
-def _print_command_result(result: typing.Union[dict, list], output: str = None, pretty: bool = True) -> None:
+def _print_command_result(result: typing.Union[dict, list], output: str = None,
+                          pretty: bool = True, metadata: dict = None) -> None:
     """Print or submit results, nicely if requested."""
+    metadata = metadata or {}
+    metadata['version'] = thothg_pkgdeps_version
+    metadata['datetime'] = datetime.datetime.now().isoformat()
+    metadata['hostname'] = platform.node()
+    metadata['analyzer'] = __name__.split('.')[0]
+
+    content = {
+        'result': result,
+        'metadata': metadata
+    }
+
     if isinstance(output, str) and output.startswith(('http://', 'https://')):
         _LOG.info("Submitting results to %r", output)
-        requests.post(output, json=result)
+        requests.post(output, json=content)
         return
 
     kwargs = {}
@@ -56,8 +70,8 @@ def _print_command_result(result: typing.Union[dict, list], output: str = None, 
         kwargs['sort_keys'] = True
         kwargs['separators'] = (',', ': ')
         kwargs['indent'] = 2
-    content = json.dumps(result, **kwargs)
 
+    content = json.dumps(content, **kwargs)
     if output is None or output == '-':
         sys.stdout.write(content)
     else:
@@ -92,7 +106,7 @@ def cli(ctx=None, verbose: int = 0, no_color: bool = True):
 def cli_extract_buildlog(input_file, no_pretty=False, output=None):
     """Extract installed packages from a build log."""
     result = extract_buildlog(input_file.read())
-    _print_command_result(result, output, not no_pretty)
+    _print_command_result(result, output, not no_pretty, metadata={'output': output})
 
 
 @cli.command('extract-image')
@@ -109,7 +123,8 @@ def cli_extract_buildlog(input_file, no_pretty=False, output=None):
 def cli_extract_image(image, timeout=None, no_pretty=False, output=None):
     """Extract installed packages from an image."""
     result = extract_image(image, timeout)
-    _print_command_result(result, output, not no_pretty)
+    metadata = {'image': image, 'timeout': timeout, 'output': output}
+    _print_command_result(result, output, not no_pretty, metadata=metadata)
 
 
 if __name__ == '__main__':
