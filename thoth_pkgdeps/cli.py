@@ -63,6 +63,7 @@ def _print_command_result(result: typing.Union[dict, list], output: str = None,
     if isinstance(output, str) and output.startswith(('http://', 'https://')):
         _LOG.info("Submitting results to %r", output)
         requests.post(output, json=content)
+        # TODO: report ID
         return
 
     kwargs = {}
@@ -122,9 +123,9 @@ def cli_extract_buildlog(input_file, no_pretty=False, output=None):
               help="Output file or remote API to print results to, in case of URL a POST request is issued.")
 def cli_extract_image(image, timeout=None, no_pretty=False, output=None):
     """Extract installed packages from an image."""
+    arguments = locals()
     result = extract_image(image, timeout)
-    metadata = {'image': image, 'timeout': timeout, 'output': output}
-    _print_command_result(result, output, not no_pretty, metadata=metadata)
+    _print_command_result(result, output, not no_pretty, metadata={'arguments': arguments})
 
 
 if __name__ == '__main__':
