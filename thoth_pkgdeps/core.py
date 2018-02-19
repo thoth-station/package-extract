@@ -31,6 +31,8 @@ def extract_image(image_name: str, timeout: int = None) -> dict:
         download_image(image_name, dir_path, timeout=timeout or None)
 
         rootfs_path = os.path.join(dir_path, 'rootfs')
-        construct_rootfs(dir_path, rootfs_path)
+        result = {}
+        for layer in construct_rootfs(dir_path, rootfs_path):
+            result = run_analyzers(rootfs_path, old_output=result, layer=layer, timeout=timeout)
 
-        return run_analyzers(rootfs_path)
+        return result

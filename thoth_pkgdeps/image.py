@@ -83,7 +83,7 @@ def _run_rpm(path: str, timeout: int = None) -> typing.List[str]:
     return packages
 
 
-def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
+def construct_rootfs(dir_path: str, rootfs_path: str) -> typing.Generator[str, None, None]:
     """Construct rootfs in a directory by extracting layers."""
     os.makedirs(rootfs_path, exist_ok=True)
 
@@ -98,7 +98,7 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
         raise NotSupported("Invalid schema version in manifest.json file: {} "
                            "(currently supported is 2)".format(manifest.get('schemaVersion')))
 
-    for layer_def in manifest['layers']:
+    for layer_idx, layer_def in enumerate(manifest['layers']):
         layer_digest = layer_def['digest'].split(':', maxsplit=1)[-1]
         _LOGGER.debug("Extracting layer %r", layer_digest)
 
@@ -116,6 +116,37 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
                     os.remove(member.name)
                     tar_file.extract(member, set_attrs=False)
 
+        yield layer_digest
+
+
+def _analyzers_update_output(old_output: dict, layer: str,
+                             mercator_output: list, rpm_output: dict, rpm_repoquery_output: dict) -> dict:
+    old_output['mercator'] = old_output.get('mercator', [])
+    mercator_seen_packages = set()
+    for entry in old_output['mercator']:
+        mercator_seen_packages.add((entry['result'].get('name'), entry['result'].get('version'),
+                                    entry['digests']['manifest']))
+
+    for entry in mercator_output:
+        record = (entry['result']['name'], entry['result']['version'], entry['digests']['manifest'])
+        if record not in mercator_seen_packages:
+            entry['layer'] = layer
+            old_output['mercator'].append(entry)
+
+    old_output['rpm'] = old_output.get('rpm', [])
+    rpm_seen_packages = {entry['name'] for entry in old_output['rpm']}
+    for package in set(rpm_output) - rpm_seen_packages:
+        old_output['rpm'].append({
+            'name': package,
+            'layer': layer
+        })
+
+    old_output['rpm-dependencies'] = list(set(rpm_repoquery_output) | set(old_output.get('rpm-dependencies', set())))
+
+    old_output['layers'] = old_output.get('layers', [])
+    old_output['layers'].append(layer)
+    return old_output
+
 
 def download_image(image_name: str, dir_path: str, timeout: int = None) -> None:
     """Download an image to dir_path."""
@@ -125,10 +156,14 @@ def download_image(image_name: str, dir_path: str, timeout: int = None) -> None:
     _LOGGER.debug("skopeo stdout: %s", stdout)
 
 
-def run_analyzers(path: str, timeout: int = None) -> dict:
+def run_analyzers(path: str, old_output: dict = None, layer: str = None, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
-    return {
-        'mercator': _run_mercator(path, timeout=timeout),
-        'rpm': _run_rpm(path, timeout=timeout),
-        'rpm-dependencies': _run_rpm_repoquery(path, timeout=timeout)
-    }
+    old_output = old_output or {}
+
+    return _analyzers_update_output(
+        old_output,
+        layer,
+        mercator_output=_run_mercator(path, timeout=timeout),
+        rpm_output=_run_rpm(path, timeout=timeout),
+        rpm_repoquery_output=_run_rpm_repoquery(path, timeout=timeout)
+    )
