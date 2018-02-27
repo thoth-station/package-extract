@@ -64,15 +64,3 @@ def cwd(target_dir: str) -> str:
     finally:
         os.chdir(current_directory)
 
-
-@contextmanager
-def tempdir() -> str:
-    """Create a temporary directory and temporary cd into it with context manager."""
-    dir_path = tempfile.mkdtemp()
-
-    try:
-        with cwd(dir_path):
-            yield dir_path
-    finally:
-        if os.path.isdir(dir_path):
-            shutil.rmtree(dir_path)

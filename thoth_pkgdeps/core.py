@@ -2,13 +2,13 @@
 
 import logging
 import os
+import tempfile
 import typing
 
 from .handlers import HandlerBase
 from .image import construct_rootfs
 from .image import download_image
 from .image import run_analyzers
-from .utils import tempdir
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -27,7 +27,7 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
 
 def extract_image(image_name: str, timeout: int = None) -> dict:
     """Extract dependencies from an image."""
-    with tempdir() as dir_path:
+    with tempfile.TemporaryDirectory() as dir_path:
         download_image(image_name, dir_path, timeout=timeout or None)
 
         rootfs_path = os.path.join(dir_path, 'rootfs')
