@@ -5,4 +5,5 @@ click==6.7
 daiquiri==1.3.0
 idna==2.6
 requests==2.18.4
+thoth-common==0.0.0
 urllib3==1.22

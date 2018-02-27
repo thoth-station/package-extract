@@ -6,9 +6,10 @@ import os
 import tarfile
 import typing
 
+from thoth.common import cwd
+
 from .exceptions import InvalidImageError
 from .exceptions import NotSupported
-from .utils import cwd
 from .utils import run_command
 
 _LOGGER = logging.getLogger(__name__)

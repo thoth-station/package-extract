@@ -11,6 +11,7 @@ click = "*"
 attrs = "*"
 daiquiri = "*"
 requests = "*"
+thoth-common = "*"
 
 
 [dev-packages]

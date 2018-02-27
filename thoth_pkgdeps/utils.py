@@ -1,6 +1,5 @@
 """Various utilities for thoth-pkgdeps tools."""
 
-from contextlib import contextmanager
 import logging
 import os
 import shlex
@@ -50,14 +49,3 @@ def run_command(cmd: str, timeout: int = None, env: dict = None) -> str:
         raise RuntimeError("Command %s exited with non-zero exit value (called as: %r)" % (args[0], args))
 
     return str(output)
-
-
-@contextmanager
-def cwd(target_dir: str) -> str:
-    """Change working directory in pushd-popd fashion with context manger."""
-    current_directory = os.getcwd()
-    os.chdir(target_dir)
-    try:
-        yield current_directory
-    finally:
-        os.chdir(current_directory)
