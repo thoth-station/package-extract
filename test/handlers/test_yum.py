@@ -1,7 +1,7 @@
 """Test installation of packages using yum."""
 
-from thoth_pkgdeps.handlers import HandlerBase
-from thoth_pkgdeps.handlers import YUM
+from thoth_package_extract.handlers import HandlerBase
+from thoth_package_extract.handlers import YUM
 
 from ..case import TestCase
 from ..case import raw_and_recover_changes

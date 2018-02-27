@@ -1,5 +1,5 @@
 [python]
-files = thoth_pkgdeps/*.py,thoth_pkgdeps/handlers/*.py
+files = thoth_package_extract/*.py,thoth_package_extract/handlers/*.py
 bears = PEP8Bear,BanditBear,PyImportSortBear
 language = Python
 max_line_length = 121

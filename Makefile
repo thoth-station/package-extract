@@ -39,7 +39,7 @@ coala-venv:
 clean:
 	find . -name '*.pyc' -or -name '__pycache__' -or -name '*.py.orig' | xargs rm -rf
 	rm -rf venv venv-coala coverage.xml
-	rm -rf dist thoth_pkgdeps.egg-info build docs/
+	rm -rf dist thoth_package_extract.egg-info build docs/
 
 .PHONY: devenv
 devenv:
@@ -48,12 +48,12 @@ devenv:
 .PHONY: pytest
 pytest:
 	@echo ">>> Executing testsuite"
-	python3 -m pytest -s --cov=./thoth_pkgdeps -vvl --timeout=2 test/
+	python3 -m pytest -s --cov=./thoth_package_extract -vvl --timeout=2 test/
 
 .PHONY: pylint
 pylint:
 	@echo ">>> Running pylint"
-	pylint thoth_pkgdeps
+	pylint thoth_package_extract
 
 .PHONY: coala
 coala: coala-venv
@@ -63,7 +63,7 @@ coala: coala-venv
 .PHONY: pydocstyle
 pydocstyle:
 	@echo ">>> Running pydocstyle"
-	pydocstyle thoth_pkgdeps
+	pydocstyle thoth_package_extract
 
 .PHONY: check
 check: pytest pylint pydocstyle coala

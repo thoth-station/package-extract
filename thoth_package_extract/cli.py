@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Command line interface for thoth-pkgdeps."""
+"""Command line interface for thoth-package-extract."""
 
 import datetime
 import json
@@ -12,9 +12,9 @@ import click
 import requests
 
 import daiquiri
-from thoth_pkgdeps import __version__ as thothg_pkgdeps_version
-from thoth_pkgdeps.core import extract_buildlog
-from thoth_pkgdeps.core import extract_image
+from thoth_package_extract import __version__ as thothg_pkgdeps_version
+from thoth_package_extract.core import extract_buildlog
+from thoth_package_extract.core import extract_image
 
 _LOG = logging.getLogger(__name__)
 _DEFAULT_NO_COLOR_FORMAT = "%(asctime)s [%(process)d] %(levelname)-8.8s %(name)s: %(message)s"
@@ -87,7 +87,7 @@ def _print_command_result(result: typing.Union[dict, list], output: str = None,
 @click.option('-v', '--verbose', is_flag=True, envvar='THOTH_ANALYZER_DEBUG',
               help="Be verbose about what's going on.")
 @click.option('--version', is_flag=True, is_eager=True, callback=_print_version, expose_value=False,
-              help="Print thoth_pkgdeps version and exit.")
+              help="Print thoth_package_extract version and exit.")
 @click.option('--no-color', '-C', is_flag=True,
               help="Suppress colorized logging output.")
 def cli(ctx=None, verbose: int = 0, no_color: bool = True):

@@ -1,4 +1,4 @@
-"""Various utilities for thoth-pkgdeps tools."""
+"""Various utilities for thoth-package-extract tools."""
 
 import logging
 import os

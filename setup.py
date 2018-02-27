@@ -11,7 +11,7 @@ def get_requirements():
 
 
 def get_version():
-    with open(os.path.join('thoth_pkgdeps', '__init__.py')) as f:
+    with open(os.path.join('thoth_package_extract', '__init__.py')) as f:
         content = f.readline()
 
     for line in content:
@@ -26,10 +26,10 @@ def get_long_description():
 
 
 setup(
-    name='thoth_pkgdeps',
+    name='thoth_package_extract',
     version=get_version(),
     entry_points={
-        'console_scripts': ['thoth-pkgdeps=thoth_pkgdeps.cli:cli']
+        'console_scripts': ['thoth-package-extract=thoth_package_extract.cli:cli']
     },
     packages=find_packages(),
     install_requires=get_requirements(),
@@ -39,7 +39,7 @@ setup(
     maintainer_email='fridolin@redhat.com',
     description='Tool and library for extracting packages from a docker build log',
     long_description=get_long_description(),
-    url='https://github.com/fridex/thoth-pkgdeps',
+    url='https://github.com/fridex/thoth-package-extract',
     license='ASL v2.0',
     keywords='docker image openshift tool library',
     classifiers=[

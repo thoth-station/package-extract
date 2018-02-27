@@ -1,8 +1,8 @@
-"""Exception hierarchy in thoth-pkgdeps tool."""
+"""Exception hierarchy in thoth-package-extract tool."""
 
 
 class ThothPkgdepsException(Exception):
-    """A base exception in the thoth-pkgdeps exception hierarchy."""
+    """A base exception in the thoth-package-extract exception hierarchy."""
 
 
 class InvalidImageError(ThothPkgdepsException):

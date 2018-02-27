@@ -1,8 +1,8 @@
-"""Test core routines of thoth-pkgdeps."""
+"""Test core routines of thoth-package-extract."""
 
 
-from thoth_pkgdeps.core import extract_buildlog
-from thoth_pkgdeps.handlers import HandlerBase
+from thoth_package_extract.core import extract_buildlog
+from thoth_package_extract.handlers import HandlerBase
 
 from .case import raw_and_recover_changes
 

@@ -1,4 +1,4 @@
-"""Implementation of core routines for thoth-pkgdeps."""
+"""Implementation of core routines for thoth-package-extract."""
 
 import logging
 import os

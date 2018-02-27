@@ -1,4 +1,4 @@
-thoth-pkgdeps
+thoth-package-extract
 -------------
 
 A tool to extract dependencies from a installation log.
@@ -9,7 +9,7 @@ A simple usage can be:
 
 .. code-block:: console
 
-  $ pip3 install --user flask | thoth-pkgdeps extract-buildlog -i -
+  $ pip3 install --user flask | thoth-package-extract extract-buildlog -i -
   [
     {
       "handler": "yum",
@@ -98,7 +98,7 @@ Or you can also use this tool to extract information about packages that were in
 
 .. code-block:: console
 
- $ docker build . | thoth-pkgdeps extract-buildlog -i -
+ $ docker build . | thoth-package-extract extract-buildlog -i -
   [
     {
       "handler": "yum",
@@ -194,18 +194,18 @@ Or you can also use this tool to extract information about packages that were in
 Extracting dependencies directly from an image
 ==============================================
 
-Tool thoth-pkgdeps allows you to extract dependencies from an image directly by inspecting its content. To do so just run:
+Tool thoth-package-extract allows you to extract dependencies from an image directly by inspecting its content. To do so just run:
 
 
 .. code-block:: console
 
-  $ thoth-pkgdeps -vvv extract-image --image fedora:27
-  2018-01-18 18:40:56,618 [25462] DEBUG    thoth_pkgdeps.image: Downloading image fedora:27
-  2018-01-18 18:40:56,618 [25462] DEBUG    thoth_pkgdeps.utils: Running command 'skopeo copy docker://fedora:27 dir://tmp/tmpqs5hyl01' with timeout None and environment unchanged
-  2018-01-18 18:41:05,675 [25462] DEBUG    thoth_pkgdeps.image: Extracting layer 'a8ee583972c2295bb76704d4defe5116d5e4dd7ba3767aaa2cc8fcf71088ee06'
-  2018-01-18 18:41:09,082 [25462] DEBUG    thoth_pkgdeps.utils: Running command 'mercator -config /usr/share/mercator/handlers.yml /tmp/tmpqs5hyl01/rootfs' with timeout None and environment {'MERCATOR_INTERPRET_SETUP_PY': 'true'}
-  2018-01-18 18:41:10,182 [25462] DEBUG    thoth_pkgdeps.utils: Running command "rpm -qa --root '/tmp/tmpqs5hyl01/rootfs'" with timeout None and environment unchanged
-  2018-01-18 18:41:10,319 [25462] DEBUG    thoth_pkgdeps.utils: Running command "repoquery --deplist --installed --installroot '/tmp/tmpqs5hyl01/rootfs'" with timeout None and environment unchanged
+  $ thoth-package-extract -vvv extract-image --image fedora:27
+  2018-01-18 18:40:56,618 [25462] DEBUG    thoth_package_extract.image: Downloading image fedora:27
+  2018-01-18 18:40:56,618 [25462] DEBUG    thoth_package_extract.utils: Running command 'skopeo copy docker://fedora:27 dir://tmp/tmpqs5hyl01' with timeout None and environment unchanged
+  2018-01-18 18:41:05,675 [25462] DEBUG    thoth_package_extract.image: Extracting layer 'a8ee583972c2295bb76704d4defe5116d5e4dd7ba3767aaa2cc8fcf71088ee06'
+  2018-01-18 18:41:09,082 [25462] DEBUG    thoth_package_extract.utils: Running command 'mercator -config /usr/share/mercator/handlers.yml /tmp/tmpqs5hyl01/rootfs' with timeout None and environment {'MERCATOR_INTERPRET_SETUP_PY': 'true'}
+  2018-01-18 18:41:10,182 [25462] DEBUG    thoth_package_extract.utils: Running command "rpm -qa --root '/tmp/tmpqs5hyl01/rootfs'" with timeout None and environment unchanged
+  2018-01-18 18:41:10,319 [25462] DEBUG    thoth_package_extract.utils: Running command "repoquery --deplist --installed --installroot '/tmp/tmpqs5hyl01/rootfs'" with timeout None and environment unchanged
   {
     "mercator": [
       {

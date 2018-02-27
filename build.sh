@@ -1,6 +1,7 @@
 #!/bin/sh
 
-docker build . -t fridex/thoth-dependency-extract
+TAG="fridex/thoth-package-extract"
+docker build . -t ${TAG}
 
 docker login -u $DOCKER_USER -p $DOCKER_PASS
-docker push fridex/thoth-dependency-extract
+docker push ${TAG}

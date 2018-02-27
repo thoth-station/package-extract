@@ -1,16 +1,16 @@
 FROM fedora:27
 CMD ["extract-image"]
-ENTRYPOINT ["thoth-pkgdeps"]
+ENTRYPOINT ["thoth-package-extract"]
 ENV \
  LANG=en_US.UTF-8 \
- THOTH_PKGDEPS_TMP_DIR='/tmp/thoth-pkgdeps-install' \
+ THOTH_PKGDEPS_TMP_DIR='/tmp/thoth-package-extract-install' \
  GOPATH='/tmp/go'
 
 RUN \
  dnf update -y &&\
  mkdir -p ${THOTH_PKGDEPS_TMP_DIR}
 
-# Install thoth-pkgdeps itself
+# Install thoth-package-deps itself
 COPY ./ ${THOTH_PKGDEPS_TMP_DIR}
 RUN \
  cd ${THOTH_PKGDEPS_TMP_DIR} &&\
