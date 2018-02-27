@@ -4,9 +4,7 @@ from contextlib import contextmanager
 import logging
 import os
 import shlex
-import shutil
 import subprocess
-import tempfile
 
 from .exceptions import TimeoutExpired
 
@@ -63,4 +61,3 @@ def cwd(target_dir: str) -> str:
         yield current_directory
     finally:
         os.chdir(current_directory)
-
