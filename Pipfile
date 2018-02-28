@@ -12,6 +12,7 @@ attrs = "*"
 daiquiri = "*"
 requests = "*"
 thoth-common = "*"
+thoth-analyzer = ">=0.0.3"
 
 
 [dev-packages]

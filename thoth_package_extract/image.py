@@ -7,10 +7,10 @@ import tarfile
 import typing
 
 from thoth.common import cwd
+from thoth.analyzer import run_command
 
 from .exceptions import InvalidImageError
 from .exceptions import NotSupported
-from .utils import run_command
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -59,7 +59,7 @@ def _parse_repoquery(output: str) -> dict:
 def _run_rpm_repoquery(path: str, timeout: int = None):
     """Run repoquery and return it's output (parsed)."""
     cmd = 'repoquery --deplist --installed --installroot {!r}'.format(path)
-    output = run_command(cmd, timeout=timeout)
+    output = run_command(cmd, timeout=timeout).stdout
     return _parse_repoquery(output)
 
 
@@ -70,14 +70,14 @@ def _run_mercator(path: str, timeout: int = None) -> dict:
         mercator_handlers_yaml=_MERCATOR_HANDLERS_YAML,
         path=path
     )
-    output = run_command(cmd, env={'MERCATOR_INTERPRET_SETUP_PY': 'true'}, timeout=timeout)
-    return _normalize_mercator_output(path, json.loads(output))
+    output = run_command(cmd, env={'MERCATOR_INTERPRET_SETUP_PY': 'true'}, timeout=timeout, is_json=True).stdout
+    return _normalize_mercator_output(path, output)
 
 
 def _run_rpm(path: str, timeout: int = None) -> typing.List[str]:
     """Query for installed rpm packages in the given root described by path."""
     cmd = 'rpm -qa --root {!r}'.format(path)
-    output = run_command(cmd, timeout=timeout)
+    output = run_command(cmd, timeout=timeout).stdout
     packages = output.split('\n')
     if not packages[-1]:
         packages.pop()
@@ -122,7 +122,7 @@ def download_image(image_name: str, dir_path: str, timeout: int = None) -> None:
     """Download an image to dir_path."""
     _LOGGER.debug("Downloading image %s", image_name)
     cmd = 'skopeo copy docker://{image_name} dir:/{dir}'.format(image_name=image_name, dir=dir_path)
-    stdout = run_command(cmd, timeout=timeout)
+    stdout = run_command(cmd, timeout=timeout).stdout
     _LOGGER.debug("skopeo stdout: %s", stdout)
 
 
