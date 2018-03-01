@@ -17,7 +17,7 @@ thoth-analyzer = ">=0.0.3"
 
 [dev-packages]
 
-pytest = ">=3"
+pytest = "*"
 pytest-timeout = "*"
 pytest-cov = "*"
 pydocstyle = "*"

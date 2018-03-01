@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a10628de60f2f5d82030b722fbe21cff6b801dbbcf0dcff1d54eb55e2da3a731"
+            "sha256": "bd5b3a1444c14af9e0e7d4d17cbd2990b0288a9a7022b7dcde24f0184ed05c7e"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -106,10 +106,10 @@
         },
         "thoth-analyzer": {
             "hashes": [
-                "sha256:653901c5acf7a1b6091860a9c43e50656ec733b7051389fe01b5ac35047703d0",
-                "sha256:a3c14caf504ccd937f7610f6160649791b99b98c2c7f60cfc0c9c9df98d69a2d"
+                "sha256:b53c4f5f95e2b3c5afc5ec70948576175d910655d36e0db6029080acd233f714",
+                "sha256:0a86103a9ef062ea9c082eb5d7506470d32bf3af8c4e4fd85e96bc28dbd0b0e4"
             ],
-            "version": "==0.0.3"
+            "version": "==0.0.4"
         },
         "thoth-common": {
             "hashes": [

@@ -1,7 +1,7 @@
 """Test installation of packages using pip3"""
 
-from thoth_package_extract.handlers import HandlerBase
-from thoth_package_extract.handlers import PIP3
+from thoth.package_extract.handlers import HandlerBase
+from thoth.package_extract.handlers import PIP3
 
 from ..case import TestCase
 from ..case import raw_and_recover_changes

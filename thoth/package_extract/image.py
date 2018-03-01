@@ -6,8 +6,8 @@ import os
 import tarfile
 import typing
 
-from thoth.common import cwd
 from thoth.analyzer import run_command
+from thoth.common import cwd
 
 from .exceptions import InvalidImageError
 from .exceptions import NotSupported

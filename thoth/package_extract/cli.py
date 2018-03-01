@@ -8,11 +8,10 @@ import click
 
 import daiquiri
 from thoth.analyzer import print_command_result
-
-from thoth_package_extract import __version__ as analyzer_version
-from thoth_package_extract import __title__ as analyzer
-from thoth_package_extract.core import extract_buildlog
-from thoth_package_extract.core import extract_image
+from thoth.package_extract import __title__ as analyzer
+from thoth.package_extract import __version__ as analyzer_version
+from thoth.package_extract.core import extract_buildlog
+from thoth.package_extract.core import extract_image
 
 _LOG = logging.getLogger(__name__)
 _DEFAULT_NO_COLOR_FORMAT = "%(asctime)s [%(process)d] %(levelname)-8.8s %(name)s: %(message)s"
@@ -49,10 +48,10 @@ def _print_version(ctx, _, value):
 @click.option('-v', '--verbose', is_flag=True, envvar='THOTH_ANALYZER_DEBUG',
               help="Be verbose about what's going on.")
 @click.option('--version', is_flag=True, is_eager=True, callback=_print_version, expose_value=False,
-              help="Print thoth_package_extract version and exit.")
+              help="Print thoth-package-extract version and exit.")
 @click.option('--no-color', '-C', is_flag=True,
               help="Suppress colorized logging output.")
-def cli(ctx=None, verbose: bool=False, no_color: bool=True):
+def cli(ctx=None, verbose: bool = False, no_color: bool = True):
     """Thoth pkgdeps command line interface."""
     if ctx:
         ctx.auto_envvar_prefix = 'THOTH_PKGDEPS'
@@ -89,7 +88,6 @@ def cli_extract_buildlog(click_ctx, input_file, no_pretty=False, output=None):
               help="Output file or remote API to print results to, in case of URL a POST request is issued.")
 def cli_extract_image(click_ctx, image, timeout=None, no_pretty=False, output=None):
     """Extract installed packages from an image."""
-    arguments = locals()
     result = extract_image(image, timeout)
     print_command_result(click_ctx, result, analyzer=analyzer, analyzer_version=analyzer_version,
                          output=output or '-', pretty=not no_pretty)

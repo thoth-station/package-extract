@@ -31,7 +31,7 @@ class TestCase:
 def raw_and_recover_changes(func):
     """A decorator that prevents from modifying library global context."""
     # Prevent from cyclic dependencies.
-    from thoth_package_extract.handlers import HandlerBase
+    from thoth.package_extract.handlers import HandlerBase
 
     def wrapper(*args, **kwargs):
         base_handlers = HandlerBase.handlers

@@ -11,7 +11,7 @@ def get_requirements():
 
 
 def get_version():
-    with open(os.path.join('thoth_package_extract', '__init__.py')) as f:
+    with open(os.path.join('thoth', 'package_extract', '__init__.py')) as f:
         content = f.readline()
 
     for line in content:
@@ -26,12 +26,15 @@ def get_long_description():
 
 
 setup(
-    name='thoth_package_extract',
+    name='thoth-package-extract',
     version=get_version(),
     entry_points={
-        'console_scripts': ['thoth-package-extract=thoth_package_extract.cli:cli']
+        'console_scripts': ['thoth-package-extract=thoth.package_extract.cli:cli']
     },
-    packages=find_packages(),
+    packages=[
+        'thoth.package_extract',
+        'thoth.package_extract.handlers',
+    ],
     install_requires=get_requirements(),
     author='Fridolin Pokorny',
     author_email='fridolin@redhat.com',

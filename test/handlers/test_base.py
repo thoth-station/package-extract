@@ -2,13 +2,13 @@
 
 import pytest
 
-from thoth_package_extract.handlers import HandlerBase
+from thoth.package_extract.handlers import HandlerBase
 
 from ..case import raw_and_recover_changes
 
 
 class TestHandlerBase:
-    """Test :class:thoth_package_extract.handlers.HandlerBase."""
+    """Test :class:thoth.package_extract.handlers.HandlerBase."""
     class FooHandler(HandlerBase):
         def run(self, input_text):
             return ["foo"]
