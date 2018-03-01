@@ -12,12 +12,13 @@ def get_requirements():
 
 def get_version():
     with open(os.path.join('thoth', 'package_extract', '__init__.py')) as f:
-        content = f.readline()
+        content = f.readlines()
 
     for line in content:
         if line.startswith('__version__ ='):
             # dirty, remove trailing and leading chars
             return line.split(' = ')[1][1:-2]
+    raise ValueError("No version identifier found")
 
 
 def get_long_description():
