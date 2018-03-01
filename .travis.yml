@@ -5,13 +5,21 @@ services:
 python:
 - '3.6'
 script: true
-deploy:
-- provider: script
-  script: bash build.sh
-  on:
-    branch: master
 env:
   matrix:
   - DOCKER_USER=fridex
   global:
     secure: boOslVH0RPGlNJ0GoMbsh5mqllyUIbpijsYQxWUPfIDxIFjU7HqrSIfhCyGOoH7OWxSQlV2zYFHUi9aLz0WBPsamYQnzTHYzRfk/AfiKFtu6ZAk3F46j/wShZGXW8ETIrXdjtXJby63xlB2BDSAcHlKYhRhk5Q/XaoPLFHtmtnucLaxTi8jOqTvN2vcv7RB58waZ5Wyn2avaBDw8DBzUWE8oIoc3YuNUS0RVE4ziCyVAhFlm+19WupcJmFueH2Audl6MIA7ruv+K+zfrRVxSaUUq4xVcUNk9Cm0xUgcDvRjlE/aG9KAy8C0JjVcrI2qM7nWPO6B62Kj4EztSRwS8rVruWQwHTqBUAelTF/XNnE5ac+u8qcZMEQa39n5jMybYRNEI6ZfOj39u3eVlYUniBV5V0ZMogsNLL333rO/3oKPx/D7b31ka61ib518eInzWTTWW+QqaYTE7kkZSmQJwkwbifouMf5ViZ84jIZ4N48/hB/aOY02Hto+voZCwEUPWlXnQvmkxhjNaFyNBbym9eEruxjA9477Js2RYAFrKBWX5M5LCu70Ffzsvnkqyoy6OdKr8/YbsvuL4ocpaKaOQC9vmEYz6zd84ahxMFa5G0kVYEe/7Nar0Z7/eVGCuN8qI8kp2XBA8au3/C7Gk0O5mEHvWzmyvtUrT5WmOqHtbb4g=
+deploy:
+  - provider: script
+    script: bash build.sh
+    on:
+      branch: master
+  - provider: pypi
+    user: fridex
+    password:
+      secure: DL7bnHwSZh8ZZnaJfTPA3eYYnVemnVuKJfgdWA4BGxcTwdHx2k0u2J5HkLbgwrRXVrDPM8BsJ1ylCF1LKLTG4coao4ZVVKH7DzzU4E9+LWFhgTnA99s1BDOB1Ib3T2ooGzsdQAzlfgN1wBr7iXGJPEBk+Mt+V73IUuMRdgUjCXw8rZDFIJc5pAG5OoVaaoX+1EjKPPbP14eKgaY1ttYe2+vUvZMyQKDEeCSCufK2FTD5saeS5X8OuWoGjPfV9rlN0QPcodEHmw6clrr/agdYrqthDw0KVQuUqVrXDJQ2cQGJgl7PzT3thDMOy4iI7ni2ZcrZbfB2c3VUz27wOpQJgYlbRTRIA2p/hIn94BnJRJC3ET0Bp+zlLDhML11jL7l2gtWVV2IZ4KkNaA8UilGSINBVW6XfwPnWW0keEovrHX8rKPzFxkJ4OxnseyPJe1qWDfEA/jpmkEpG/RmK7/O4vymnXrArOcemAiiodQZEEliLekl9alhLnsrOlKzzqdjz4Z8i5U/JeWiKZbS1K+kyiMNnJysqT5ueUO2a7j5W4nGAkaM6gwHBP1aUqw+TRvGz1a7MhiV7gle3wlpxWt56Lo9VzhARphRKpcKVxbs17/0WZO5IVciFG3lc7IZ9rwyIJZHRaC4Aywz/A3iPcNz4RgMxy63UGsPZELvIaKeOX/k=
+    on:
+      tags: true
+      branch: master
+    distributions: sdist bdist_wheel
