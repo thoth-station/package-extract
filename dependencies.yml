@@ -1,0 +1,15 @@
+collectors:
+
+- type: python-pip
+  path: coala_requirements.txt
+  actors:
+  # pull requests for all major, minor, and patch updates
+  - type: python-pip
+    versions: "Y.Y.Y"
+
+- type: python-pip
+  path: requirements.txt
+  actors:
+  # pull requests for all major, minor, and patch updates
+  - type: python-pip
+    versions: "Y.Y.Y"
