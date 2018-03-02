@@ -3,7 +3,7 @@
 from .core import extract_buildlog
 from .core import extract_image
 
-__version__ = '1.0.0rc2'
+__version__ = '1.0.0rc3'
 __title__ = 'thoth-package-extract'
 __author__ = 'Fridolin Pokorny'
 __license__ = 'ASL 2.0'
