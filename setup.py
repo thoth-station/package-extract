@@ -36,6 +36,7 @@ setup(
         'thoth.package_extract',
         'thoth.package_extract.handlers',
     ],
+    zip_safe=False,
     install_requires=get_requirements(),
     author='Fridolin Pokorny',
     author_email='fridolin@redhat.com',
