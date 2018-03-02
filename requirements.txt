@@ -9,6 +9,6 @@ idna==2.6
 pexpect==4.4.0
 ptyprocess==0.5.2
 requests==2.18.4
-thoth-analyzer==0.0.3
+thoth-analyzer==0.0.4
 thoth-common==0.0.0
 urllib3==1.22
