@@ -6,4 +6,6 @@ venv-coala/
 .cache
 .coverage
 thoth/__init__.py
-
+build/
+dist/
+*.egg-info/
