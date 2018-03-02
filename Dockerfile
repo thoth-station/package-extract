@@ -16,7 +16,6 @@ RUN \
  cd ${THOTH_PKGDEPS_TMP_DIR} &&\
  sh hack/install_rpm.sh &&\
  make &&\
- pip3 install . &&\
  rm -rf ${GOPATH} ${THOTH_PKGDEPS_TMP_DIR} &&\
  unset THOTH_PKGDEPS_TMP_DIR &&\
  dnf clean all
