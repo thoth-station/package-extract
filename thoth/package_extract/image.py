@@ -23,6 +23,7 @@ _MERCATOR_HANDLERS_YAML = os.getenv('MERCATOR_HANDLERS_YAML', '/usr/share/mercat
 
 def _normalize_mercator_output(path: str, output: dict) -> dict:
     """Normalize and filter mercator output."""
+    output = output or {}
     for entry in output.get('items', []):
         entry.pop('time', None)
 
