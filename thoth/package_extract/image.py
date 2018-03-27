@@ -11,6 +11,9 @@ from thoth.common import cwd
 
 from .exceptions import InvalidImageError
 from .exceptions import NotSupported
+from .koji import KojiError
+from .koji import parse_NVR
+from .koji import parse_NVRA
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -56,11 +59,27 @@ def _parse_repoquery(output: str) -> dict:
     return result
 
 
-def _run_rpm_repoquery(path: str, timeout: int = None):
+def _run_rpm_repoquery(path: str, timeout: int = None) -> list:
     """Run repoquery and return it's output (parsed)."""
     cmd = 'repoquery --deplist --installed --installroot {!r}'.format(path)
-    output = run_command(cmd, timeout=timeout).stdout
-    return _parse_repoquery(output)
+    output = _parse_repoquery(run_command(cmd, timeout=timeout).stdout)
+
+    result = []
+    for package_identifier, dependencies in output.items():
+        try:
+            rpm_package = parse_NVRA(package_identifier)
+        except KojiError:
+            rpm_package = parse_NVR(package_identifier)
+            # Fill in missing parts missing in parse_NVR() output, but present in parse_NVRA().
+            rpm_package['src'] = False
+            rpm_package['arch'] = None
+
+        rpm_package['dependencies'] = dependencies
+        rpm_package['epoch'] = rpm_package['epoch'] or None
+        rpm_package['package_identifier'] = package_identifier
+        result.append(rpm_package)
+
+    return result
 
 
 def _run_mercator(path: str, timeout: int = None) -> dict:
