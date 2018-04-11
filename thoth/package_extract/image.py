@@ -139,12 +139,16 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
                     tar_file.extract(member, set_attrs=False)
 
 
-def download_image(image_name: str, dir_path: str, timeout: int = None) -> None:
+def download_image(image_name: str, dir_path: str, timeout: int = None, registry_credentials: str = None) -> None:
     """Download an image to dir_path."""
     _LOGGER.debug("Downloading image %r", image_name)
     # TODO: make TLS verify configurable
-    cmd = 'skopeo copy --src-tls-verify=false docker://{image_name} dir:/{dir_}'.format(image_name=quote(image_name),
-                                                                                        dir_=quote(dir_path))
+
+    cmd = 'skopeo copy --src-tls-verify=false '
+    if registry_credentials:
+        cmd += '--src-creds={} '.format(quote(registry_credentials))
+
+    cmd += 'docker://{} dir:/{}'.format(quote(image_name), quote(dir_path))
     stdout = run_command(cmd, timeout=timeout).stdout
     _LOGGER.debug("skopeo stdout: %s", stdout)
 

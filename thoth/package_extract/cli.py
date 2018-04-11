@@ -78,6 +78,9 @@ def cli_extract_buildlog(click_ctx, input_file, no_pretty=False, output=None):
 @click.pass_context
 @click.option('--image', '-i', type=str, required=True, envvar='THOTH_ANALYZED_IMAGE',
               help="Image name from which packages should be extracted.")
+@click.option('--registry-credentials', '-c', type=str, required=False,
+              envvar='THOTH_REGISTRY_CREDENTIALS', metavar='USER:PASSWORD',
+              help="Credentials to registry if needed. Token can be used as password.")
 @click.option('--no-pretty', is_flag=True,
               help="Do not print results nicely.")
 @click.option('--timeout', '-t', type=int, required=False, default=None, show_default=True,
@@ -86,9 +89,9 @@ def cli_extract_buildlog(click_ctx, input_file, no_pretty=False, output=None):
                    "this tool will be bigger.")
 @click.option('--output', '-o', type=str, envvar='THOTH_ANALYZER_OUTPUT', default=None,
               help="Output file or remote API to print results to, in case of URL a POST request is issued.")
-def cli_extract_image(click_ctx, image, timeout=None, no_pretty=False, output=None):
+def cli_extract_image(click_ctx, image, timeout=None, no_pretty=False, output=None, registry_credentials=None):
     """Extract installed packages from an image."""
-    result = extract_image(image, timeout)
+    result = extract_image(image, timeout, registry_credentials=registry_credentials)
     print_command_result(click_ctx, result, analyzer=analyzer, analyzer_version=analyzer_version,
                          output=output or '-', pretty=not no_pretty)
 
