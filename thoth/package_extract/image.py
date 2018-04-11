@@ -5,6 +5,7 @@ import logging
 import os
 import tarfile
 import typing
+from shlex import quote
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
@@ -140,14 +141,17 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
 
 def download_image(image_name: str, dir_path: str, timeout: int = None) -> None:
     """Download an image to dir_path."""
-    _LOGGER.debug("Downloading image %s", image_name)
-    cmd = 'skopeo copy docker://{image_name} dir:/{dir}'.format(image_name=image_name, dir=dir_path)
+    _LOGGER.debug("Downloading image %r", image_name)
+    # TODO: make TLS verify configurable
+    cmd = 'skopeo copy --src-tls-verify=false docker://{image_name} dir:/{dir_}'.format(image_name=quote(image_name),
+                                                                                        dir_=quote(dir_path))
     stdout = run_command(cmd, timeout=timeout).stdout
     _LOGGER.debug("skopeo stdout: %s", stdout)
 
 
 def run_analyzers(path: str, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
+    path = quote(path)
     return {
         'mercator': _run_mercator(path, timeout=timeout),
         'rpm': _run_rpm(path, timeout=timeout),
