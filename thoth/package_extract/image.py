@@ -120,11 +120,12 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
         raise NotSupported("Invalid schema version in manifest.json file: {} "
                            "(currently supported is 2)".format(manifest.get('schemaVersion')))
 
+    _LOGGER.debug("Layers found: %r", manifest['layers'])
     for layer_def in manifest['layers']:
         layer_digest = layer_def['digest'].split(':', maxsplit=1)[-1]
         _LOGGER.debug("Extracting layer %r", layer_digest)
 
-        layer_gzip_tar = os.path.join(dir_path, "{}.tar".format(layer_digest))
+        layer_gzip_tar = os.path.join(dir_path, layer_digest)
         with cwd(rootfs_path):
             tar_file = tarfile.open(layer_gzip_tar, 'r:gz')
 
