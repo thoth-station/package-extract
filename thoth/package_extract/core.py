@@ -4,6 +4,7 @@ import logging
 import os
 import tempfile
 import typing
+from shlex import quote
 
 from .handlers import HandlerBase
 from .image import construct_rootfs
@@ -27,6 +28,7 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
 
 def extract_image(image_name: str, timeout: int = None) -> dict:
     """Extract dependencies from an image."""
+    image_name = quote(image_name)
     with tempfile.TemporaryDirectory() as dir_path:
         download_image(image_name, dir_path, timeout=timeout or None)
 
