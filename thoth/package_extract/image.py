@@ -5,7 +5,6 @@ import logging
 import os
 import tarfile
 import typing
-from shlex import quote
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
@@ -63,7 +62,7 @@ def _parse_repoquery(output: str) -> dict:
 
 def _run_rpm_repoquery(path: str, timeout: int = None) -> list:
     """Run repoquery and return it's output (parsed)."""
-    cmd = 'repoquery --deplist --installed --installroot {!r}'.format(path)
+    cmd = ['repoquery', '--deplist', '--installed', '--installroot', path]
     output = _parse_repoquery(run_command(cmd, timeout=timeout).stdout)
 
     result = []
@@ -86,18 +85,14 @@ def _run_rpm_repoquery(path: str, timeout: int = None) -> list:
 
 def _run_mercator(path: str, timeout: int = None) -> dict:
     """Run mercator-go to find all packages that were installed inside an image."""
-    cmd = '{mercator_bin} -config {mercator_handlers_yaml} {path}'.format(
-        mercator_bin=_MERCATOR_BIN,
-        mercator_handlers_yaml=_MERCATOR_HANDLERS_YAML,
-        path=path
-    )
+    cmd = [_MERCATOR_BIN, '-config', _MERCATOR_HANDLERS_YAML, path]
     output = run_command(cmd, env={'MERCATOR_INTERPRET_SETUP_PY': 'true'}, timeout=timeout, is_json=True).stdout
     return _normalize_mercator_output(path, output)
 
 
 def _run_rpm(path: str, timeout: int = None) -> typing.List[str]:
     """Query for installed rpm packages in the given root described by path."""
-    cmd = 'rpm -qa --root {!r}'.format(path)
+    cmd = ['rpm', '-qa', '--root', path]
     output = run_command(cmd, timeout=timeout).stdout
     packages = output.split('\n')
     if not packages[-1]:
@@ -145,18 +140,18 @@ def download_image(image_name: str, dir_path: str, timeout: int = None, registry
     _LOGGER.debug("Downloading image %r", image_name)
     # TODO: make TLS verify configurable
 
-    cmd = 'skopeo copy --src-tls-verify=false '
+    cmd = ['skopeo', 'copy', '--src-tls-verify=false']
     if registry_credentials:
-        cmd += '--src-creds={} '.format(quote(registry_credentials))
+        cmd.append('--src-creds=' + registry_credentials)
 
-    cmd += 'docker://{} dir:/{}'.format(quote(image_name), quote(dir_path))
+    cmd.append('docker://' + image_name)
+    cmd.append('dir:/{}' + dir_path)
     stdout = run_command(cmd, timeout=timeout).stdout
     _LOGGER.debug("skopeo stdout: %s", stdout)
 
 
 def run_analyzers(path: str, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
-    path = quote(path)
     return {
         'mercator': _run_mercator(path, timeout=timeout),
         'rpm': _run_rpm(path, timeout=timeout),
