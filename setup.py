@@ -43,7 +43,7 @@ setup(
     maintainer_email='fridolin@redhat.com',
     description='Tool and library for extracting packages from a docker build log',
     long_description=get_long_description(),
-    url='https://github.com/fridex/thoth-package-extract',
+    url='https://github.com/thoth-station/package-extract',
     license='ASL v2.0',
     keywords='docker image openshift tool library',
     classifiers=[
