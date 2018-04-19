@@ -26,11 +26,18 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
     return result
 
 
-def extract_image(image_name: str, timeout: int = None, registry_credentials: str = None) -> dict:
+def extract_image(image_name: str, timeout: int = None, *, registry_credentials: str = None,
+                  tls_verify: bool=True) -> dict:
     """Extract dependencies from an image."""
     image_name = quote(image_name)
     with tempfile.TemporaryDirectory() as dir_path:
-        download_image(image_name, dir_path, timeout=timeout or None, registry_credentials=registry_credentials or None)
+        download_image(
+            image_name,
+            dir_path,
+            timeout=timeout or None,
+            registry_credentials=registry_credentials or None,
+            tls_verify=tls_verify
+        )
 
         rootfs_path = os.path.join(dir_path, 'rootfs')
         construct_rootfs(dir_path, rootfs_path)

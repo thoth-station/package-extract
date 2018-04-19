@@ -89,9 +89,12 @@ def cli_extract_buildlog(click_ctx, input_file, no_pretty=False, output=None):
                    "this tool will be bigger.")
 @click.option('--output', '-o', type=str, envvar='THOTH_ANALYZER_OUTPUT', default=None,
               help="Output file or remote API to print results to, in case of URL a POST request is issued.")
-def cli_extract_image(click_ctx, image, timeout=None, no_pretty=False, output=None, registry_credentials=None):
+@click.option('--no-tls-verify', is_flag=True, envvar='THOTH_ANALYZER_NO_TLS_VERIFY',
+              help="Do not verify TLS certificates of registry from which the image is pulled from.")
+def cli_extract_image(click_ctx, image, timeout=None, no_pretty=False, output=None, registry_credentials=None,
+                      no_tls_verify=False):
     """Extract installed packages from an image."""
-    result = extract_image(image, timeout, registry_credentials=registry_credentials)
+    result = extract_image(image, timeout, registry_credentials=registry_credentials, tls_verify=not no_tls_verify)
     print_command_result(click_ctx, result, analyzer=analyzer, analyzer_version=analyzer_version,
                          output=output or '-', pretty=not no_pretty)
 
