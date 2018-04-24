@@ -44,7 +44,7 @@ setup(
     description='Tool and library for extracting packages from a docker build log',
     long_description=get_long_description(),
     url='https://github.com/thoth-station/package-extract',
-    license='ASL v2.0',
+    license='GPLv3+',
     keywords='docker image openshift tool library',
     classifiers=[
         "Development Status :: 4 - Beta",
