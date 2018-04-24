@@ -105,7 +105,7 @@ def _run_rpm(path: str, timeout: int = None) -> typing.List[str]:
     return packages
 
 
-def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
+def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     """Construct rootfs in a directory by extracting layers."""
     os.makedirs(rootfs_path, exist_ok=True)
 
@@ -120,10 +120,13 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
         raise NotSupported("Invalid schema version in manifest.json file: {} "
                            "(currently supported is 2)".format(manifest.get('schemaVersion')))
 
+    layers = []
     _LOGGER.debug("Layers found: %r", manifest['layers'])
     for layer_def in manifest['layers']:
         layer_digest = layer_def['digest'].split(':', maxsplit=1)[-1]
+
         _LOGGER.debug("Extracting layer %r", layer_digest)
+        layers.append(layer_digest)
 
         layer_gzip_tar = os.path.join(dir_path, layer_digest)
         with cwd(rootfs_path):
@@ -138,6 +141,8 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> None:
                     # If the given file is present, there is raised an exception - remove file to prevent from errors.
                     os.remove(member.name)
                     tar_file.extract(member, set_attrs=False)
+
+    return layers
 
 
 def download_image(image_name: str, dir_path: str, timeout: int = None, registry_credentials: str = None,

@@ -40,6 +40,9 @@ def extract_image(image_name: str, timeout: int = None, *, registry_credentials:
         )
 
         rootfs_path = os.path.join(dir_path, 'rootfs')
-        construct_rootfs(dir_path, rootfs_path)
+        layers = construct_rootfs(dir_path, rootfs_path)
 
-        return run_analyzers(rootfs_path)
+        result = run_analyzers(rootfs_path)
+        result['layers'] = layers
+
+        return result
