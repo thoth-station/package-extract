@@ -30,9 +30,7 @@ from thoth.common import cwd
 
 from .exceptions import InvalidImageError
 from .exceptions import NotSupported
-from .koji import KojiError
-from .koji import parse_NVR
-from .koji import parse_NVRA
+from .rpmlib import parse_nvra
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -86,13 +84,7 @@ def _run_rpm_repoquery(path: str, timeout: int = None) -> list:
 
     result = []
     for package_identifier, dependencies in output.items():
-        try:
-            rpm_package = parse_NVRA(package_identifier)
-        except KojiError:
-            rpm_package = parse_NVR(package_identifier)
-            # Fill in missing parts missing in parse_NVR() output, but present in parse_NVRA().
-            rpm_package['src'] = False
-            rpm_package['arch'] = None
+        rpm_package = parse_nvra(package_identifier)
 
         rpm_package['dependencies'] = dependencies
         rpm_package['epoch'] = rpm_package['epoch'] or None
