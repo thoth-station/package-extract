@@ -9,14 +9,15 @@ The original code can be found at:
 Note we used code from Koji before, but that looks to be broken in some cases.
 """
 
+
 def parse_nvra(nvra):
     """Split N-V-R.A[.rpm] into a dictionary.
+
     @param nvra: N-V-R:E.A[.rpm], E:N-V-R.A[.rpm], N-V-R.A[.rpm]:E or N-E:V-R.A[.rpm] string
     @type nvra: str
     @return: {name, version, release, epoch, arch}
     @rtype: dict
     """
-
     if "/" in nvra:
         nvra = nvra.split("/")[-1]
 
@@ -48,12 +49,12 @@ def parse_nvra(nvra):
 
 def parse_nvr(nvre):
     """Split N-V-R into a dictionary.
+
     @param nvre: N-V-R:E, E:N-V-R or N-E:V-R string
     @type nvre: str
     @return: {name, version, release, epoch}
     @rtype: dict
     """
-
     if "/" in nvre:
         nvre = nvre.split("/")[-1]
 
@@ -81,12 +82,12 @@ def parse_nvr(nvre):
 
 def split_nvr_epoch(nvre):
     """Split nvre to N-V-R and E.
+
     @param nvre: E:N-V-R or N-V-R:E string
     @type nvre: str
     @return: (N-V-R, E)
     @rtype: (str, str)
     """
-
     if ":" in nvre:
         if nvre.count(":") != 1:
             raise ValueError("Invalid NVRE: %s" % nvre)
