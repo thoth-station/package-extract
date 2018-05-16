@@ -1,7 +1,5 @@
 language: python
 sudo: required
-services:
-- docker
 python:
 - '3.6'
 script: true
@@ -11,10 +9,6 @@ env:
   global:
     secure: boOslVH0RPGlNJ0GoMbsh5mqllyUIbpijsYQxWUPfIDxIFjU7HqrSIfhCyGOoH7OWxSQlV2zYFHUi9aLz0WBPsamYQnzTHYzRfk/AfiKFtu6ZAk3F46j/wShZGXW8ETIrXdjtXJby63xlB2BDSAcHlKYhRhk5Q/XaoPLFHtmtnucLaxTi8jOqTvN2vcv7RB58waZ5Wyn2avaBDw8DBzUWE8oIoc3YuNUS0RVE4ziCyVAhFlm+19WupcJmFueH2Audl6MIA7ruv+K+zfrRVxSaUUq4xVcUNk9Cm0xUgcDvRjlE/aG9KAy8C0JjVcrI2qM7nWPO6B62Kj4EztSRwS8rVruWQwHTqBUAelTF/XNnE5ac+u8qcZMEQa39n5jMybYRNEI6ZfOj39u3eVlYUniBV5V0ZMogsNLL333rO/3oKPx/D7b31ka61ib518eInzWTTWW+QqaYTE7kkZSmQJwkwbifouMf5ViZ84jIZ4N48/hB/aOY02Hto+voZCwEUPWlXnQvmkxhjNaFyNBbym9eEruxjA9477Js2RYAFrKBWX5M5LCu70Ffzsvnkqyoy6OdKr8/YbsvuL4ocpaKaOQC9vmEYz6zd84ahxMFa5G0kVYEe/7Nar0Z7/eVGCuN8qI8kp2XBA8au3/C7Gk0O5mEHvWzmyvtUrT5WmOqHtbb4g=
 deploy:
-  - provider: script
-    script: bash build.sh
-    on:
-      branch: master
   - provider: pypi
     user: fridex
     password:
