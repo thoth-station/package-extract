@@ -2,5 +2,5 @@ click
 attrs
 daiquiri
 requests
-thoth-common
+thoth-common>=0.0.6
 thoth-analyzer>=0.0.3
