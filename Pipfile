@@ -8,8 +8,8 @@ click = "*"
 attrs = "*"
 daiquiri = "*"
 requests = "*"
-thoth-common = ">=0.0.6"
-thoth-analyzer = ">=0.0.3"
+thoth-common = "*"
+thoth-analyzer = "*"
 
 [dev-packages]
 pytest = "*"
