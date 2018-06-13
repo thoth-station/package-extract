@@ -8,7 +8,7 @@ metadata:
   annotations:
     description: This is Thoth Core - Package Extract BuildConfig
     openshift.io/display-name: "Thoth: Package Extract BuildConfig"
-    version: 0.1.3
+    version: 0.2.0
     tags: poc,thoth,ai-stacks,package-extract
     template.openshift.io/documentation-url: https://github.com/Thoth-Station/
     template.openshift.io/long-description: This template defines resources needed to deploy Thoth Package Extract as a Proof-of-Concept to OpenShift.
@@ -23,6 +23,13 @@ objects:
       app: thoth-core
       component: package-extract-base
   spec:
+    resources:
+      requests:
+        cpu: 1
+        memory: 512Mi
+      limits:
+        cpu: 2
+        memory: 1024Mi
     output:
       to:
         kind: ImageStreamTag
@@ -52,6 +59,13 @@ objects:
       app: thoth-core
       component: package-extract-job
   spec:
+    resources:
+      requests:
+        cpu: 1
+        memory: 512Mi
+      limits:
+        cpu: 2
+        memory: 1024Mi
     output:
       to:
         kind: ImageStreamTag
