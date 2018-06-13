@@ -1,6 +1,6 @@
 FROM package-extract-base
 
-RUN make &&  
+RUN make 
 
 CMD ["extract-image"]
 ENTRYPOINT ["thoth-package-extract"]
