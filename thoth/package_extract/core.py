@@ -50,9 +50,8 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
 def extract_image(image_name: str, timeout: int = None, *, registry_credentials: str = None,
                   tls_verify: bool=True) -> dict:
     """Extract dependencies from an image."""
-    try:
-         """Begin the timer for when the job starts"""
-        with _METRIC_ANALYZER_JOB.time():
+    """Begin the timer for when the job starts"""
+    with _METRIC_ANALYZER_JOB.time():
             image_name = quote(image_name)
             with tempfile.TemporaryDirectory() as dir_path:
                 download_image(
@@ -63,19 +62,14 @@ def extract_image(image_name: str, timeout: int = None, *, registry_credentials:
                     tls_verify=tls_verify
                 )
 
-            rootfs_path = os.path.join(dir_path, 'rootfs')
-            layers = construct_rootfs(dir_path, rootfs_path)
+                rootfs_path = os.path.join(dir_path, 'rootfs')
+                layers = construct_rootfs(dir_path, rootfs_path)
 
-            result = run_analyzers(rootfs_path)
-            result['layers'] = layers
+                result = run_analyzers(rootfs_path)
+                result['layers'] = layers
 
-            return result
-     except: pass
-     else:
-            """If the job was unsuccessful the time is recorded for the last successful job"""
-        last_success = Gauge('package_extract_last_success_time','Unix time the package extract job last succeeded', registry=prometheus_registry)
-        last_success.set_to_current_time()
-     finally:
+                return result
+        
         push_gateway = os.getenv('PROMETHEUS_PUSH_GATEWAY', 'pushgateway:9091')
         if push_gateway:
             try:
