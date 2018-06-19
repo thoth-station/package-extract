@@ -28,8 +28,11 @@ from .handlers import HandlerBase
 from .image import construct_rootfs
 from .image import download_image
 from .image import run_analyzers
+from prometheus_client import CollectorRegistry, pushadd_to_gateway, Gauge
 
 _LOGGER = logging.getLogger(__name__)
+prometheus_registry = CollectorRegistry()
+_METRIC_ANALYZER_JOB = Gauge('package_extract_time','Runtime of package extract job', registry=prometheus_registry)
 
 
 def extract_buildlog(input_text: str) -> typing.List[dict]:
@@ -47,20 +50,37 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
 def extract_image(image_name: str, timeout: int = None, *, registry_credentials: str = None,
                   tls_verify: bool=True) -> dict:
     """Extract dependencies from an image."""
-    image_name = quote(image_name)
-    with tempfile.TemporaryDirectory() as dir_path:
-        download_image(
-            image_name,
-            dir_path,
-            timeout=timeout or None,
-            registry_credentials=registry_credentials or None,
-            tls_verify=tls_verify
-        )
+    try:
+         """Begin the timer for when the job starts"""
+        with _METRIC_ANALYZER_JOB.time():
+            image_name = quote(image_name)
+            with tempfile.TemporaryDirectory() as dir_path:
+                download_image(
+                    image_name,
+                    dir_path,
+                    timeout=timeout or None,
+                    registry_credentials=registry_credentials or None,
+                    tls_verify=tls_verify
+                )
 
-        rootfs_path = os.path.join(dir_path, 'rootfs')
-        layers = construct_rootfs(dir_path, rootfs_path)
+            rootfs_path = os.path.join(dir_path, 'rootfs')
+            layers = construct_rootfs(dir_path, rootfs_path)
 
-        result = run_analyzers(rootfs_path)
-        result['layers'] = layers
+            result = run_analyzers(rootfs_path)
+            result['layers'] = layers
 
-        return result
+            return result
+     except: pass
+     else:
+            """If the job was unsuccessful the time is recorded for the last successful job"""
+        last_success = Gauge('package_extract_last_success_time','Unix time the package extract job last succeeded', registry=prometheus_registry)
+        last_success.set_to_current_time()
+     finally:
+        push_gateway = os.getenv('PROMETHEUS_PUSH_GATEWAY', 'pushgateway:9091')
+        if push_gateway:
+            try:
+                pushadd_to_gateway(push_gateway, job='package-extract-runtime',registry=prometheus_registry)
+            except Exception as e:
+                _LOGGER.exception('An error occurred pushing the metrics: {}'.format(str(e)))
+
+            
