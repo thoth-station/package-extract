@@ -50,23 +50,23 @@ def extract_image(image_name: str, timeout: int = None, *, registry_credentials:
     """Extract dependencies from an image."""
     """Begin the timer for when the job starts"""
     prometheus_registry = CollectorRegistry()
-    _metric_analyzer_job = Gauge('package_extract_time','Runtime of package extract job', registry=prometheus_registry)
-    with _metric_analyzer_job.time():
-            image_name = quote(image_name)
-            with tempfile.TemporaryDirectory() as dir_path:
-                download_image(
-                    image_name,
-                    dir_path,
-                    timeout=timeout or None,
-                    registry_credentials=registry_credentials or None,
-                    tls_verify=tls_verify
-                )
+    metric_analyzer_job = Gauge('package_extract_time','Runtime of package extract job', registry=prometheus_registry)
+    
+    with metric_analyzer_job.time(), tempfile.TemporaryDirectory() as dir_path:
+        image_name = quote(image_name)
+        download_image(
+            image_name,
+            dir_path,
+            timeout=timeout or None,
+            registry_credentials=registry_credentials or None,
+            tls_verify=tls_verify
+        )
+        
+        rootfs_path = os.path.join(dir_path, 'rootfs')
+        layers = construct_rootfs(dir_path, rootfs_path)
 
-                rootfs_path = os.path.join(dir_path, 'rootfs')
-                layers = construct_rootfs(dir_path, rootfs_path)
-
-                result = run_analyzers(rootfs_path)
-                result['layers'] = layers
+        result = run_analyzers(rootfs_path)
+        result['layers'] = layers
         
    push_gateway = os.getenv('PROMETHEUS_PUSH_GATEWAY', 'pushgateway:9091')
    if push_gateway:
