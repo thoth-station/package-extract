@@ -28,6 +28,7 @@ from .handlers import HandlerBase
 from .image import construct_rootfs
 from .image import download_image
 from .image import run_analyzers
+from prometheus_client import CollectorRegistry, pushadd_to_gateway, Gauge
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -47,8 +48,12 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
 def extract_image(image_name: str, timeout: int = None, *, registry_credentials: str = None,
                   tls_verify: bool=True) -> dict:
     """Extract dependencies from an image."""
-    image_name = quote(image_name)
-    with tempfile.TemporaryDirectory() as dir_path:
+    #Setting up the prometheus registry and the Gauge metric
+    prometheus_registry = CollectorRegistry()
+    metric_analyzer_job = Gauge('package_extract_time', 'Runtime of package extract job', registry=prometheus_registry)
+    #Begins a timer to record the running time of the job
+    with metric_analyzer_job.time(), tempfile.TemporaryDirectory() as dir_path:
+        image_name = quote(image_name)
         download_image(
             image_name,
             dir_path,
@@ -56,11 +61,17 @@ def extract_image(image_name: str, timeout: int = None, *, registry_credentials:
             registry_credentials=registry_credentials or None,
             tls_verify=tls_verify
         )
-
         rootfs_path = os.path.join(dir_path, 'rootfs')
         layers = construct_rootfs(dir_path, rootfs_path)
 
         result = run_analyzers(rootfs_path)
         result['layers'] = layers
-
-        return result
+        
+   push_gateway = os.getenv('PROMETHEUS_PUSH_GATEWAY', 'pushgateway:9091')
+   if push_gateway:
+        try:
+            pushadd_to_gateway(push_gateway, job='package-extract-runtime', registry=prometheus_registry)
+        except Exception as e:
+            _LOGGER.exception('An error occurred pushing the metrics: {}'.format(str(e)))
+            
+   return result
