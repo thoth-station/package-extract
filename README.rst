@@ -23,7 +23,7 @@ Extracting dependencies directly from an image
 
 Tool thoth-package-extract allows you to extract dependencies from an image directly by inspecting its content. As there is directly inspected the content of image, the output is accurate compared to the pure build log parsing.
 
-To gather information about python packages installed, there is a need to execute python scripts of installed packages given the Python packaging design. In some cases this can be dangerous as there could be executed potentially malicious parts of code (see ``this typo squashing <http://www.nbu.gov.sk/skcsirt-sa-20170909-pypi/>`` as an example).
+To gather information about python packages installed, there is a need to execute python scripts of installed packages given the Python packaging design. In some cases this can be dangerous as there could be executed potentially malicious parts of code (see `this typo squashing <http://www.nbu.gov.sk/skcsirt-sa-20170909-pypi/>`_ as an example).
 
 
 Installation
