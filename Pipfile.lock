@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1c71482c1a8a9cfd680478016b2fe6278c8927cb00a38e61829982cd3d87e0e8"
+            "sha256": "bc67d9d926668dda6802634f1ebf8fd7ada62a8769ad51e3222d8d9b193a746b"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -111,11 +111,11 @@
         },
         "thoth-analyzer": {
             "hashes": [
-                "sha256:20b440edec91663d8c746b179ff4f726a0ec42b09bc760b6eb0a231411ffd4a4",
-                "sha256:b07ad55359706cbc708f032695c463b76bafa65af458e8c2392862d32358272b"
+                "sha256:b09cdb3f3131e38c2f3bffc211bbe43a99f4c8f8216835b1c14ffb2711beb6e4",
+                "sha256:efe584720e24973d53e993c8a29e26e5a6a4c4c4d0b43896630bccb044341db4"
             ],
             "index": "pypi",
-            "version": "==0.0.5"
+            "version": "==0.0.6"
         },
         "thoth-common": {
             "hashes": [
