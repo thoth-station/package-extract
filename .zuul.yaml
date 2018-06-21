@@ -1,7 +1,10 @@
 - project:
     check:
       jobs:
-        - linters
+        - linters:
+            vars:
+              linters:
+                - coala
     gate:
       jobs:
         - linters
