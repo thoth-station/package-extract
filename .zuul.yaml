@@ -3,8 +3,8 @@
       jobs:
         - linters
           vars:
-          - linters:
-            - coala
+            linters:
+              - coala
     gate:
       jobs:
         - linters
