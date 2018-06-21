@@ -2,9 +2,6 @@
     check:
       jobs:
         - linters
-          vars:
-            linters:
-              - coala
     gate:
       jobs:
         - linters
