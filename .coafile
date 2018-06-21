@@ -1,6 +1,6 @@
 [all]
 bears = LineCountBear, FilenameBear
-files = **.py, **.yml, **.rst
+files = **.py, **.yml
 ignore = **/__pycache__/**, **/__pycache__, __pycache__, __pycache__/**, **/*.pyc, *.pyc
 max_lines_per_file = 1000
 
