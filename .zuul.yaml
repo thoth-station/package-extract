@@ -8,3 +8,10 @@
     gate:
       jobs:
         - linters
+
+    sesheta-auto-gate:
+      jobs:
+        - linters:
+            vars:
+              linters:
+                - coala
