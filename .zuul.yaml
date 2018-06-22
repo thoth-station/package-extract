@@ -9,7 +9,7 @@
       jobs:
         - linters
 
-    sesheta-auto-gate:
+    kebechet-auto-gate:
       jobs:
         - linters:
             vars:
