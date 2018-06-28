@@ -69,7 +69,7 @@ def extract_image(image_name: str, timeout: int = None, *,
         result = run_analyzers(rootfs_path)
         result['layers'] = layers
 
-    push_gateway = os.getenv('PROMETHEUS_PUSH_GATEWAY', 'pushgateway:9091')
+    push_gateway = os.getenv('PROMETHEUS_PUSHGATEWAY_HOST:PROMETHEUS_PUSHGATEWAY_PORT')
     if push_gateway:
         try:
             pushadd_to_gateway(push_gateway,
