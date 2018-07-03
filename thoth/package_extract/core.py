@@ -69,10 +69,11 @@ def extract_image(image_name: str, timeout: int = None, *,
         result = run_analyzers(rootfs_path)
         result['layers'] = layers
 
-    push_gateway = os.getenv('PROMETHEUS_PUSHGATEWAY_HOST','PROMETHEUS_PUSHGATEWAY_HOST:PROMETHEUS_PUSHGATEWAY_PORT')
-    if push_gateway:
+    push_gateway_host = os.getenv('PROMETHEUS_PUSHGATEWAY_HOST')
+    push_gateway_port = os.getevn('PROMETHEUS_PUSHGATEWAY_PORT')
+    if push_gateway_host:
         try:
-            pushadd_to_gateway(push_gateway,
+            pushadd_to_gateway(push_gateway_host:push_gateway_port,
                                job='package-extract-runtime',
                                registry=prometheus_registry)
         except Exception as e:
