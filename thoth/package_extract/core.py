@@ -73,7 +73,7 @@ def extract_image(image_name: str, timeout: int = None, *,
     push_gateway_port = os.getevn('PROMETHEUS_PUSHGATEWAY_PORT')
     if push_gateway_host:
         try:
-            pushadd_to_gateway(push_gateway_host: push_gateway_port,
+            pushadd_to_gateway(f"{push_gateway_host: push_gateway_port}",
                                job='package-extract-runtime',
                                registry=prometheus_registry)
         except Exception as e:
