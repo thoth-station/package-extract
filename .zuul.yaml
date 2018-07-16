@@ -1,17 +1,11 @@
 - project:
     check:
       jobs:
-        - linters:
-            vars:
-              linters:
-                - coala
+        - linters
     gate:
       jobs:
         - linters
 
     kebechet-auto-gate:
       jobs:
-        - linters:
-            vars:
-              linters:
-                - coala
+        - linters
