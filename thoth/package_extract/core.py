@@ -24,11 +24,12 @@ import tempfile
 import typing
 from shlex import quote
 
+from prometheus_client import CollectorRegistry, pushadd_to_gateway, Gauge
+
 from .handlers import HandlerBase
 from .image import construct_rootfs
 from .image import download_image
 from .image import run_analyzers
-from prometheus_client import CollectorRegistry, pushadd_to_gateway, Gauge
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -70,12 +71,12 @@ def extract_image(image_name: str, timeout: int = None, *,
         result['layers'] = layers
 
     _PUSH_GATEWAY_HOST = os.getenv('PROMETHEUS_PUSHGATEWAY_HOST')
-    _PUSH_GATEWAY_PORT = os.getevn('PROMETHEUS_PUSHGATEWAY_PORT')
+    _PUSH_GATEWAY_PORT = os.getenv('PROMETHEUS_PUSHGATEWAY_PORT')
     if _PUSH_GATEWAY_HOST and _PUSH_GATEWAY_PORT:
         try:
-            pushadd_to_gateway(f"{_PUSH_GATEWAY_HOST:_PUSH_GATEWAY_PORT}",
-                               job='package-extract-runtime',
-                               registry=prometheus_registry)
+            push_gateway = f"{_PUSH_GATEWAY_HOST:_PUSH_GATEWAY_PORT}"
+            _LOGGER.debug(f"Submitting metrics to Prometheus push gateway {push_gateway}")
+            pushadd_to_gateway(push_gateway, job='package-extract-runtime', registry=prometheus_registry)
         except Exception as e:
             _LOGGER.exception('An error occurred pushing the metrics: {}'.format(str(e)))
 
