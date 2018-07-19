@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: package-extract-pod
+  thoth: 0.1.0
+metadata:
+  name: package-extract
+  annotations:
+    description: This is Thoth Core - Package Extract
+    openshift.io/display-name: 'Thoth: Package Extract'
+    version: 0.3.0
+    tags: poc,thoth,ai-stacks,package-extract
+    template.openshift.io/documentation-url: https://github.com/Thoth-Station/
+    template.openshift.io/long-description: >
+      This template defines resources needed to run image analyzer in Thoth to OpenShift.
+    template.openshift.io/provider-display-name: Red Hat, Inc.
+
+objects:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      generateName: package-extract-
+      labels:
+        app: thoth
+        thoth-pod: package-extract
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      containers:
+        - name: package-extract
+          image: package-extract
+          livenessProbe:
+            # Give analyzer 10 minutes to compute results, kill it if it was not able result anything.
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 600
+            failureThreshold: 1
+            periodSeconds: 10
+          env:
+            - name: THOTH_LOG_ADVISER
+              value: 'INFO'
+            # These are intentionally empty - they will be provided on pod run request.
+            # TODO: move to parameters
+            - name: THOTH_ANALYZED_IMAGE'
+              value: ''
+            - name: THOTH_ANALYZER'
+              value: ''
+            - name: THOTH_ANALYZER_DEBUG
+              value: ''
+            - name: THOTH_ANALYZER_TIMEOUT
+              value: ''
+            - name: THOTH_ANALYZER_OUTPUT
+              value: ''
+            - name: THOTH_ANALYZER_NO_TLS_VERIFY
+              value: ''
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+            requests:
+              memory: '128Mi'
+              cpu: '500m'
