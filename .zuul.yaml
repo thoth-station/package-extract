@@ -3,6 +3,7 @@
       jobs:
         - linters
     gate:
+      queue: core
       jobs:
         - linters
 
