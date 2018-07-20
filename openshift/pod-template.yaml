@@ -41,9 +41,9 @@ objects:
               value: 'INFO'
             # These are intentionally empty - they will be provided on pod run request.
             # TODO: move to parameters
-            - name: THOTH_ANALYZED_IMAGE'
+            - name: THOTH_ANALYZED_IMAGE
               value: ''
-            - name: THOTH_ANALYZER'
+            - name: THOTH_ANALYZER
               value: ''
             - name: THOTH_ANALYZER_DEBUG
               value: ''
