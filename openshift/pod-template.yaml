@@ -1,8 +1,5 @@
 apiVersion: v1
 kind: Template
-labels:
-  template: package-extract-pod
-  thoth: 0.1.0
 metadata:
   name: package-extract
   annotations:
@@ -14,6 +11,10 @@ metadata:
     template.openshift.io/long-description: >
       This template defines resources needed to run image analyzer in Thoth to OpenShift.
     template.openshift.io/provider-display-name: Red Hat, Inc.
+  labels:
+    template: package-extract-pod
+    app: thoth
+    component: package-extract
 
 objects:
   - apiVersion: v1
@@ -22,7 +23,7 @@ objects:
       generateName: package-extract-
       labels:
         app: thoth
-        thoth-pod: package-extract
+        component: package-extract
     spec:
       restartPolicy: Never
       automountServiceAccountToken: false
@@ -39,20 +40,16 @@ objects:
           env:
             - name: THOTH_LOG_ADVISER
               value: 'INFO'
-            # These are intentionally empty - they will be provided on pod run request.
-            # TODO: move to parameters
             - name: THOTH_ANALYZED_IMAGE
-              value: ''
+              value: ${THOTH_ANALYZED_IMAGE}
             - name: THOTH_ANALYZER
-              value: ''
+              value: ${THOTH_ANALYZER}
             - name: THOTH_ANALYZER_DEBUG
-              value: ''
-            - name: THOTH_ANALYZER_TIMEOUT
-              value: ''
+              value: ${THOTH_ANALYZER_DEBUG}
             - name: THOTH_ANALYZER_OUTPUT
-              value: ''
+              value: ${THOTH_ANALYZER_OUTPUT}
             - name: THOTH_ANALYZER_NO_TLS_VERIFY
-              value: ''
+              value: ${THOTH_ANALYZER_NO_TLS_VERIFY}
           resources:
             limits:
               memory: '128Mi'
@@ -60,3 +57,30 @@ objects:
             requests:
               memory: '128Mi'
               cpu: '500m'
+
+parameters:
+  - name: THOTH_ANALYZED_IMAGE
+    displayName: Analyzed image
+    description: Image to be analyzed
+    required: true
+  - name: THOTH_ANALYZER
+    displayName: Analyzer
+    description: Analyzer which analyzes the given image
+    required: true
+  - name: THOTH_ANALYZER_DEBUG
+    displayName: Debug analyzer
+    description: Run analyzer in debug mode
+    required: true
+  - name: THOTH_ANALYZER_TIMEOUT
+    displayName: Analyzer timeout
+    description: Timeout for analyzer
+    required: true
+  - name: THOTH_ANALYZER_OUTPUT
+    description: Remote where results should be send to
+    displayName: Analyzer output
+    required: true
+  - name: THOTH_ANALYZER_NO_TLS_VERIFY
+    description: Do not perform SSL certificates verification
+    displayName: Disable TLS verification
+    required: false
+    value: '0'
