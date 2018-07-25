@@ -21,42 +21,6 @@ objects:
 - kind: BuildConfig
   apiVersion: v1
   metadata:
-    name: package-extract-base
-    labels:
-      app: thoth
-      component: package-extract
-  spec:
-    resources:
-      requests:
-        cpu: 1
-        memory: 512Mi
-      limits:
-        cpu: 2
-        memory: 1024Mi
-    output:
-      to:
-        kind: ImageStreamTag
-        name: "package-extract-base:${IMAGE_STREAM_TAG}"
-    source:
-      type: Git
-      git:
-        uri: "${GITHUB_URL}"
-        ref: "${GITHUB_REF}"
-    strategy:
-      dockerStrategy:
-        dockerfilePath: Dockerfile-base.fedora
-        from:
-          kind: DockerImage
-          name: fedora:27
-        imageOptimizationPolicy: SkipLayers
-    triggers:
-    - type: ConfigChange
-    - type: ImageChange
-      imageChange: {}
-
-- kind: BuildConfig
-  apiVersion: v1
-  metadata:
     name: package-extract-job
     labels:
       app: thoth
@@ -81,10 +45,6 @@ objects:
     strategy:
       dockerStrategy:
         dockerfilePath: Dockerfile
-        from:
-          kind: ImageStreamTag
-          name: "package-extract-base:${IMAGE_STREAM_TAG}"
-        imageOptimizationPolicy: SkipLayers
     triggers:
     - type: ConfigChange
     - type: ImageChange
@@ -103,8 +63,7 @@ parameters:
   name: GITHUB_REF
   value: 'master'
 
-- description: |-
-    Tag of the output ImageStream the resulting container image should go to
+- description: Tag of the output ImageStream the resulting container image should go to
   displayName: ImageStream Tag
   required: true
   name: IMAGE_STREAM_TAG

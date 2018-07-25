@@ -18,26 +18,14 @@ metadata:
     component: package-extract
 
 objects:
-- apiVersion: v1
-  kind: ImageStream
-  metadata:
-    labels:
-      app: thoth
-      component: package-extract
-    name: package-extract-base
-  spec:
-    name: latest
-    lookupPolicy:
-      local: true
-
-- apiVersion: v1
-  kind: ImageStream
-  metadata:
-    labels:
-      app: thoth
-      component: package-extract
-    name: package-extract-job
-  spec:
-    name: latest
-    lookupPolicy:
-      local: true
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      labels:
+        app: thoth
+        component: package-extract
+      name: package-extract-job
+    spec:
+      name: latest
+      lookupPolicy:
+        local: true
