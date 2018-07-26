@@ -24,7 +24,7 @@ objects:
       labels:
         app: thoth
         component: package-extract
-      name: package-extract-job
+      name: package-extract
     spec:
       name: latest
       lookupPolicy:

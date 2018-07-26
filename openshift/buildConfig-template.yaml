@@ -21,7 +21,7 @@ objects:
 - kind: BuildConfig
   apiVersion: v1
   metadata:
-    name: package-extract-job
+    name: package-extract
     labels:
       app: thoth
       component: package-extract
@@ -36,7 +36,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: "package-extract-job:${IMAGE_STREAM_TAG}"
+        name: "package-extract:${IMAGE_STREAM_TAG}"
     source:
       type: Git
       git:
