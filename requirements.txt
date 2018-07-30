@@ -1,6 +1,7 @@
-click
 attrs
+click
 daiquiri
+prometheus-client
 requests
-thoth-common>=0.0.6
-thoth-analyzer>=0.0.3
+thoth-analyzer
+thoth-common
