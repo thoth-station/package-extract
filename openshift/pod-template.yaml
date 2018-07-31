@@ -38,18 +38,18 @@ objects:
             failureThreshold: 1
             periodSeconds: 10
           env:
-            - name: THOTH_LOG_ADVISER
-              value: 'INFO'
+            - name: THOTH_LOG_PACKAGE_EXTRACT
+              value: ${THOTH_LOG_PACKAGE_EXTRACT}
+            - name: THOTH_ANALYZER
+              value: package-extract
             - name: THOTH_ANALYZED_IMAGE
               value: ${THOTH_ANALYZED_IMAGE}
-            - name: THOTH_ANALYZER
-              value: ${THOTH_ANALYZER}
-            - name: THOTH_ANALYZER_DEBUG
-              value: ${THOTH_ANALYZER_DEBUG}
             - name: THOTH_ANALYZER_OUTPUT
               value: ${THOTH_ANALYZER_OUTPUT}
             - name: THOTH_ANALYZER_NO_TLS_VERIFY
               value: ${THOTH_ANALYZER_NO_TLS_VERIFY}
+            - name: THOTH_REGISTRY_CREDENTIALS
+              value: ${THOTH_REGISTRY_CREDENTIALS}
           resources:
             limits:
               memory: '128Mi'
@@ -63,24 +63,24 @@ parameters:
     displayName: Analyzed image
     description: Image to be analyzed
     required: true
-  - name: THOTH_ANALYZER
     displayName: Analyzer
     description: Analyzer which analyzes the given image
-    required: true
-  - name: THOTH_ANALYZER_DEBUG
-    displayName: Debug analyzer
-    description: Run analyzer in debug mode
-    required: true
-  - name: THOTH_ANALYZER_TIMEOUT
-    displayName: Analyzer timeout
-    description: Timeout for analyzer
     required: true
   - name: THOTH_ANALYZER_OUTPUT
     description: Remote where results should be send to
     displayName: Analyzer output
     required: true
+  - name: THOTH_LOG_PACKAGE_EXTRACT
+    description: Logger setting for package extract
+    displayName: Log package extract
+    required: true
+    value: 'INFO'
   - name: THOTH_ANALYZER_NO_TLS_VERIFY
     description: Do not perform SSL certificates verification
     displayName: Disable TLS verification
     required: false
     value: '0'
+  - name: THOTH_REGISTRY_CREDENTIALS
+    description: Credentials for connecting to registry to pull images from
+    displayName: Registry credentials
+    required: false
