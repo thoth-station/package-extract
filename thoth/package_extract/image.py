@@ -146,11 +146,14 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
             for member in tar_file:
                 # Do not set attributes so we are fine with permissions.
                 try:
-                    tar_file.extract(member, set_attrs=False)
+                    tar_file.extract(member, set_attrs=False, numeric_owner=False)
                 except IOError:
                     # If the given file is present, there is raised an exception - remove file to prevent from errors.
-                    os.remove(member.name)
-                    tar_file.extract(member, set_attrs=False)
+                    try:
+                        os.remove(member.name)
+                        tar_file.extract(member, set_attrs=False, numeric_owner=False)
+                    except Exception as exc:
+                        _LOGGER.exception("Failed to extract %r, exception is not fatal: %s", member.name, exc)
 
     return layers
 
