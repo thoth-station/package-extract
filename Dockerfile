@@ -15,7 +15,7 @@ LABEL io.k8s.description="Thoth Package Extract Base" \
     license="GPLv3"
 
 RUN dnf update -y && \
-    dnf install -y python-pip go git make skopeo dnf-utils && \
+    dnf install -y python-pip go git make skopeo dnf-utils fakeroot fakechroot && \
     dnf clean all
 
 COPY ./ /tmp/package-extract
@@ -23,6 +23,7 @@ RUN cd /tmp/package-extract && \
     make all && \
     rm -rf /tmp/package-extract
 
+USER 1042
 CMD ["extract-image"]
 ENTRYPOINT ["thoth-package-extract"]
 
