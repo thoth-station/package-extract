@@ -33,7 +33,7 @@ from .exceptions import InvalidImageError
 from .exceptions import NotSupported
 from .rpmlib import parse_nvra
 
-_LOGGER = logging.getLogger('thoth.package_extract')
+_LOGGER = logging.getLogger(__name__)
 
 _MERCATOR_BIN = os.getenv('MERCATOR_BIN', 'mercator')
 _MERCATOR_HANDLERS_YAML = os.getenv('MERCATOR_HANDLERS_YAML', '/usr/share/mercator/handlers.yml')
