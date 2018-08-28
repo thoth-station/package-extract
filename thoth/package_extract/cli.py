@@ -23,32 +23,15 @@ import sys
 
 import click
 
-import daiquiri
+from thoth.common import init_logging
 from thoth.analyzer import print_command_result
 from thoth.package_extract import __title__ as analyzer
 from thoth.package_extract import __version__ as analyzer_version
 from thoth.package_extract.core import extract_buildlog
 from thoth.package_extract.core import extract_image
 
+init_logging()
 _LOG = logging.getLogger(__name__)
-_DEFAULT_NO_COLOR_FORMAT = "%(asctime)s [%(process)d] %(levelname)-8.8s %(name)s: %(message)s"
-_DEFAULT_COLOR_FORMAT = "%(asctime)s [%(process)d] %(color)s%(levelname)-8.8s %(name)s: %(message)s%(color_stop)s"
-
-
-def _setup_logging(verbose: bool, no_color: bool) -> None:
-    """Set up logging facilities.
-
-    :param verbose: be verbose
-    :param no_color: do not use color in output
-    """
-    level = logging.DEBUG if verbose else logging.INFO
-    formatter = daiquiri.formatter.ColorFormatter(fmt=_DEFAULT_COLOR_FORMAT)
-    if no_color:
-        formatter = logging.Formatter(fmt=_DEFAULT_NO_COLOR_FORMAT)
-
-    daiquiri.setup(level=level, outputs=(
-        daiquiri.output.Stream(formatter=formatter),
-    ))
 
 
 def _print_version(ctx, _, value):
@@ -62,18 +45,17 @@ def _print_version(ctx, _, value):
 
 @click.group()
 @click.pass_context
-@click.option('-v', '--verbose', is_flag=True, envvar='THOTH_ANALYZER_DEBUG',
+@click.option('-v', '--verbose', is_flag=True,
               help="Be verbose about what's going on.")
 @click.option('--version', is_flag=True, is_eager=True, callback=_print_version, expose_value=False,
               help="Print thoth-package-extract version and exit.")
-@click.option('--no-color', '-C', is_flag=True,
-              help="Suppress colorized logging output.")
-def cli(ctx=None, verbose: bool = False, no_color: bool = True):
+def cli(ctx=None, verbose: bool = False):
     """Thoth pkgdeps command line interface."""
     if ctx:
         ctx.auto_envvar_prefix = 'THOTH_PKGDEPS'
 
-    _setup_logging(verbose, no_color)
+    _LOG.setLevel(logging.DEBUG if verbose else logging.INFO)
+    _LOG.debug("Debug mode is on")
 
 
 @cli.command('extract-buildlog')
