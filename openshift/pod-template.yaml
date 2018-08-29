@@ -60,23 +60,20 @@ objects:
 
 parameters:
   - name: THOTH_ANALYZED_IMAGE
-    displayName: Analyzed image
-    description: Image to be analyzed
-    required: true
-    displayName: Analyzer
-    description: Analyzer which analyzes the given image
+    displayName: Analyzer Image
+    description: Thoth's Analyser container image name
     required: true
   - name: THOTH_ANALYZER_OUTPUT
     description: Remote where results should be send to
     displayName: Analyzer output
     required: true
   - name: THOTH_LOG_PACKAGE_EXTRACT
-    description: Logger setting for package extract
+    description: Log Level for package extract
     displayName: Log package extract
     required: true
     value: 'INFO'
   - name: THOTH_ANALYZER_NO_TLS_VERIFY
-    description: Do not perform SSL certificates verification
+    description: Do not perform X.509 certificates verification
     displayName: Disable TLS verification
     required: false
     value: '0'
