@@ -23,6 +23,7 @@ import logging
 import os
 import tarfile
 import typing
+import stat
 from shlex import quote
 
 from thoth.analyzer import run_command
@@ -115,6 +116,112 @@ def _run_rpm(path: str, timeout: int = None) -> typing.List[str]:
     return packages
 
 
+def _run_dpkg_query(path: str, timeout: int = None) -> typing.List[dict]:
+    """Query for installed deb packages in the given root."""
+    # Make sure dpkg-query exist, give up if not.
+    dpkg_query_path = os.path.join(path, 'usr', 'bin', 'dpkg-query')
+    if not os.path.isfile(dpkg_query_path):
+        _LOGGER.info("Binary dpkg-query not found, deb packages discovery will not be performed")
+        return []
+
+    # Make sure dpkg-query is executable after extraction.
+    st = os.stat(dpkg_query_path)
+    os.chmod(dpkg_query_path, st.st_mode | stat.S_IEXEC)
+
+    cmd = 'fakeroot fakechroot /usr/sbin/chroot {!r} /usr/bin/dpkg-query -l'.format(path)
+    output = run_command(cmd, timeout=timeout).stdout
+    result = []
+    for line in output.split('\n'):
+        if not line.startswith('ii '):
+            _LOGGER.debug("Skipping line (not an installed package): %r", line)
+            continue
+
+        parts = line.split(maxsplit=4)
+        if len(parts) < 4:
+            _LOGGER.warning(
+                "Line in dpkg-query output does not provide enough information to parse package name, "
+                "version and architecture: %s", line
+            )
+            continue
+
+        result.append({
+            'name': parts[1],
+            'version': parts[2],
+            'arch': parts[3]
+        })
+
+    return result
+
+
+def _parse_deb_dependency_line(line_str: str) -> typing.List[tuple]:
+    """Parse deb dependency line respecting name of package and the given version range provided."""
+    result = []
+    for entry in line_str.split(', '):
+        parts = entry.split(' (', maxsplit=1)
+        if len(parts) == 2:
+            result.append((parts[0], parts[1][:-1]))  # -1 to remove ending ')'
+        else:
+            # No version range specification defined.
+            result.append((parts[0], None))
+    return result
+
+
+def _run_apt_cache_show(path: str, deb_packages: typing.List[dict], timeout: int = None) -> list:
+    """Gather information about packages and their dependencies."""
+    # Make sure dpkg-query exist, give up if not.
+    if not deb_packages:
+        return []
+
+    apt_cache_path = os.path.join(path, 'usr', 'bin', 'apt-cache')
+    if not os.path.isfile(apt_cache_path):
+        _LOGGER.warning(
+            "Binary apt-cache not found but debian packages were discovered previously - the output will not "
+            "provide dependency information for debian packages"
+        )
+        return []
+
+    # Make sure dpkg-query is executable after extraction.
+    st = os.stat(apt_cache_path)
+    os.chmod(apt_cache_path, st.st_mode | stat.S_IEXEC)
+
+    result = []
+    for record in deb_packages:
+        cmd = 'fakeroot fakechroot /usr/sbin/chroot {!r} /usr/bin/apt-cache show {}={}'.format(
+            path,
+            record['name'],
+            record['version']
+        )
+
+        # Do not touch original deb query, extend it rather with more info to follow rpm schema.
+        entry = dict(record)
+        parts = entry['version'].split(':', maxsplit=1)
+        if len(parts) == 2:
+            try:
+                # If it parses int, its an epoch probably.
+                int(parts[0])
+                entry['epoch'] = parts[0]
+                entry['version'] = parts[1]
+            except ValueError:
+                entry['epoch'] = None
+
+        output = run_command(cmd, timeout=timeout).stdout
+        entry['pre-depends'], entry['depends'], entry['replaces'] = [], [], []
+        for line in output.splitlines():
+            if line.startswith('Pre-Depends: '):
+                deps = _parse_deb_dependency_line(line[len('Pre-Depends: '):])
+                entry['pre-depends'] = [{'name': d[0], 'version': d[1]} for d in deps]
+            elif line.startswith('Depends: '):
+                deps = _parse_deb_dependency_line(line[len('Depends: '):])
+                entry['depends'] = [{'name': d[0], 'version': d[1]} for d in deps]
+            elif line.startswith('Replaces: '):
+                deps = _parse_deb_dependency_line(line[len('Replaces: '):])
+                entry['replaces'] = [{'name': d[0], 'version': d[1]} for d in deps]
+
+        result.append(entry)
+
+    return result
+
+
 def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     """Construct rootfs in a directory by extracting layers."""
     os.makedirs(rootfs_path, exist_ok=True)
@@ -177,8 +284,16 @@ def download_image(image_name: str, dir_path: str, timeout: int = None, registry
 def run_analyzers(path: str, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
     path = quote(path)
+
+    # In case of Debian-based images we assume dpkg and apt-cache packages are actually executable,
+    # meaning the architecture matches with host. We could try to bundle own statically linked binaries
+    # and ship them with container to add support for other architectures (if that would be possible).
+    deb_packages = _run_dpkg_query(path, timeout=timeout)
+
     return {
         'mercator': _run_mercator(path, timeout=timeout),
         'rpm': _run_rpm(path, timeout=timeout),
-        'rpm-dependencies': _run_rpm_repoquery(path, timeout=timeout)
+        'rpm-dependencies': _run_rpm_repoquery(path, timeout=timeout),
+        'deb': deb_packages,
+        'deb-dependencies': _run_apt_cache_show(path, deb_packages, timeout=timeout)
     }
