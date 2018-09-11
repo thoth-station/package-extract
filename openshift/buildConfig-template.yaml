@@ -5,7 +5,7 @@ metadata:
   annotations:
     description: This is Thoth Core - Package Extract BuildConfig
     openshift.io/display-name: "Thoth: Package Extract BuildConfig"
-    version: 0.2.0
+    version: 0.3.0
     tags: poc,thoth,ai-stacks,package-extract
     template.openshift.io/documentation-url: https://github.com/Thoth-Station/
     template.openshift.io/long-description: |-
@@ -18,53 +18,53 @@ metadata:
     component: package-extract
 
 objects:
-- kind: BuildConfig
-  apiVersion: v1
-  metadata:
-    name: package-extract
-    labels:
-      app: thoth
-      component: package-extract
-  spec:
-    resources:
-      requests:
-        cpu: 2
-        memory: 512Mi
-      limits:
-        cpu: 2
-        memory: 1024Mi
-    output:
-      to:
-        kind: ImageStreamTag
-        name: "package-extract:${IMAGE_STREAM_TAG}"
-    source:
-      type: Git
-      git:
-        uri: "${GITHUB_URL}"
-        ref: "${GITHUB_REF}"
-    strategy:
-      dockerStrategy:
-        dockerfilePath: Dockerfile
-    triggers:
-    - type: ConfigChange
-    - type: ImageChange
-      imageChange: {}
+  - kind: BuildConfig
+    apiVersion: v1
+    metadata:
+      name: package-extract
+      labels:
+        app: thoth
+        component: package-extract
+    spec:
+      resources:
+        requests:
+          cpu: 2
+          memory: 512Mi
+        limits:
+          cpu: 2
+          memory: 1024Mi
+      output:
+        to:
+          kind: ImageStreamTag
+          name: "package-extract:${IMAGE_STREAM_TAG}"
+      source:
+        type: Git
+        git:
+          uri: "${GITHUB_URL}"
+          ref: "${GITHUB_REF}"
+      strategy:
+        dockerStrategy:
+          dockerfilePath: Dockerfile
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+          imageChange: {}
 
 parameters:
-- description: Name of the github repository
-  displayName: Git Repository
-  required: true
-  name: GITHUB_URL
-  value: 'https://github.com/thoth-station/package-extract'
+  - description: Name of the github repository
+    displayName: Git Repository
+    required: true
+    name: GITHUB_URL
+    value: 'https://github.com/thoth-station/package-extract'
 
-- description: Git reference to be used
-  displayName: Git Reference
-  required: true
-  name: GITHUB_REF
-  value: 'master'
+  - description: Git reference to be used
+    displayName: Git Reference
+    required: true
+    name: GITHUB_REF
+    value: 'master'
 
-- description: Tag of the output ImageStream the resulting container image should go to
-  displayName: ImageStream Tag
-  required: true
-  name: IMAGE_STREAM_TAG
-  value: 'latest'
+  - description: Tag of the output ImageStream the resulting container image should go to
+    displayName: ImageStream Tag
+    required: true
+    name: IMAGE_STREAM_TAG
+    value: 'latest'
