@@ -17,46 +17,53 @@ metadata:
     component: package-extract
 
 objects:
-  - apiVersion: v1
-    kind: Pod
+  - apiVersion: batch/v1
+    kind: Job
     metadata:
       generateName: package-extract-
       labels:
         app: thoth
         component: package-extract
     spec:
-      restartPolicy: Never
-      automountServiceAccountToken: false
-      containers:
-        - name: package-extract
-          image: package-extract
-          livenessProbe:
-            # Give analyzer 30 minutes to compute results, kill it if it was not able result anything.
-            tcpSocket:
-              port: 80
-            initialDelaySeconds: 1800
-            failureThreshold: 1
-            periodSeconds: 10
-          env:
-            - name: THOTH_LOG_PACKAGE_EXTRACT
-              value: ${THOTH_LOG_PACKAGE_EXTRACT}
-            - name: THOTH_ANALYZER
-              value: package-extract
-            - name: THOTH_ANALYZED_IMAGE
-              value: ${THOTH_ANALYZED_IMAGE}
-            - name: THOTH_ANALYZER_OUTPUT
-              value: ${THOTH_ANALYZER_OUTPUT}
-            - name: THOTH_ANALYZER_NO_TLS_VERIFY
-              value: ${THOTH_ANALYZER_NO_TLS_VERIFY}
-            - name: THOTH_REGISTRY_CREDENTIALS
-              value: ${THOTH_REGISTRY_CREDENTIALS}
-          resources:
-            limits:
-              memory: '256Mi'
-              cpu: '500m'
-            requests:
-              memory: '256Mi'
-              cpu: '500m'
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            app: thoth
+            component: package-extract
+        spec:
+          restartPolicy: Never
+          automountServiceAccountToken: false
+          containers:
+            - name: package-extract
+              image: package-extract
+              livenessProbe:
+                # Give analyzer 30 minutes to compute results, kill it if it was not able result anything.
+                tcpSocket:
+                  port: 80
+                initialDelaySeconds: 1800
+                failureThreshold: 1
+                periodSeconds: 10
+              env:
+                - name: THOTH_LOG_PACKAGE_EXTRACT
+                  value: ${THOTH_LOG_PACKAGE_EXTRACT}
+                - name: THOTH_ANALYZER
+                  value: package-extract
+                - name: THOTH_ANALYZED_IMAGE
+                  value: ${THOTH_ANALYZED_IMAGE}
+                - name: THOTH_ANALYZER_OUTPUT
+                  value: ${THOTH_ANALYZER_OUTPUT}
+                - name: THOTH_ANALYZER_NO_TLS_VERIFY
+                  value: ${THOTH_ANALYZER_NO_TLS_VERIFY}
+                - name: THOTH_REGISTRY_CREDENTIALS
+                  value: ${THOTH_REGISTRY_CREDENTIALS}
+              resources:
+                limits:
+                  memory: '256Mi'
+                  cpu: '500m'
+                requests:
+                  memory: '256Mi'
+                  cpu: '500m'
 
 parameters:
   - name: THOTH_ANALYZED_IMAGE
