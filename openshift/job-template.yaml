@@ -3,18 +3,43 @@ kind: Template
 metadata:
   name: package-extract
   annotations:
-    description: This is Thoth Core - Package Extract
-    openshift.io/display-name: 'Thoth: Package Extract'
-    version: 0.3.0
-    tags: poc,thoth,ai-stacks,package-extract
+    description: "Thoth: Package Extract Job Template"
+    openshift.io/display-name: "Thoth: Package Extract Job Template"
+    version: 0.4.0
+    tags: thoth,ai-stacks,aistacks,package-extract
     template.openshift.io/documentation-url: https://github.com/Thoth-Station/
     template.openshift.io/long-description: >
-      This template defines resources needed to run image analyzer in Thoth to OpenShift.
+      This template defines resources needed to run image analyzer in Thoth to OpenShift, it is used
+      to create new OpenShift Jobs running the analyzer.
     template.openshift.io/provider-display-name: Red Hat, Inc.
   labels:
     template: package-extract
     app: thoth
     component: package-extract
+
+parameters:
+  - name: THOTH_ANALYZED_IMAGE
+    displayName: Analyzer Image
+    description: Thoth's Analyser container image name
+    required: true
+  - name: THOTH_ANALYZER_OUTPUT
+    description: Remote where results should be send to
+    displayName: Analyzer output
+    required: true
+  - name: THOTH_LOG_PACKAGE_EXTRACT
+    description: Log Level for package extract
+    displayName: Log package extract
+    required: true
+    value: 'INFO'
+  - name: THOTH_ANALYZER_NO_TLS_VERIFY
+    description: Do not perform X.509 certificates verification
+    displayName: Disable TLS verification
+    required: false
+    value: '0'
+  - name: THOTH_REGISTRY_CREDENTIALS
+    description: Credentials for connecting to registry to pull images from
+    displayName: Registry credentials
+    required: false
 
 objects:
   - apiVersion: batch/v1
@@ -57,6 +82,11 @@ objects:
                   value: ${THOTH_ANALYZER_NO_TLS_VERIFY}
                 - name: THOTH_REGISTRY_CREDENTIALS
                   value: ${THOTH_REGISTRY_CREDENTIALS}
+                - name: SENTRY_DSN
+                  valueFrom:
+                    secretKeyRef:
+                      name: thoth
+                      key: sentry-dsn
               resources:
                 limits:
                   memory: '256Mi'
@@ -64,27 +94,3 @@ objects:
                 requests:
                   memory: '256Mi'
                   cpu: '500m'
-
-parameters:
-  - name: THOTH_ANALYZED_IMAGE
-    displayName: Analyzer Image
-    description: Thoth's Analyser container image name
-    required: true
-  - name: THOTH_ANALYZER_OUTPUT
-    description: Remote where results should be send to
-    displayName: Analyzer output
-    required: true
-  - name: THOTH_LOG_PACKAGE_EXTRACT
-    description: Log Level for package extract
-    displayName: Log package extract
-    required: true
-    value: 'INFO'
-  - name: THOTH_ANALYZER_NO_TLS_VERIFY
-    description: Do not perform X.509 certificates verification
-    displayName: Disable TLS verification
-    required: false
-    value: '0'
-  - name: THOTH_REGISTRY_CREDENTIALS
-    description: Credentials for connecting to registry to pull images from
-    displayName: Registry credentials
-    required: false
