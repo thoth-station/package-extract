@@ -1,13 +1,16 @@
 - project:
     check:
       jobs:
-        - linters
+        - thoth-coala
+        - thoth-pytest
     gate:
       jobs:
-        - linters
+        - thoth-coala
+        - thoth-pytest
     kebechet-auto-gate:
       jobs:
-        - linters
+        - thoth-coala
+        - thoth-pytest
     post:
       jobs:
         - trigger-build:
