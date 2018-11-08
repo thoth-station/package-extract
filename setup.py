@@ -35,6 +35,9 @@ setup(
         'thoth.package_extract',
         'thoth.package_extract.handlers',
     ],
+    package_data={
+        'thoth-package-extract': os.path.join('thoth', 'package_extract', 'bin', 'skopeo')
+    },
     zip_safe=False,
     install_requires=get_requirements(),
     author='Fridolin Pokorny',
