@@ -37,6 +37,8 @@ _LOGGER = logging.getLogger(__name__)
 
 _MERCATOR_BIN = os.getenv('MERCATOR_BIN', 'mercator')
 _MERCATOR_HANDLERS_YAML = os.getenv('MERCATOR_HANDLERS_YAML', '/usr/share/mercator/handlers.yml')
+_HERE_DIR = os.path.dirname(os.path.abspath(__file__))
+_SKOPEO_EXEC_PATH = os.getenv('SKOPEO_EXEC_PATH', os.path.join(_HERE_DIR, 'bin', 'skopeo'))
 
 
 def _normalize_mercator_output(path: str, output: dict) -> dict:
@@ -270,7 +272,7 @@ def download_image(image_name: str, dir_path: str, timeout: int = None, registry
     """Download an image to dir_path."""
     _LOGGER.debug("Downloading image %r", image_name)
 
-    cmd = 'skopeo copy '
+    cmd = f'{_SKOPEO_EXEC_PATH} copy '
     if not tls_verify:
         cmd += '--src-tls-verify=false '
     if registry_credentials:
@@ -278,7 +280,7 @@ def download_image(image_name: str, dir_path: str, timeout: int = None, registry
 
     cmd += 'docker://{} dir:/{}'.format(quote(image_name), quote(dir_path))
     stdout = run_command(cmd, timeout=timeout).stdout
-    _LOGGER.debug("skopeo stdout: %s", stdout)
+    _LOGGER.debug("%s stdout: %s", _SKOPEO_EXEC_PATH, stdout)
 
 
 def run_analyzers(path: str, timeout: int = None) -> dict:
