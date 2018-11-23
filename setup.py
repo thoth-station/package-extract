@@ -2,6 +2,7 @@
 
 import os
 from setuptools import setup
+from pathlib import Path
 
 
 def get_requirements():
@@ -18,11 +19,6 @@ def get_version():
             # dirty, remove trailing and leading chars
             return line.split(' = ')[1][1:-2]
     raise ValueError("No version identifier found")
-
-
-def get_long_description():
-    with open('README.rst', 'r') as f:
-        return f.read()
 
 
 setup(
@@ -45,7 +41,7 @@ setup(
     maintainer='Fridolin Pokorny',
     maintainer_email='fridolin@redhat.com',
     description='Tool and library for extracting packages from a docker build log',
-    long_description=get_long_description(),
+    long_description=Path('README.rst').read_text(),
     url='https://github.com/thoth-station/package-extract',
     license='GPLv3+',
     keywords='docker image openshift tool library',
