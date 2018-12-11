@@ -49,6 +49,9 @@ objects:
       labels:
         app: thoth
         component: package-extract
+        operator: graph-sync
+        task: package-extract
+        mark: cleanup
     spec:
       backoffLimit: 0
       template:
