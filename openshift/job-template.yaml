@@ -49,6 +49,8 @@ objects:
       labels:
         app: thoth
         component: package-extract
+        operator: event
+        task: package-extract
     spec:
       backoffLimit: 0
       template:
