@@ -26,6 +26,10 @@ parameters:
     description: Remote where results should be send to
     displayName: Analyzer output
     required: true
+  - name: THOTH_PACKAGE_EXTRACT_JOB_ID
+    description: A job id for package extract job.
+    displayName: Job identifier
+    required: true
   - name: THOTH_LOG_PACKAGE_EXTRACT
     description: Log Level for package extract
     displayName: Log package extract
@@ -45,7 +49,7 @@ objects:
   - apiVersion: batch/v1
     kind: Job
     metadata:
-      generateName: package-extract-
+      name: ${THOTH_PACKAGE_EXTRACT_JOB_ID}
       labels:
         app: thoth
         component: package-extract
