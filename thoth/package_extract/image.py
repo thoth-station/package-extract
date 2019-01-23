@@ -36,7 +36,7 @@ from .rpmlib import parse_nvra
 _LOGGER = logging.getLogger(__name__)
 
 _MERCATOR_BIN = os.getenv('MERCATOR_BIN', 'mercator')
-_MERCATOR_HANDLERS_YAML = os.getenv('MERCATOR_HANDLERS_YAML', '/usr/share/mercator/handlers.yml')
+_MERCATOR_HANDLERS_YAML = os.getenv('MERCATOR_HANDLERS_YAML', '/usr/local/share/mercator/handlers.yml')
 _HERE_DIR = os.path.dirname(os.path.abspath(__file__))
 _SKOPEO_EXEC_PATH = os.getenv('SKOPEO_EXEC_PATH', os.path.join(_HERE_DIR, 'bin', 'skopeo'))
 
