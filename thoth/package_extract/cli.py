@@ -53,7 +53,7 @@ def _print_version(ctx, _, value):
 def cli(ctx=None, verbose: bool = False, metadata: str = None):
     """Thoth package-extract command line interface."""
     if ctx:
-        ctx.auto_envvar_prefix = 'THOTH_PACKAGE_EXTRACT_'
+        ctx.auto_envvar_prefix = 'THOTH_PACKAGE_EXTRACT'
 
     _LOG.setLevel(logging.DEBUG if verbose else logging.INFO)
     _LOG.debug("Debug mode is on")
