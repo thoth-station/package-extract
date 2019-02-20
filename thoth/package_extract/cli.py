@@ -48,13 +48,18 @@ def _print_version(ctx, _, value):
               help="Be verbose about what's going on.")
 @click.option('--version', is_flag=True, is_eager=True, callback=_print_version, expose_value=False,
               help="Print thoth-package-extract version and exit.")
-def cli(ctx=None, verbose: bool = False):
-    """Thoth pkgdeps command line interface."""
+@click.option('--metadata', type=str, envvar="THOTH_PACKAGE_EXTRACT_METADATA",
+              help="Metadata in a form of a JSON which are used for carrying additional context in Thoth deployment.")
+def cli(ctx=None, verbose: bool = False, metadata: str = None):
+    """Thoth package-extract command line interface."""
     if ctx:
-        ctx.auto_envvar_prefix = 'THOTH_PKGDEPS'
+        ctx.auto_envvar_prefix = 'THOTH_PACKAGE_EXTRACT_'
 
     _LOG.setLevel(logging.DEBUG if verbose else logging.INFO)
     _LOG.debug("Debug mode is on")
+
+    # This value is unused here, but is reported from click context.
+    metadata = metadata
 
 
 @cli.command('extract-buildlog')
