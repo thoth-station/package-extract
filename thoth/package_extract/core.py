@@ -37,21 +37,31 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
     """Extract Docker image build log and get all installed packages based on ecosystem."""
     result = []
     for handler in HandlerBase.instantiate_handlers():
-        result.append({
-            'handler': handler.__class__.__name__.lower(),
-            'result': handler.run(input_text)
-        })
+        result.append(
+            {
+                "handler": handler.__class__.__name__.lower(),
+                "result": handler.run(input_text),
+            }
+        )
 
     return result
 
 
-def extract_image(image_name: str, timeout: int = None, *,
-                  registry_credentials: str = None, tls_verify: bool = True) -> dict:
+def extract_image(
+    image_name: str,
+    timeout: int = None,
+    *,
+    registry_credentials: str = None,
+    tls_verify: bool = True,
+) -> dict:
     """Extract dependencies from an image."""
     # Setting up the prometheus registry and the Gauge metric
     prometheus_registry = CollectorRegistry()
     metric_analyzer_job = Gauge(
-        'package_extract_time', 'Runtime of package extract job', registry=prometheus_registry)
+        "package_extract_time",
+        "Runtime of package extract job",
+        registry=prometheus_registry,
+    )
 
     # Begins a timer to record the running time of the job
     with metric_analyzer_job.time(), tempfile.TemporaryDirectory() as dir_path:
@@ -61,22 +71,30 @@ def extract_image(image_name: str, timeout: int = None, *,
             dir_path,
             timeout=timeout or None,
             registry_credentials=registry_credentials or None,
-            tls_verify=tls_verify
+            tls_verify=tls_verify,
         )
-        rootfs_path = os.path.join(dir_path, 'rootfs')
+        rootfs_path = os.path.join(dir_path, "rootfs")
         layers = construct_rootfs(dir_path, rootfs_path)
 
         result = run_analyzers(rootfs_path)
-        result['layers'] = layers
+        result["layers"] = layers
 
-    _PUSH_GATEWAY_HOST = os.getenv('PROMETHEUS_PUSHGATEWAY_HOST')
-    _PUSH_GATEWAY_PORT = os.getenv('PROMETHEUS_PUSHGATEWAY_PORT')
+    _PUSH_GATEWAY_HOST = os.getenv("PROMETHEUS_PUSHGATEWAY_HOST")
+    _PUSH_GATEWAY_PORT = os.getenv("PROMETHEUS_PUSHGATEWAY_PORT")
     if _PUSH_GATEWAY_HOST and _PUSH_GATEWAY_PORT:
         try:
             push_gateway = f"{_PUSH_GATEWAY_HOST:_PUSH_GATEWAY_PORT}"
-            _LOGGER.debug(f"Submitting metrics to Prometheus push gateway {push_gateway}")
-            pushadd_to_gateway(push_gateway, job='package-extract-runtime', registry=prometheus_registry)
+            _LOGGER.debug(
+                f"Submitting metrics to Prometheus push gateway {push_gateway}"
+            )
+            pushadd_to_gateway(
+                push_gateway,
+                job="package-extract-runtime",
+                registry=prometheus_registry,
+            )
         except Exception as e:
-            _LOGGER.exception('An error occurred pushing the metrics: {}'.format(str(e)))
+            _LOGGER.exception(
+                "An error occurred pushing the metrics: {}".format(str(e))
+            )
 
     return result

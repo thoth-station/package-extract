@@ -22,14 +22,18 @@ import typing
 
 import attr
 
-_HandlerBaseType = typing.TypeVar('T', bound='Repository')  # pylint: disable=invalid-name
+_HandlerBaseType = typing.TypeVar(
+    "T", bound="Repository"
+)  # pylint: disable=invalid-name
 
 
 @attr.s
 class HandlerBase(object):
     """Handle extracting packages from build logs."""
 
-    handlers: typing.ClassVar[typing.List[_HandlerBaseType]] = []  # Ignore PycodestyleBear (E701)
+    handlers: typing.ClassVar[
+        typing.List[_HandlerBaseType]
+    ] = []  # Ignore PycodestyleBear (E701)
 
     @classmethod
     def register(cls, handler_instance: _HandlerBaseType) -> None:

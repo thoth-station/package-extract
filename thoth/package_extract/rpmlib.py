@@ -41,7 +41,7 @@ def parse_nvra(nvra):
 
     result = parse_nvr(nvr)
     result["arch"] = arch
-    result["src"] = (arch == "src")
+    result["src"] = arch == "src"
     if epoch != "":
         result["epoch"] = epoch
     return result
