@@ -52,7 +52,7 @@ def _normalize_mercator_output(path: str, output: dict) -> dict:
 
         # Now point to the correct path, absolute inside the image.
         if "path" in entry:
-            entry["path"] = entry["path"][len(path) :]
+            entry["path"] = entry["path"][len(path):]
 
     return output.get("items", [])
 
@@ -69,7 +69,7 @@ def _parse_repoquery(output: str) -> dict:
             continue
 
         if line.startswith("package: "):
-            package = line[len("package: ") :]
+            package = line[len("package: "):]
             if package in result:
                 _LOGGER.warning(
                     "Package {!r} was already stated in the repoquery output, "
@@ -82,7 +82,7 @@ def _parse_repoquery(output: str) -> dict:
                 _LOGGER.error(
                     "Stated dependency %r has no package associated (parser error?), this error is not fatal"
                 )
-            result[package].append(line[len("dependency: ") :])
+            result[package].append(line[len("dependency: "):])
 
     return result
 
@@ -220,13 +220,13 @@ def _run_apt_cache_show(
         entry["pre-depends"], entry["depends"], entry["replaces"] = [], [], []
         for line in output.splitlines():
             if line.startswith("Pre-Depends: "):
-                deps = _parse_deb_dependency_line(line[len("Pre-Depends: ") :])
+                deps = _parse_deb_dependency_line(line[len("Pre-Depends: "):])
                 entry["pre-depends"] = [{"name": d[0], "version": d[1]} for d in deps]
             elif line.startswith("Depends: "):
-                deps = _parse_deb_dependency_line(line[len("Depends: ") :])
+                deps = _parse_deb_dependency_line(line[len("Depends: "):])
                 entry["depends"] = [{"name": d[0], "version": d[1]} for d in deps]
             elif line.startswith("Replaces: "):
-                deps = _parse_deb_dependency_line(line[len("Replaces: ") :])
+                deps = _parse_deb_dependency_line(line[len("Replaces: "):])
                 entry["replaces"] = [{"name": d[0], "version": d[1]} for d in deps]
 
         result.append(entry)

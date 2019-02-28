@@ -207,7 +207,7 @@ class PIP3(HandlerBase):
                 continue
 
             if line.startswith("Successfully installed "):
-                packages = line[len("Successfully installed ") :].split(" ")
+                packages = line[len("Successfully installed "):].split(" ")
                 for package in packages:
                     package_name, version = package.rsplit("-", maxsplit=1)
                     self._check_entry(result, package_name, version)
