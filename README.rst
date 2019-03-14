@@ -1,5 +1,5 @@
-thoth-package-extract
--------------
+Thoth Package Extract
+---------------------
 
 A tool to extract dependencies from an image and image build logs.
 
@@ -33,10 +33,9 @@ Use prepared Dockerfile:
 
 .. code-block:: console
 
-  $ git clone https://github.com/thoth-station/package-extract
-  $ cd package-extract
-  $ docker build . -t package-extract-base -f Dockerfile-base.fedora
-  $ docker build . -t package-extract
+  git clone https://github.com/thoth-station/package-extract
+  cd package-extract
+  docker build . -t package-extract
 
 
 Example of parsing install logs
