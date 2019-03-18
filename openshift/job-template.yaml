@@ -35,6 +35,10 @@ parameters:
     displayName: Log package extract
     required: true
     value: 'INFO'
+  - name: THOTH_PACKAGE_EXTRACT_METADATA
+    description: Additional metadata passed with the request.
+    displayName: Package extract metadata
+    required: true
   - name: THOTH_ANALYZER_NO_TLS_VERIFY
     description: Do not perform X.509 certificates verification
     displayName: Disable TLS verification
@@ -79,6 +83,8 @@ objects:
               env:
                 - name: THOTH_LOG_PACKAGE_EXTRACT
                   value: ${THOTH_LOG_PACKAGE_EXTRACT}
+                - name: THOTH_PACKAGE_EXTRACT_METADATA
+                  value: ${THOTH_PACKAGE_EXTRACT_METADATA}
                 - name: THOTH_ANALYZER
                   value: package-extract
                 - name: THOTH_ANALYZED_IMAGE
