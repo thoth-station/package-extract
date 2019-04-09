@@ -48,6 +48,14 @@ parameters:
     description: Credentials for connecting to registry to pull images from
     displayName: Registry credentials
     required: false
+  - name: THOTH_REGISTRY
+    description: Registry server from where Image is to be pulled
+    displayName: Registry
+    required: true
+  - name: IMAGE_STREAM_PROJECT_NAME
+    description: Project where ImageStream is present
+    displayName: ImageStream Project
+    required: true
 
 objects:
   - apiVersion: batch/v1
@@ -72,7 +80,7 @@ objects:
           automountServiceAccountToken: false
           containers:
             - name: package-extract
-              image: package-extract
+              image: "${THOTH_REGISTRY}/${IMAGE_STREAM_PROJECT_NAME}/package-extract"
               livenessProbe:
                 # Give analyzer 30 minutes to compute results, kill it if it was not able result anything.
                 tcpSocket:
