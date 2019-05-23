@@ -52,10 +52,12 @@ parameters:
     description: Registry server from where Image is to be pulled
     displayName: Registry
     required: true
+    value: 'docker-registry.default.svc:5000'
   - name: IMAGE_STREAM_PROJECT_NAME
     description: Project where ImageStream is present
     displayName: ImageStream Project
     required: true
+    value: 'thoth-infra-stage'
 
 objects:
   - apiVersion: batch/v1
