@@ -234,6 +234,16 @@ def _run_apt_cache_show(
     return result
 
 
+def _get_layer_digest_v1(layer_def: dict):
+    """Get digest of a layer for v1 container image format."""
+    return layer_def["blobSum"].split(":", maxsplit=1)[-1]
+
+
+def _get_layer_digest_v2(layer_def: dict):
+    """Get digest of a layer for v2 container image format."""
+    return layer_def["digest"].split(":", maxsplit=1)[-1]
+
+
 def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     """Construct rootfs in a directory by extracting layers."""
     os.makedirs(rootfs_path, exist_ok=True)
@@ -247,16 +257,22 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
             "image in {}".format(os.path.join(dir_path, "manifest.json"))
         ) from exc
 
-    if manifest.get("schemaVersion") != 2:
+    if manifest.get("schemaVersion") == 1:
+        manifest_layers = manifest["fsLayers"]
+        get_layer_digest = _get_layer_digest_v1
+    elif manifest.get("schemaVersion") == 2:
+        manifest_layers = manifest["layers"]
+        get_layer_digest = _get_layer_digest_v2
+    else:
         raise NotSupported(
             "Invalid schema version in manifest.json file: {} "
-            "(currently supported is 2)".format(manifest.get("schemaVersion"))
+            "(currently supported are schema versions 1 and 2)".format(manifest.get("schemaVersion"))
         )
 
     layers = []
-    _LOGGER.debug("Layers found: %r", manifest["layers"])
-    for layer_def in manifest["layers"]:
-        layer_digest = layer_def["digest"].split(":", maxsplit=1)[-1]
+    _LOGGER.debug("Layers found: %r", manifest_layers)
+    for layer_def in manifest_layers:
+        layer_digest = get_layer_digest(layer_def)
 
         _LOGGER.debug("Extracting layer %r", layer_digest)
         layers.append(layer_digest)
