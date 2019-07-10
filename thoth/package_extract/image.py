@@ -24,6 +24,7 @@ import tarfile
 import typing
 import stat
 from shlex import quote
+import hashlib
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
@@ -176,6 +177,24 @@ def _parse_deb_dependency_line(line_str: str) -> typing.List[tuple]:
             # No version range specification defined.
             result.append((parts[0], None))
     return result
+
+
+def _gather_digests(path: str) -> typing.List[dict]:
+    """Calculate checksum for all files inside image."""
+    digests = []
+    for root, dirs, files in os.walk(path):
+        for file_ in files:
+            if file_.endswith('.py'):
+                filepath = os.path.join(root, file_)
+                if os.path.isfile(filepath):
+                    digest = hashlib.sha256()
+                    with open(filepath, 'rb') as afile:
+                        digest.update(afile.read())
+                    digests.append({
+                        'filepath': filepath[len(path):],
+                        'sha256': digest.hexdigest()
+                    })
+    return digests
 
 
 def _run_apt_cache_show(
@@ -337,4 +356,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "rpm-dependencies": _run_rpm_repoquery(path, timeout=timeout),
         "deb": deb_packages,
         "deb-dependencies": _run_apt_cache_show(path, deb_packages, timeout=timeout),
+        "python": _gather_digests(path)
     }
