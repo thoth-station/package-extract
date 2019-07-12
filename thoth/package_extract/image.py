@@ -179,8 +179,8 @@ def _parse_deb_dependency_line(line_str: str) -> typing.List[tuple]:
     return result
 
 
-def _gather_digests(path: str) -> typing.List[dict]:
-    """Calculate checksum for all files inside image."""
+def _gather_python_file_digests(path: str) -> typing.List[dict]:
+    """Calculate checksum for all Python files inside image."""
     digests = []
     for root, dirs, files in os.walk(path):
         for file_ in files:
@@ -356,5 +356,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "rpm-dependencies": _run_rpm_repoquery(path, timeout=timeout),
         "deb": deb_packages,
         "deb-dependencies": _run_apt_cache_show(path, deb_packages, timeout=timeout),
-        "python": _gather_digests(path)
+        "python-files": _gather_python_file_digests(path)
     }
