@@ -25,6 +25,7 @@ import typing
 import stat
 from shlex import quote
 import hashlib
+from pathlib import Path
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
@@ -197,6 +198,33 @@ def _gather_python_file_digests(path: str) -> typing.List[dict]:
     return digests
 
 
+def _gather_os_info(path: str) -> dict:
+    """Gather information about operating system used."""
+    result = {}
+    os_release_file = Path(path) / "etc/os-release"
+    if os_release_file.exists():
+        try:
+            content = os_release_file.read_text()
+        except Exception as exc:
+            _LOGGER.warning(
+                "Failed to read /etc/os-release file to gather operating system information: %s",
+                str(exc)
+            )
+            return result
+
+        for line in content.splitlines():
+            parts = line.split("=", maxsplit=1)
+            if len(parts) != 2:
+                continue
+
+            key = parts[0].lower()
+            value = parts[1].strip('"')
+
+            result[key] = value
+
+    return result
+
+
 def _run_apt_cache_show(
     path: str, deb_packages: typing.List[dict], timeout: int = None
 ) -> list:
@@ -356,5 +384,6 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "rpm-dependencies": _run_rpm_repoquery(path, timeout=timeout),
         "deb": deb_packages,
         "deb-dependencies": _run_apt_cache_show(path, deb_packages, timeout=timeout),
-        "python-files": _gather_python_file_digests(path)
+        "python-files": _gather_python_file_digests(path),
+        "operating-system": _gather_os_info(path),
     }
