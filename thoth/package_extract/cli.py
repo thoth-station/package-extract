@@ -30,7 +30,7 @@ from thoth.package_extract.core import extract_buildlog
 from thoth.package_extract.core import extract_image
 
 init_logging()
-_LOG = logging.getLogger(__name__)
+_LOG = logging.getLogger("thoth.package_extract")
 
 
 def _print_version(ctx, _, value):
