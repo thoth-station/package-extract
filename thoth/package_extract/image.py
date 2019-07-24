@@ -26,6 +26,13 @@ import stat
 from shlex import quote
 import hashlib
 from pathlib import Path
+from elftools.elf.elffile import ELFFile # type: ignore
+from elftools.common.exceptions import ELFError # type: ignore
+from packaging import version
+import tempfile
+import shutil
+import zipfile
+import tarfile
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
@@ -281,6 +288,72 @@ def _run_apt_cache_show(
     return result
 
 
+def _get_lib_dir_symbols(root_dir, zeros=16):
+    to_ret = set({})
+    zero_string = "0" * zeros
+    command = f"nm -D {root_dir}/*so* | grep '{zero_string} A'"
+    out = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True).stdout.read().decode("utf-8")
+    lines = out.split('\n')
+    for line in lines:
+        columns = line.split(' ')
+        if len(columns) > 2:
+            to_ret.add(columns[2])
+    return to_ret
+
+
+def _root_lib_symbols(path: str):
+    to_ret = set()
+    if os.path.exists(os.path.join(path, "usr/lib64")):
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib64"))
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib64"))
+    elif os.path.exists(os.path.join(path, "usr/lib32")):
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib32"), zeros=8)
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib32"), zeros=8)
+    elif os.path.exists(os.path.join(path, "usr/lib")):
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib"), zeros=8)
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib"), zeros=8)
+    else:
+        raise FileNotFoundError("No usr libraries were found")
+
+    return to_ret
+
+
+def _ld_config_symbols(path: str):
+    to_ret = set()
+    os.chdir(os.path.join(path, "etc/"))
+    with open("ld.so.conf", "r") as f:
+        for line in f.readlines():
+            paths = glob.glob(line[:-1])
+            for p in paths:
+                with open(os.path.join(path, p), "r") as conf_file:
+                    for conf_path in conf_file.readlines():
+                        to_ret |= _get_lib_dir_symbols(conf_path.strip()[1:])
+
+    return to_ret
+
+
+# NOTE: LD_LIBRARY_PATH must be copied from container
+def _ld_env_symbols(path: str):
+    to_ret = set()
+    ld_paths = os.environ.get("LD_LIBRARY_PATH")
+    
+    if ld_paths is None:
+        return to_ret
+
+    for p in ld_paths.split(":"):
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, p[1:]))
+
+    return to_ret
+
+
+def _get_system_symbols(path: str):
+    to_ret = set()
+    to_ret |= _root_lib_symbols(path)
+    to_ret |= _ld_config_symbols(path)
+    to_ret |= _ld_env_symbols(path)
+    return list(to_ret)
+
+
 def _get_layer_digest_v1(layer_def: dict):
     """Get digest of a layer for v1 container image format."""
     return layer_def["blobSum"].split(":", maxsplit=1)[-1]
@@ -386,4 +459,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "deb-dependencies": _run_apt_cache_show(path, deb_packages, timeout=timeout),
         "python-files": _gather_python_file_digests(path),
         "operating-system": _gather_os_info(path),
+        "system-symbols": _get_system_symbols(path),
     }
