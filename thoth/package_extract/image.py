@@ -26,8 +26,8 @@ import stat
 from shlex import quote
 import hashlib
 from pathlib import Path
-from elftools.elf.elffile import ELFFile # type: ignore
-from elftools.common.exceptions import ELFError # type: ignore
+from elftools.elf.elffile import ELFFile  # type: ignore
+from elftools.common.exceptions import ELFError  # type: ignore
 from packaging import version
 import tempfile
 import shutil
@@ -290,7 +290,7 @@ def _run_apt_cache_show(
 
 def _get_lib_dir_symbols(root_dir):
     to_ret = set({})
-    
+
     # We grep for '0 A' here because all exported symbols are outputted by nm like:
     # 00000000 A GLIBC_1.x or:
     # 0000000000000000 A GLIBC_1.x
@@ -341,7 +341,7 @@ def _ld_config_symbols(path: str):
 def _ld_env_symbols(path: str):
     to_ret = set()
     ld_paths = os.environ.get("LD_LIBRARY_PATH")
-    
+
     if ld_paths is None:
         return to_ret
 

@@ -11,9 +11,13 @@ requests = "*"
 thoth-common = "*"
 thoth-analyzer = "*"
 prometheus-client = "*"
+elftools = "*"
 
 [dev-packages]
 pytest = "*"
 pytest-timeout = "*"
 pytest-cov = "*"
 coala-bears = "*"
+
+[pipenv]
+allow_prereleases = true
