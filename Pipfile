@@ -11,7 +11,7 @@ requests = "*"
 thoth-common = "*"
 thoth-analyzer = "*"
 prometheus-client = "*"
-elftools = "*"
+pyelftools = "*"
 
 [dev-packages]
 pytest = "*"
