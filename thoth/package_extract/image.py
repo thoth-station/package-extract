@@ -288,11 +288,17 @@ def _run_apt_cache_show(
     return result
 
 
-def _get_lib_dir_symbols(root_dir, zeros=16):
+def _get_lib_dir_symbols(root_dir):
     to_ret = set({})
-    zero_string = "0" * zeros
-    command = f"nm -D {root_dir}/*so* | grep '{zero_string} A'"
-    out = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True).stdout.read().decode("utf-8")
+    
+    # We grep for '0 A' here because all exported symbols are outputted by nm like:
+    # 00000000 A GLIBC_1.x or:
+    # 0000000000000000 A GLIBC_1.x
+    command = f"nm -D {root_dir}/*so* | grep '0 A'"
+
+    # Output of Popen is byte like, I decode it to a string to be able to use string functions
+    out = subprocess.Popen(command, stdout=subprocess.PIPE, shell=False).stdout.read().decode("utf-8")
+
     lines = out.split('\n')
     for line in lines:
         columns = line.split(' ')
@@ -307,11 +313,11 @@ def _root_lib_symbols(path: str):
         to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib64"))
         to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib64"))
     elif os.path.exists(os.path.join(path, "usr/lib32")):
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib32"), zeros=8)
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib32"), zeros=8)
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib32"))
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib32"))
     elif os.path.exists(os.path.join(path, "usr/lib")):
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib"), zeros=8)
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib"), zeros=8)
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib"))
+        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib"))
     else:
         raise FileNotFoundError("No usr libraries were found")
 
@@ -320,8 +326,7 @@ def _root_lib_symbols(path: str):
 
 def _ld_config_symbols(path: str):
     to_ret = set()
-    os.chdir(os.path.join(path, "etc/"))
-    with open("ld.so.conf", "r") as f:
+    with cwd(os.path.join(path, "etc/")), open("ld.so.conf", "r") as f:
         for line in f.readlines():
             paths = glob.glob(line[:-1])
             for p in paths:
@@ -332,7 +337,7 @@ def _ld_config_symbols(path: str):
     return to_ret
 
 
-# NOTE: LD_LIBRARY_PATH must be copied from container
+# NOTE: Commented out func call below until LD_LIBR... is propagated properly
 def _ld_env_symbols(path: str):
     to_ret = set()
     ld_paths = os.environ.get("LD_LIBRARY_PATH")
@@ -349,7 +354,7 @@ def _ld_env_symbols(path: str):
 def _get_system_symbols(path: str):
     to_ret = set()
     to_ret |= _root_lib_symbols(path)
-    to_ret |= _ld_config_symbols(path)
+    # to_ret |= _ld_config_symbols(path)
     to_ret |= _ld_env_symbols(path)
     return list(to_ret)
 
