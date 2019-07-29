@@ -26,13 +26,6 @@ import stat
 from shlex import quote
 import hashlib
 from pathlib import Path
-from elftools.elf.elffile import ELFFile  # type: ignore
-from elftools.common.exceptions import ELFError  # type: ignore
-from packaging import version
-import tempfile
-import shutil
-import zipfile
-import tarfile
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
