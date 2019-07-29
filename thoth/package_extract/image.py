@@ -321,7 +321,7 @@ def _ld_config_symbols(path: str):
     to_ret = set()
     with cwd(os.path.join(path, "etc/")), open("ld.so.conf", "r") as f:
         for line in f.readlines():
-            paths = glob.glob(line[:-1])
+            paths = glob.glob(line.strip())
             for p in paths:
                 with open(os.path.join(path, p), "r") as conf_file:
                     for conf_path in conf_file.readlines():
