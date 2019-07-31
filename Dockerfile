@@ -17,7 +17,8 @@ LABEL io.k8s.description="Thoth Package Extract Base" \
 
 RUN dnf update -y --setopt='tsflags=nodocs' && \
     dnf install -y --setopt='tsflags=nodocs' python-pip go git make skopeo dnf-utils fakeroot fakechroot && \
-    dnf clean all
+    dnf clean all && \
+    dnf install -y binutils
 
 COPY ./ /tmp/package-extract
 RUN cd /tmp/package-extract && \
