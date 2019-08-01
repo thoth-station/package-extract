@@ -324,10 +324,11 @@ def _ld_config_symbols(result: dict, path: str) -> None:
     try:
         with cwd(os.path.join(path, "etc/")), open("ld.so.conf", "r") as f:
             for line in f.readlines():
-                if not line.startswith("include "):
-                    continue
+                if line.startswith("include "):
+                    line = line[len("include "):]
 
-                line = line[len("include "):]
+                if not line:
+                    continue
 
                 # Both relative and absolute will work:
                 #   os.path.join("/foo", "bar") == "/foo/bar"
