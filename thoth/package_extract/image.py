@@ -288,6 +288,7 @@ def _run_apt_cache_show(
 
 def _get_lib_dir_symbols(result: dict, container_path: str, path: str) -> None:
     """Get library symbols from a directory."""
+    path = path[1:] if path.startswith("/") else path
     for so_file_path in glob.glob(os.path.join(container_path, path, "*.so*")):
         # We grep for '0 A' here because all exported symbols are outputted by nm like:
         # 00000000 A GLIBC_1.x or:
