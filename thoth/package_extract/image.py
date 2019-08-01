@@ -26,6 +26,9 @@ import stat
 from shlex import quote
 import hashlib
 from pathlib import Path
+import glob
+from typing import Dict
+from typing import List
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
@@ -74,15 +77,17 @@ def _parse_repoquery(output: str) -> dict:
             package = line[len("package: "):]
             if package in result:
                 _LOGGER.warning(
-                    "Package {!r} was already stated in the repoquery output, "
-                    "dependencies will be appended"
+                    "Package %r was already stated in the repoquery output, "
+                    "dependencies will be appended",
+                    package
                 )
                 continue
             result[package] = []
         elif line.startswith("dependency: "):
             if not package:
                 _LOGGER.error(
-                    "Stated dependency %r has no package associated (parser error?), this error is not fatal"
+                    "Stated dependency %r has no package associated (parser error?), this error is not fatal",
+                    package
                 )
             result[package].append(line[len("dependency: "):])
 
@@ -281,75 +286,87 @@ def _run_apt_cache_show(
     return result
 
 
-def _get_lib_dir_symbols(root_dir):
-    to_ret = set({})
+def _get_lib_dir_symbols(result: dict, container_path: str, path: str) -> None:
+    """Get library symbols from a directory."""
+    for so_file_path in glob.glob(os.path.join(container_path, path, "*.so*")):
+        # We grep for '0 A' here because all exported symbols are outputted by nm like:
+        # 00000000 A GLIBC_1.x or:
+        # 0000000000000000 A GLIBC_1.x
+        command = f"nm -D {so_file_path!r} | grep '0 A'"
 
-    # We grep for '0 A' here because all exported symbols are outputted by nm like:
-    # 00000000 A GLIBC_1.x or:
-    # 0000000000000000 A GLIBC_1.x
-    command = f"nm -D {root_dir}/*so* | grep '0 A'"
+        # Drop path to the extracted container in the output.
+        so_file_path = so_file_path[len(container_path):]
 
-    # Output of Popen is byte like, I decode it to a string to be able to use string functions
-    out = subprocess.Popen(command, stdout=subprocess.PIPE, shell=False).stdout.read().decode("utf-8")
+        _LOGGER.debug("Gathering symbols from %r", so_file_path)
+        command_result = run_command(command, timeout=120, raise_on_error=False)
+        if command_result.return_code != 0:
+            _LOGGER.warning(
+                "Failed to obtain library symbols from %r; stderr: %s, stdout: %s",
+                so_file_path,
+                command_result.stderr,
+                command_result.stdout
+            )
+            continue
 
-    lines = out.split('\n')
-    for line in lines:
-        columns = line.split(' ')
-        if len(columns) > 2:
-            to_ret.add(columns[2])
-    return to_ret
+        if so_file_path not in result:
+            result[so_file_path] = set()
 
-
-def _root_lib_symbols(path: str):
-    to_ret = set()
-    if os.path.exists(os.path.join(path, "usr/lib64")):
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib64"))
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib64"))
-    elif os.path.exists(os.path.join(path, "usr/lib32")):
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib32"))
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib32"))
-    elif os.path.exists(os.path.join(path, "usr/lib")):
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "usr/lib"))
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, "lib"))
-    else:
-        raise FileNotFoundError("No usr libraries were found")
-
-    return to_ret
+        for line in command_result.stdout.splitlines():
+            columns = line.split(' ')
+            print(columns)
+            if len(columns) > 2:
+                result[so_file_path].add(columns[2])
 
 
-def _ld_config_symbols(path: str):
-    to_ret = set()
-    with cwd(os.path.join(path, "etc/")), open("ld.so.conf", "r") as f:
-        for line in f.readlines():
-            paths = glob.glob(line.strip())
-            for p in paths:
-                with open(os.path.join(path, p), "r") as conf_file:
-                    for conf_path in conf_file.readlines():
-                        to_ret |= _get_lib_dir_symbols(conf_path.strip()[1:])
+def _ld_config_symbols(result: dict, path: str) -> None:
+    """Gather library symbols based on ld.so.conf."""
+    _LOGGER.debug("Gathering symbols based on ld.so.conf file")
+    try:
+        with cwd(os.path.join(path, "etc/")), open("ld.so.conf", "r") as f:
+            for line in f.readlines():
+                if not line.startswith("include "):
+                    continue
 
-    return to_ret
+                line = line[len("include "):]
+
+                # Both relative and absolute will work:
+                #   os.path.join("/foo", "bar") == "/foo/bar"
+                #   os.path.join("/foo", "/bar") == "/bar"
+                for entry_path in glob.glob(os.path.join(path, "etc/", line.strip())):
+                    with open(os.path.join(path, entry_path), "r") as conf_file:
+                        for conf_path in conf_file.readlines():
+                            conf_path = conf_path.strip()[1:]
+                            _get_lib_dir_symbols(result, path, conf_path)
+    except Exception as exc:
+        _LOGGER.warning("Cannot load symbols based on ld.so.conf: %s", str(exc))
 
 
-# NOTE: Commented out func call below until LD_LIBR... is propagated properly
-def _ld_env_symbols(path: str):
-    to_ret = set()
-    ld_paths = os.environ.get("LD_LIBRARY_PATH")
+def _ld_env_symbols(result: dict, path: str) -> None:
+    """Gather library symbols based on entries in LD_LIBRARY_PATH environment variable."""
+    ld_paths = os.getenv("LD_LIBRARY_PATH")
 
     if ld_paths is None:
-        return to_ret
+        _LOGGER.debug("No LD_LIBRARY_PATH detected to gather system symbols")
+        return
 
     for p in ld_paths.split(":"):
-        to_ret |= _get_lib_dir_symbols(os.path.join(path, p[1:]))
-
-    return to_ret
+        _get_lib_dir_symbols(result, path, p[1:])
 
 
-def _get_system_symbols(path: str):
-    to_ret = set()
-    to_ret |= _root_lib_symbols(path)
-    # to_ret |= _ld_config_symbols(path)
-    to_ret |= _ld_env_symbols(path)
-    return list(to_ret)
+def _get_system_symbols(path: str) -> Dict[str, List[str]]:
+    """Get library symbols found in relevant directories, configuration and environment variables."""
+    result = {}
+    _get_lib_dir_symbols(result, path, "usr/lib64")
+    _get_lib_dir_symbols(result, path, "lib64")
+    _get_lib_dir_symbols(result, path, "usr/lib32")
+    _get_lib_dir_symbols(result, path, "lib32")
+    _get_lib_dir_symbols(result, path, "usr/lib")
+    _get_lib_dir_symbols(result, path, "lib")
+    _ld_config_symbols(result, path)
+    # XXX: Commented out as we need to handle environment variables for this during container image extraction.
+    # _ld_env_symbols(result, path)
+    # Convert to list as a result, also good for serialization into JSON happening later on.
+    return {path: list(symbols) for path, symbols in result.items()}
 
 
 def _get_layer_digest_v1(layer_def: dict):
