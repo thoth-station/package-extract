@@ -29,6 +29,8 @@ from pathlib import Path
 import glob
 from typing import Dict
 from typing import List
+from typing import Generator
+from collections import deque
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
@@ -314,33 +316,52 @@ def _get_lib_dir_symbols(result: dict, container_path: str, path: str) -> None:
 
         for line in command_result.stdout.splitlines():
             columns = line.split(' ')
-            print(columns)
             if len(columns) > 2:
                 result[so_file_path].add(columns[2])
+
+
+def _ld_config_entries(path: str) -> Generator[str, None, None]:
+    """Iterate over entries in ld.so.conf, recursively."""
+    stack = deque(["etc/ld.so.conf"])
+
+    while stack:
+        conf_file = stack.pop()
+        try:
+            with open(os.path.join(path, conf_file), "r") as f:
+                for line in f.readlines():
+                    if line.startswith("include "):
+                        line = line[len("include "):]
+                        # Includes are relative to /etc/
+                        if not line.startswith("/"):
+                            line = os.path.join("etc", line)
+
+                    if line.startswith("/"):
+                        # Discard leading / to correctly handle paths relative to the extracted container path.
+                        line = line[1:]
+
+                    if not line:
+                        continue
+
+                    entry_path = os.path.join(path, line)
+                    if os.path.isdir(entry_path):
+                        yield line
+                    elif os.path.isfile(entry_path):
+                        # ld.so.conf can point to another configuration files.
+                        stack.append(line)
+                    else:
+                        _LOGGER.warning("Skipping entry %r from symbols extraction not a file or directory", line)
+        except Exception as exc:
+            _LOGGER.warning("Failed to analyze file %r for available symbols: %s", conf_file, str(exc))
 
 
 def _ld_config_symbols(result: dict, path: str) -> None:
     """Gather library symbols based on ld.so.conf."""
     _LOGGER.debug("Gathering symbols based on ld.so.conf file")
-    try:
-        with cwd(os.path.join(path, "etc/")), open("ld.so.conf", "r") as f:
-            for line in f.readlines():
-                if line.startswith("include "):
-                    line = line[len("include "):]
-
-                if not line:
-                    continue
-
-                # Both relative and absolute will work:
-                #   os.path.join("/foo", "bar") == "/foo/bar"
-                #   os.path.join("/foo", "/bar") == "/bar"
-                for entry_path in glob.glob(os.path.join(path, "etc/", line.strip())):
-                    with open(os.path.join(path, entry_path), "r") as conf_file:
-                        for conf_path in conf_file.readlines():
-                            conf_path = conf_path.strip()[1:]
-                            _get_lib_dir_symbols(result, path, conf_path)
-    except Exception as exc:
-        _LOGGER.warning("Cannot load symbols based on ld.so.conf: %s", str(exc))
+    for entry in _ld_config_entries(path):
+        try:
+            _get_lib_dir_symbols(result, path, entry)
+        except Exception as exc:
+            _LOGGER.warning("Cannot load symbols from %r (based on ld.so.conf configuration): %s", entry, str(exc))
 
 
 def _ld_env_symbols(result: dict, path: str) -> None:
