@@ -322,12 +322,12 @@ def _get_lib_dir_symbols(result: dict, container_path: str, path: str) -> None:
 
 def _ld_config_entries(path: str) -> Generator[str, None, None]:
     """Iterate over entries in ld.so.conf, recursively."""
-    stack = deque(["etc/ld.so.conf"])
+    stack = deque([("etc", "ld.so.conf")])
 
     while stack:
-        conf_file = stack.pop()
+        relative_path, conf_file = stack.pop()
         try:
-            with open(os.path.join(path, conf_file), "r") as f:
+            with open(os.path.join(path, relative_path, conf_file), "r") as f:
                 for line in f.readlines():
                     if line.startswith("include "):
                         line = line[len("include "):]
@@ -342,14 +342,17 @@ def _ld_config_entries(path: str) -> Generator[str, None, None]:
                     if not line:
                         continue
 
-                    entry_path = os.path.join(path, line)
-                    if os.path.isdir(entry_path):
-                        yield line
-                    elif os.path.isfile(entry_path):
-                        # ld.so.conf can point to another configuration files.
-                        stack.append(line)
-                    else:
-                        _LOGGER.warning("Skipping entry %r from symbols extraction not a file or directory", line)
+                    for entry_path in glob.glob(os.path.join(path, relative_path, line)):
+                        if os.path.isdir(entry_path):
+                            yield line
+                        elif os.path.isfile(entry_path):
+                            # ld.so.conf can point to another configuration files.
+                            # "foo/nar"
+                            stack.append(
+                                (os.path.dirname(os.path.join(relative_path, conf_file)), os.path.basename(entry_path))
+                            )
+                        else:
+                            _LOGGER.warning("Skipping entry %r from symbols extraction not a file or directory", line)
         except Exception as exc:
             _LOGGER.warning("Failed to analyze file %r for available symbols: %s", conf_file, str(exc))
 
