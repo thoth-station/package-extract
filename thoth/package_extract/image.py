@@ -39,8 +39,6 @@ from .exceptions import InvalidImageError
 from .exceptions import NotSupported
 from .rpmlib import parse_nvra
 
-import subprocess
-
 _LOGGER = logging.getLogger(__name__)
 
 _MERCATOR_BIN = os.getenv("MERCATOR_BIN", "mercator")
