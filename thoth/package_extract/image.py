@@ -337,14 +337,15 @@ def _ld_config_entries(path: str) -> Generator[str, None, None]:
                         if not line.startswith("/"):
                             line = os.path.join("etc", line)
 
-                    if line.startswith("/"):
-                        # Discard leading / to correctly handle paths relative to the extracted container path.
-                        line = line[1:]
-
                     if not line:
                         continue
 
-                    for entry_path in glob.glob(os.path.join(path, relative_path, line)):
+                    if line.startswith("/"):
+                        to_glob = os.path.join(path, line[1:])
+                    else:
+                        to_glob = os.path.join(path, relative_path, line)
+
+                    for entry_path in glob.glob(to_glob):
                         if os.path.isdir(entry_path):
                             yield line
                         elif os.path.isfile(entry_path):
