@@ -19,6 +19,7 @@
 
 import logging
 import sys
+import time
 
 import click
 
@@ -91,6 +92,7 @@ def cli(ctx=None, verbose: bool = False, metadata: str = None):
 )
 def cli_extract_buildlog(click_ctx, input_file, no_pretty=False, output=None):
     """Extract installed packages from a build log."""
+    start_time = time.monotonic()
     result = extract_buildlog(input_file.read())
     print_command_result(
         click_ctx,
@@ -98,6 +100,7 @@ def cli_extract_buildlog(click_ctx, input_file, no_pretty=False, output=None):
         analyzer=analyzer,
         analyzer_version=analyzer_version,
         output=output or "-",
+        duration=time.monotonic() - start_time,
         pretty=not no_pretty,
     )
 
@@ -157,6 +160,7 @@ def cli_extract_image(
     no_tls_verify=False,
 ):
     """Extract installed packages from an image."""
+    start_time = time.monotonic()
     result = extract_image(
         image,
         timeout,
@@ -169,6 +173,7 @@ def cli_extract_image(
         analyzer=analyzer,
         analyzer_version=analyzer_version,
         output=output or "-",
+        duration=time.monotonic() - start_time,
         pretty=not no_pretty,
     )
 
