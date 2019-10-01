@@ -23,6 +23,7 @@ import os
 import tarfile
 import typing
 import stat
+import platform
 from shlex import quote
 import hashlib
 from pathlib import Path
@@ -502,4 +503,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "python-files": _gather_python_file_digests(path),
         "operating-system": _gather_os_info(path),
         "system-symbols": _get_system_symbols(path),
+        "python_version": platform.python_version(),
     }
