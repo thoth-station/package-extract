@@ -23,7 +23,6 @@ import os
 import tarfile
 import typing
 import stat
-import platform
 from shlex import quote
 import hashlib
 from pathlib import Path
@@ -464,6 +463,12 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     return layers
 
 
+def _get_python_version(path: str) -> str:
+    cmd = "ls {!r}/usr/bin/python*".format(path)
+    output = run_command(cmd).stdout
+    return output
+
+
 def download_image(
     image_name: str,
     dir_path: str,
@@ -503,5 +508,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "python-files": _gather_python_file_digests(path),
         "operating-system": _gather_os_info(path),
         "system-symbols": _get_system_symbols(path),
-        "python_version": platform.python_version(),
+        "python_version": _get_python_version(path)
     }
