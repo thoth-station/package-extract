@@ -463,10 +463,30 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     return layers
 
 
-def _get_python_version(path: str) -> str:
-    cmd = "ls {!r}/usr/bin/python*".format(path)
+def _get_python_version(path: str) -> dict:
+    python_version = {
+        "python_interpreters": [],
+        "default_interpreters": {}
+    }
+
+    cmd = "ls -la {!r}/usr/bin/python*".format(path)
     output = run_command(cmd).stdout
-    return output
+
+    for line in output.split("\n"):
+        line = line.strip()
+
+        if not line:
+            continue
+
+        parts = line.split()
+
+        if parts[0][0] == 'l':
+            python_version["python_interpreters"].append(parts[-3][len(path):])
+            python_version["default_interpreters"].update({parts[-3][len(path):]: "/usr/bin/" + parts[-1]})
+        else:
+            python_version["python_interpreters"].append(parts[-1][len(path):])
+
+    return python_version
 
 
 def download_image(
