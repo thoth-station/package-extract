@@ -464,27 +464,28 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
 
 
 def _get_python_version(path: str) -> dict:
+    MAXSYMLINKS = 40
+    lenpath = len(path)
+
     python_version = {
         "python_interpreters": [],
         "default_interpreters": {}
     }
 
-    cmd = "ls -la {!r}/usr/bin/python*".format(path)
-    output = run_command(cmd).stdout
-
-    for line in output.split("\n"):
-        line = line.strip()
-
-        if not line:
-            continue
-
-        parts = line.split()
-
-        if parts[0][0] == 'l':
-            python_version["python_interpreters"].append(parts[-3][len(path):])
-            python_version["default_interpreters"].update({parts[-3][len(path):]: "/usr/bin/" + parts[-1]})
-        else:
-            python_version["python_interpreters"].append(parts[-1][len(path):])
+    for path in glob.glob('{}/usr/bin/python*'.format(path)):
+        cnt = 0
+        link = path
+        while os.path.islink(link) and cnt != MAXSYMLINKS:
+            rel_path = os.readlink(link)
+            abs_path = os.path.join(os.path.dirname(link), rel_path)
+            python_version["default_interpreters"].update({
+                link[lenpath:]: abs_path[lenpath:]
+            })
+            link = abs_path
+            cnt += 1
+        python_version["python_interpreters"].append({
+            "path": path[lenpath:]
+        })
 
     return python_version
 
