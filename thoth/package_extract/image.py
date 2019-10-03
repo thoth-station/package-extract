@@ -463,31 +463,21 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     return layers
 
 
-def _get_python_version(path: str) -> dict:
-    MAXSYMLINKS = 40
-    lenpath = len(path)
+def _get_python_interpreters(path: str) -> dict:
+    """Find all python interpreters and symlinks."""
+    result = []
 
-    python_version = {
-        "python_interpreters": [],
-        "default_interpreters": {}
-    }
+    for py_path in glob.glob('{}/usr/bin/python*'.format(path)):
+        py_interpret = {
+            "path": py_path[len(path):],
+            "link": None,
+        }
+        if os.path.islink(py_path):
+            py_interpret["link"] = os.path.realpath(py_path)[len(path):]
 
-    for path in glob.glob('{}/usr/bin/python*'.format(path)):
-        cnt = 0
-        link = path
-        while os.path.islink(link) and cnt != MAXSYMLINKS:
-            rel_path = os.readlink(link)
-            abs_path = os.path.join(os.path.dirname(link), rel_path)
-            python_version["default_interpreters"].update({
-                link[lenpath:]: abs_path[lenpath:]
-            })
-            link = abs_path
-            cnt += 1
-        python_version["python_interpreters"].append({
-            "path": path[lenpath:]
-        })
+        result.append(py_interpret)
 
-    return python_version
+    return result
 
 
 def download_image(
@@ -529,5 +519,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "python-files": _gather_python_file_digests(path),
         "operating-system": _gather_os_info(path),
         "system-symbols": _get_system_symbols(path),
-        "python_version": _get_python_version(path)
+        "python-interpreters": _get_python_interpreters(path)
     }
