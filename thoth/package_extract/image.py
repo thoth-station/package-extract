@@ -463,6 +463,23 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     return layers
 
 
+def _get_python_interpreters(path: str) -> dict:
+    """Find all python interpreters and symlinks."""
+    result = []
+
+    for py_path in glob.glob('{}/usr/bin/python*'.format(path)):
+        py_interpret = {
+            "path": py_path[len(path):],
+            "link": None,
+        }
+        if os.path.islink(py_path):
+            py_interpret["link"] = os.path.realpath(py_path)[len(path):]
+
+        result.append(py_interpret)
+
+    return result
+
+
 def download_image(
     image_name: str,
     dir_path: str,
@@ -502,4 +519,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "python-files": _gather_python_file_digests(path),
         "operating-system": _gather_os_info(path),
         "system-symbols": _get_system_symbols(path),
+        "python-interpreters": _get_python_interpreters(path)
     }
