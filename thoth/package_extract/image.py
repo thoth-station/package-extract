@@ -20,6 +20,7 @@
 import json
 import logging
 import os
+import stat
 import tarfile
 import typing
 import stat
@@ -468,12 +469,25 @@ def _get_python_interpreters(path: str) -> dict:
     result = []
 
     for py_path in glob.glob('{}/usr/bin/python*'.format(path)):
+        version_ = None
+        try:
+            os.chmod(py_path, stat.S_IEXEC)
+            line = run_command('{} --version'.format(py_path), timeout=2).stdout
+            parts = line.split(maxsplit=2)
+            if len(parts) == 2 and parts[0] == "Python":
+                version_ = line.rstrip()
+        except Exception as exc:
+            _LOGGER.warning(
+                "Failed to get python version: %s", str(exc))
+
         py_interpret = {
             "path": py_path[len(path):],
             "link": None,
+            "version": version_
         }
         if os.path.islink(py_path):
-            py_interpret["link"] = os.path.realpath(py_path)[len(path):]
+            real_link = os.path.realpath(py_path)
+            py_interpret["link"] = real_link[len(path):] if path in real_link else real_link
 
         result.append(py_interpret)
 
