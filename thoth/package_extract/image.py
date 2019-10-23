@@ -515,6 +515,15 @@ def download_image(
     _LOGGER.debug("%s stdout: %s", _SKOPEO_EXEC_PATH, stdout)
 
 
+def get_image_size(path: str) -> int:
+    total_size = 0
+    for path_, dirs, files in os.walk(path):
+        for f in files:
+            fp = os.path.join(path, f)
+            total_size += os.path.getsize(fp)
+    return total_size
+
+
 def run_analyzers(path: str, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
     path = quote(path)
