@@ -29,6 +29,7 @@ from .handlers import HandlerBase
 from .image import construct_rootfs
 from .image import download_image
 from .image import run_analyzers
+from .image import get_image_size
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -73,11 +74,13 @@ def extract_image(
             registry_credentials=registry_credentials or None,
             tls_verify=tls_verify,
         )
+        image_size = get_image_size(dir_path)
         rootfs_path = os.path.join(dir_path, "rootfs")
         layers = construct_rootfs(dir_path, rootfs_path)
 
         result = run_analyzers(rootfs_path)
         result["layers"] = layers
+        result["image_size"] = image_size
 
     _PUSH_GATEWAY_HOST = os.getenv("PROMETHEUS_PUSHGATEWAY_HOST")
     _PUSH_GATEWAY_PORT = os.getenv("PROMETHEUS_PUSHGATEWAY_PORT")
