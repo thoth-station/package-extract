@@ -516,6 +516,7 @@ def download_image(
 
 
 def get_image_size(path: str) -> int:
+    """Calculate the size of the image."""
     total_size = 0
     for path_, dirs, files in os.walk(path):
         for f in files:
