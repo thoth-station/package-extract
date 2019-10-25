@@ -50,6 +50,7 @@ _HERE_DIR = os.path.dirname(os.path.abspath(__file__))
 _SKOPEO_EXEC_PATH = os.getenv(
     "SKOPEO_EXEC_PATH", os.path.join(_HERE_DIR, "bin", "skopeo")
 )
+_MAX_SYMLINKS = 50
 
 
 def _normalize_mercator_output(path: str, output: dict) -> dict:
@@ -464,6 +465,24 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     return layers
 
 
+def _get_absolute_link(root_path: str, path: str, iter: int) -> str:
+    """Find the absolute link of the given link."""
+    if iter > _MAX_SYMLINKS:
+        return None
+    if os.path.islink(path):
+        readlink = os.readlink(path)
+        if len(readlink.split("/")) == 1:
+            next_link = os.path.join(os.path.dirname(path), readlink)
+        else:
+            if readlink[0] == "/":
+                next_link = os.path.join(root_path, readlink[1:])
+            else:
+                next_link = os.path.join(root_path, readlink)
+        return _get_absolute_link(root_path, next_link, iter + 1)
+    else:
+        return path
+
+
 def _get_python_interpreters(path: str) -> dict:
     """Find all python interpreters and symlinks."""
     result = []
@@ -477,17 +496,15 @@ def _get_python_interpreters(path: str) -> dict:
             if len(parts) == 2 and parts[0] == "Python":
                 version_ = line.rstrip()
         except Exception as exc:
-            _LOGGER.warning(
-                "Failed to get python version: %s", str(exc))
+            pass
+
+        absolute_link = _get_absolute_link(path, py_path, 0)
 
         py_interpret = {
             "path": py_path[len(path):],
-            "link": None,
+            "link": absolute_link[len(path):] if absolute_link != py_path else None,
             "version": version_
         }
-        if os.path.islink(py_path):
-            real_link = os.path.realpath(py_path)
-            py_interpret["link"] = real_link[len(path):] if path in real_link else real_link
 
         result.append(py_interpret)
 
