@@ -20,7 +20,6 @@
 import json
 import logging
 import os
-import stat
 import tarfile
 import typing
 import stat
@@ -31,6 +30,7 @@ import glob
 from typing import Dict
 from typing import List
 from typing import Generator
+from typing import Optional
 from collections import deque
 
 from thoth.analyzer import run_command
@@ -465,25 +465,24 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     return layers
 
 
-def _get_absolute_link(root_path: str, path: str, iter: int) -> str:
+def _get_absolute_link(root_path: str, path: str, iter: int) -> Optional[str]:
     """Find the absolute link of the given link."""
     if iter > _MAX_SYMLINKS:
+        _LOGGER.warning("Maximum symlink traversal reached.")
         return None
-    if os.path.islink(path):
-        readlink = os.readlink(path)
-        if len(readlink.split("/")) == 1:
-            next_link = os.path.join(os.path.dirname(path), readlink)
-        else:
-            if readlink[0] == "/":
-                next_link = os.path.join(root_path, readlink[1:])
-            else:
-                next_link = os.path.join(root_path, readlink)
-        return _get_absolute_link(root_path, next_link, iter + 1)
+    elif os.path.islink(path):
+        next_path = os.path.normpath(os.path.join(root_path, os.readlink(path)))
+        return _get_absolute_link(root_path, next_path, iter + 1)
     else:
+        if not os.path.isfile(path):
+            _LOGGER.warning(
+                "Python link refers to %s, but this file is not present on filesystem.",
+                path
+            )
         return path
 
 
-def _get_python_interpreters(path: str) -> dict:
+def _get_python_interpreters(path: str) -> List[dict]:
     """Find all python interpreters and symlinks."""
     result = []
 
@@ -496,13 +495,18 @@ def _get_python_interpreters(path: str) -> dict:
             if len(parts) == 2 and parts[0] == "Python":
                 version_ = line.rstrip()
         except Exception as exc:
-            pass
+            _LOGGER.warning(
+                "Failed to run %s --version to gather python interpreter version: %s",
+                py_path,
+                str(exc)
+            )
 
         absolute_link = _get_absolute_link(path, py_path, 0)
-
+        if absolute_link is not None:
+            absolute_link = absolute_link[len(path):]
         py_interpret = {
             "path": py_path[len(path):],
-            "link": absolute_link[len(path):] if absolute_link != py_path else None,
+            "link": absolute_link,
             "version": version_
         }
 
