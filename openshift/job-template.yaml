@@ -31,6 +31,10 @@ parameters:
     description: A job id for package extract job.
     displayName: Job identifier
     required: true
+  - name: THOTH_DOCUMENT_ID
+    description: "A unique identifier of the resulting document in a Thoth deployment."
+    displayName: "Document identifier"
+    required: true
   - name: THOTH_LOG_PACKAGE_EXTRACT
     description: Log Level for package extract
     displayName: Log package extract
@@ -98,6 +102,8 @@ objects:
                   value: ${THOTH_LOG_PACKAGE_EXTRACT}
                 - name: THOTH_PACKAGE_EXTRACT_METADATA
                   value: ${THOTH_PACKAGE_EXTRACT_METADATA}
+                - name: THOTH_DOCUMENT_ID
+                  value: "${THOTH_DOCUMENT_ID}"
                 - name: THOTH_ANALYZER
                   value: package-extract
                 - name: THOTH_ANALYZED_IMAGE
