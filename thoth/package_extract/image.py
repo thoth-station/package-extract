@@ -20,7 +20,6 @@
 import json
 import logging
 import os
-import stat
 import tarfile
 import typing
 import stat
@@ -31,6 +30,7 @@ import glob
 from typing import Dict
 from typing import List
 from typing import Generator
+from typing import Optional
 from collections import deque
 
 from thoth.analyzer import run_command
@@ -50,6 +50,7 @@ _HERE_DIR = os.path.dirname(os.path.abspath(__file__))
 _SKOPEO_EXEC_PATH = os.getenv(
     "SKOPEO_EXEC_PATH", os.path.join(_HERE_DIR, "bin", "skopeo")
 )
+_MAX_SYMLINKS = 50
 
 
 def _normalize_mercator_output(path: str, output: dict) -> dict:
@@ -464,7 +465,24 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     return layers
 
 
-def _get_python_interpreters(path: str) -> dict:
+def _get_absolute_link(root_path: str, path: str, iter: int) -> Optional[str]:
+    """Find the absolute link of the given link."""
+    if iter > _MAX_SYMLINKS:
+        _LOGGER.warning("Maximum symlink traversal reached.")
+        return None
+    elif os.path.islink(path):
+        next_path = os.path.normpath(os.path.join(root_path, os.readlink(path)))
+        return _get_absolute_link(root_path, next_path, iter + 1)
+    else:
+        if not os.path.isfile(path):
+            _LOGGER.warning(
+                "Python link refers to %s, but this file is not present on filesystem.",
+                path
+            )
+        return path
+
+
+def _get_python_interpreters(path: str) -> List[dict]:
     """Find all python interpreters and symlinks."""
     result = []
 
@@ -478,16 +496,19 @@ def _get_python_interpreters(path: str) -> dict:
                 version_ = line.rstrip()
         except Exception as exc:
             _LOGGER.warning(
-                "Failed to get python version: %s", str(exc))
+                "Failed to run %s --version to gather python interpreter version: %s",
+                py_path,
+                str(exc)
+            )
 
+        absolute_link = _get_absolute_link(path, py_path, 0)
+        if absolute_link is not None:
+            absolute_link = absolute_link[len(path):]
         py_interpret = {
             "path": py_path[len(path):],
-            "link": None,
+            "link": absolute_link,
             "version": version_
         }
-        if os.path.islink(py_path):
-            real_link = os.path.realpath(py_path)
-            py_interpret["link"] = real_link[len(path):] if path in real_link else real_link
 
         result.append(py_interpret)
 
