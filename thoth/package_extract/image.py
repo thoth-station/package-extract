@@ -546,6 +546,48 @@ def get_image_size(path: str) -> int:
     return total_size
 
 
+def _get_cuda_version(path: str) -> dict:
+    """Get the cuda version."""
+    res = {}
+    # Gathering version from version.txt file
+    version_path = os.path.join(path, "usr/local/cuda/version.txt")
+    if os.path.isfile(version_path):
+        with open(version_path, "r") as f:
+            for line in f.readlines():
+                if line.startswith("CUDA Version"):
+                    res["/usr/local/cuda/version.txt"] = line[len("CUDA Version"):].strip()
+                    break
+        if res.get("/usr/local/cuda/version.txt") is not None:
+            _LOGGER.info("CUDA version %s was identified in file version.txt", res["/usr/local/cuda/version.txt"])
+        else:
+            _LOGGER.warning("No CUDA version identifier was found in file version.txt")
+    else:
+        _LOGGER.info("No version.txt file was found to detect CUDA version")
+
+    # Gathering version from nvcc command
+    nvcc_path = os.path.join(path + '/usr/local/cuda/bin/nvcc')
+    if os.path.exists(nvcc_path):
+        st = os.stat(nvcc_path)
+        os.chmod(nvcc_path, st.st_mode | stat.S_IEXEC)
+        result = run_command("{} --version".format(nvcc_path), raise_on_error=False)
+        if result.return_code != 0:
+            _LOGGER.warning("Unable to detect CUDA version - nvcc returned non-zero exit code: %s", result.to_dict())
+        else:
+            for line in result.stdout.splitlines():
+                version = line.rsplit(", ", maxsplit=1)[-1]
+                if line.startswith("Cuda compilation tools") and version.startswith("V"):
+                    res["nvcc_version"] = version[1:]
+                    break
+            if res.get("nvcc_version") is not None:
+                _LOGGER.info("Detected CUDA version %s from nvcc output", res["nvcc_version"])
+            else:
+                _LOGGER.debug("Unable to detect CUDA version from nvcc output: %r", result.stdout)
+    else:
+        _LOGGER.info("No nvcc executable was found to detect CUDA version")
+
+    return res
+
+
 def run_analyzers(path: str, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
     path = quote(path)
@@ -564,5 +606,6 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "python-files": _gather_python_file_digests(path),
         "operating-system": _gather_os_info(path),
         "system-symbols": _get_system_symbols(path),
-        "python-interpreters": _get_python_interpreters(path)
+        "python-interpreters": _get_python_interpreters(path),
+        "cuda-version": _get_cuda_version(path)
     }
