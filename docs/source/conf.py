@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 #
 # Thoth Package Extract documentation build configuration file, created by
 # sphinx-quickstart on Thu Mar 14 19:28:10 2019.
