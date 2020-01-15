@@ -5,14 +5,14 @@ metadata:
   annotations:
     description: "Thoth: Package Extract Job Template"
     openshift.io/display-name: "Thoth: Package Extract Job Template"
-    version: 0.4.0
+    version: 0.4.1
     tags: thoth,ai-stacks,aistacks,package-extract
     template.openshift.io/documentation-url: https://github.com/Thoth-Station/
     template.openshift.io/long-description: >
       This template defines resources needed to run image analyzer in Thoth to OpenShift, it is used
       to create new OpenShift Jobs running the analyzer.
     template.openshift.io/provider-display-name: Red Hat, Inc.
-    thoth-station.ninja/template-version: 0.4.0
+    thoth-station.ninja/template-version: 0.4.1
   labels:
     template: package-extract
     app: thoth
@@ -70,7 +70,7 @@ objects:
     metadata:
       name: ${THOTH_PACKAGE_EXTRACT_JOB_ID}
       annotations:
-        thoth-station.ninja/template-version: 0.4.0
+        thoth-station.ninja/template-version: 0.4.1
       labels:
         app: thoth
         component: package-extract
@@ -84,6 +84,7 @@ objects:
           labels:
             app: thoth
             component: package-extract
+            mark: cleanup
         spec:
           restartPolicy: Never
           automountServiceAccountToken: false
