@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: package-extract
+  name: package-extract-workload-operator
   annotations:
     description: "Thoth: Package Extract Job Template"
     openshift.io/display-name: "Thoth: Package Extract Job Template"
