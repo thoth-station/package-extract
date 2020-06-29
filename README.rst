@@ -450,29 +450,29 @@ To extract packages present on the resulting image run:
   2018-06-18 19:06:46,611 [1] DEBUG    thoth.analyzer.command: Running command 'skopeo copy docker://fedora:27 dir://tmp/tmp9jmeuw__'
   2018-06-18 19:06:51,669 [1] DEBUG    thoth.package_extract.image: skopeo stdout: Getting image source signatures
   Copying blob sha256:2176639d844bbe1386912e1d9952cebdb8249923a16691025cf693963f8aec53
-  
-   0 B / 77.54 MB 
-   3.60 MB / 77.54 MB 
-   9.65 MB / 77.54 MB 
-   16.34 MB / 77.54 MB 
-   22.86 MB / 77.54 MB 
-   29.22 MB / 77.54 MB 
-   35.59 MB / 77.54 MB 
-   41.26 MB / 77.54 MB 
-   47.86 MB / 77.54 MB 
-   54.40 MB / 77.54 MB 
-   61.01 MB / 77.54 MB 
-   66.34 MB / 77.54 MB 
-   72.99 MB / 77.54 MB 
-   77.54 MB / 77.54 MB 
+
+   0 B / 77.54 MB
+   3.60 MB / 77.54 MB
+   9.65 MB / 77.54 MB
+   16.34 MB / 77.54 MB
+   22.86 MB / 77.54 MB
+   29.22 MB / 77.54 MB
+   35.59 MB / 77.54 MB
+   41.26 MB / 77.54 MB
+   47.86 MB / 77.54 MB
+   54.40 MB / 77.54 MB
+   61.01 MB / 77.54 MB
+   66.34 MB / 77.54 MB
+   72.99 MB / 77.54 MB
+   77.54 MB / 77.54 MB
    77.54 MB / 77.54 MB  2s
   Copying config sha256:9110ae7f579f35ee0c3938696f23fe0f5fbe641738ea52eb83c2df7e9995fa17
-  
-   0 B / 2.29 KB 
+
+   0 B / 2.29 KB
    2.29 KB / 2.29 KB  0s
   Writing manifest to image destination
   Storing signatures
-  
+
   2018-06-18 19:06:51,671 [1] DEBUG    thoth.package_extract.image: Layers found: [{'mediaType': 'application/vnd.docker.image.rootfs.diff.tar.gzip', 'size': 81308994, 'digest': 'sha256:2176639d844bbe1386912e1d9952cebdb8249923a16691025cf693963f8aec53'}]
   2018-06-18 19:06:51,671 [1] DEBUG    thoth.package_extract.image: Extracting layer '2176639d844bbe1386912e1d9952cebdb8249923a16691025cf693963f8aec53'
   2018-06-18 19:06:55,444 [1] DEBUG    thoth.analyzer.command: Running command 'mercator -config /usr/share/mercator/handlers.yml /tmp/tmp9jmeuw__/rootfs'

@@ -23,5 +23,5 @@ class TestDNF:
     """Test dnf package installation extraction handler."""
 
     @pytest.mark.skip(reason="Currently dnf handler is substituted with yum handler")
-    def test_dnf(self):
+    def test_dnf(self):  # noqa D102
         pass

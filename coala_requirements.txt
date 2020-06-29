@@ -1,4 +1,0 @@
-coala-bears
-bandit
-# pinned due to dependency conflict
-setuptools>=17.0

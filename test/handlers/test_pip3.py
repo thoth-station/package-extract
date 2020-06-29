@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-"""Test installation of packages using pip3"""
+"""Test installation of packages using pip3."""
 
 from thoth.package_extract.handlers import HandlerBase
 from thoth.package_extract.handlers import PIP3
@@ -28,7 +28,7 @@ class TestPIP3(TestCase):
     """Test extraction of packages installed via pip3."""
 
     @raw_and_recover_changes
-    def test_run(self):
+    def test_run(self):  # noqa D102
         HandlerBase.register(PIP3)
-        for output, expected_output in self.get_handler_output(PIP3, 'pip3'):
+        for output, expected_output in self.get_handler_output(PIP3, "pip3"):
             assert output == expected_output

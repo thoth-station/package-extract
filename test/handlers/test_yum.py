@@ -28,7 +28,7 @@ class TestYUM(TestCase):
     """Test installing packages using yum."""
 
     @raw_and_recover_changes
-    def test_run(self):
+    def test_run(self):  # noqa: D102
         HandlerBase.register(YUM)
-        for output, expected_output in self.get_handler_output(YUM, 'yum'):
+        for output, expected_output in self.get_handler_output(YUM, "yum"):
             assert output == expected_output

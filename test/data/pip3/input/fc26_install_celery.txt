@@ -1,10 +1,10 @@
-Sending build context to Docker daemon 355.3 kB
+Sending build context to Docker daemon 355.3 kB
 Step 1/3 : FROM fedora:26
  ---> 1ba39c7494fb
 Step 2/3 : RUN dnf install -y python3-pip && dnf clean all
  ---> Running in 1459f61179a5
-Fedora 26 - x86_64 - Updates                     66 MB/s |  19 MB     00:00    
-Fedora 26 - x86_64                               69 MB/s |  53 MB     00:00    
+Fedora 26 - x86_64 - Updates                     66 MB/s |  19 MB     00:00
+Fedora 26 - x86_64                               69 MB/s |  53 MB     00:00
 Last metadata expiration check: 0:00:05 ago on Mon Jan 15 11:58:16 2018.
 [91mPackage python3-pip-9.0.1-9.fc26.noarch is already installed, skipping.
 [0mDependencies resolved.

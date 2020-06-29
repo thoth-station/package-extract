@@ -26,24 +26,27 @@ from ..case import raw_and_recover_changes
 
 class TestHandlerBase:
     """Test :class:thoth.package_extract.handlers.HandlerBase."""
-    class FooHandler(HandlerBase):
-        def run(self, input_text):
+
+    class FooHandler(HandlerBase):  # noqa D106
+        def run(self, input_text):  # noqa D102
             return ["foo"]
 
-    class BarHandler(HandlerBase):
-        def run(self, input_text):
+    class BarHandler(HandlerBase):  # noqa D106
+        def run(self, input_text):  # noqa D102
             return ["boo"]
 
     @raw_and_recover_changes
-    def test_register(self):
+    def test_register(self):  # noqa D102
         HandlerBase.register(TestHandlerBase.FooHandler)
         HandlerBase.register(TestHandlerBase.BarHandler)
 
-        assert HandlerBase.get_handler_names() == [TestHandlerBase.FooHandler.__name__,
-                                                   TestHandlerBase.BarHandler.__name__]
+        assert HandlerBase.get_handler_names() == [
+            TestHandlerBase.FooHandler.__name__,
+            TestHandlerBase.BarHandler.__name__,
+        ]
 
     @raw_and_recover_changes
-    def test_instantiate_handlers(self):
+    def test_instantiate_handlers(self):  # noqa D102
         HandlerBase.register(TestHandlerBase.FooHandler)
         HandlerBase.register(TestHandlerBase.BarHandler)
 
@@ -52,9 +55,9 @@ class TestHandlerBase:
         assert type(instantiated_handlers[0] == TestHandlerBase.FooHandler)
         assert type(instantiated_handlers[0] == TestHandlerBase.BarHandler)
 
-    def test_run(self):
+    def test_run(self):  # noqa D102
         with pytest.raises(NotImplementedError):
             HandlerBase().run("Foo")
 
-    def test_initial_setup(self):
-        assert set(HandlerBase.get_handler_names()) == {'YUM', 'PIP3'}
+    def test_initial_setup(self):  # noqa D102
+        assert set(HandlerBase.get_handler_names()) == {"YUM", "PIP3"}

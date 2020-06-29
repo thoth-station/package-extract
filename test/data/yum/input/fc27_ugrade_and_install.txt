@@ -1,10 +1,10 @@
-Sending build context to Docker daemon 102.5 MB
+Sending build context to Docker daemon 102.5 MB
 Step 1/2 : FROM fedora:27
  ---> 422dc563ca32
 Step 2/2 : RUN dnf update -y &&   dnf install -y python3-pip gcc python3-devel
  ---> Running in 1775ceb5d849
-Fedora 27 - x86_64 - Updates                     74 MB/s |  16 MB     00:00    
-Fedora 27 - x86_64                               80 MB/s |  58 MB     00:00    
+Fedora 27 - x86_64 - Updates                     74 MB/s |  16 MB     00:00
+Fedora 27 - x86_64                               80 MB/s |  58 MB     00:00
 Last metadata expiration check: 0:00:03 ago on Tue Jan 16 08:30:24 2018.
 Dependencies resolved.
 ================================================================================
@@ -89,545 +89,545 @@ Upgrade  70 Packages
 
 Total download size: 46 M
 Downloading Packages:
-(1/70): audit-libs-2.8.2-1.fc27.x86_64.rpm      3.7 MB/s | 111 kB     00:00    
-(2/70): ca-certificates-2017.2.20-1.0.fc27.noar  10 MB/s | 406 kB     00:00    
-(3/70): bash-4.4.12-13.fc27.x86_64.rpm           21 MB/s | 1.5 MB     00:00    
-(4/70): compat-openssl10-1.0.2m-1.fc27.x86_64.r  18 MB/s | 1.1 MB     00:00    
-(5/70): crypto-policies-20170816-2.gite0a4066.f 5.5 MB/s |  37 kB     00:00    
-(6/70): curl-7.55.1-8.fc27.x86_64.rpm            24 MB/s | 311 kB     00:00    
-(7/70): coreutils-8.27-17.fc27.x86_64.rpm        12 MB/s | 1.2 MB     00:00    
-(8/70): libcurl-7.55.1-8.fc27.x86_64.rpm         14 MB/s | 272 kB     00:00    
-(9/70): coreutils-common-8.27-17.fc27.x86_64.rp  23 MB/s | 1.9 MB     00:00    
-(10/70): dbus-1.12.0-1.fc27.x86_64.rpm           11 MB/s | 266 kB     00:00    
-(11/70): dbus-libs-1.12.0-1.fc27.x86_64.rpm      19 MB/s | 178 kB     00:00    
-(12/70): openssl-libs-1.1.0g-1.fc27.x86_64.rpm   29 MB/s | 1.3 MB     00:00    
-(13/70): device-mapper-1.02.144-1.fc27.x86_64.r  19 MB/s | 357 kB     00:00    
-(14/70): device-mapper-libs-1.02.144-1.fc27.x86  17 MB/s | 390 kB     00:00    
-(15/70): dnf-2.7.5-2.fc27.noarch.rpm             18 MB/s | 350 kB     00:00    
-(16/70): dnf-conf-2.7.5-2.fc27.noarch.rpm       8.3 MB/s |  68 kB     00:00    
-(17/70): dnf-yum-2.7.5-2.fc27.noarch.rpm         15 MB/s |  50 kB     00:00    
-(18/70): python3-dnf-2.7.5-2.fc27.noarch.rpm     21 MB/s | 454 kB     00:00    
-(19/70): expat-2.2.5-1.fc27.x86_64.rpm           16 MB/s | 103 kB     00:00    
-(20/70): gdbm-1.14-1.fc27.x86_64.rpm             18 MB/s | 158 kB     00:00    
-(21/70): gawk-4.1.4-8.fc27.x86_64.rpm            33 MB/s | 1.1 MB     00:00    
-(22/70): glib2-2.54.2-1.fc27.x86_64.rpm          36 MB/s | 2.4 MB     00:00    
-(23/70): glibc-common-2.26-21.fc27.x86_64.rpm    15 MB/s | 844 kB     00:00    
-(24/70): glibc-langpack-en-2.26-21.fc27.x86_64.  13 MB/s | 276 kB     00:00    
-(25/70): libcrypt-nss-2.26-21.fc27.x86_64.rpm   4.4 MB/s |  39 kB     00:00    
-(26/70): glibc-2.26-21.fc27.x86_64.rpm           30 MB/s | 3.6 MB     00:00    
-(27/70): gnupg2-smime-2.2.3-1.fc27.x86_64.rpm   6.2 MB/s | 276 kB     00:00    
-(28/70): ima-evm-utils-1.0-2.fc27.x86_64.rpm    8.4 MB/s |  56 kB     00:00    
-(29/70): gnutls-3.5.16-4.fc27.x86_64.rpm         23 MB/s | 761 kB     00:00    
-(30/70): info-6.4-6.fc27.x86_64.rpm             6.9 MB/s | 192 kB     00:00    
-(31/70): gnupg2-2.2.3-1.fc27.x86_64.rpm          20 MB/s | 2.3 MB     00:00    
-(32/70): krb5-libs-1.15.2-4.fc27.x86_64.rpm      14 MB/s | 809 kB     00:00    
-(33/70): libdb-utils-5.3.28-27.fc27.x86_64.rpm  6.2 MB/s | 144 kB     00:00    
-(34/70): libdb-5.3.28-27.fc27.x86_64.rpm         11 MB/s | 753 kB     00:00    
-(35/70): libdnf-0.11.1-1.fc27.x86_64.rpm        7.8 MB/s | 132 kB     00:00    
-(36/70): python3-hawkey-0.11.1-1.fc27.x86_64.rp 4.6 MB/s |  57 kB     00:00    
-(37/70): libreport-filesystem-2.9.3-1.fc27.x86_ 4.8 MB/s |  16 kB     00:00    
-(38/70): libgcrypt-1.8.1-3.fc27.x86_64.rpm       44 MB/s | 453 kB     00:00    
-(39/70): libselinux-2.7-3.fc27.x86_64.rpm        17 MB/s | 173 kB     00:00    
-(40/70): libsemanage-2.7-2.fc27.x86_64.rpm       15 MB/s | 156 kB     00:00    
-(41/70): libsepol-2.7-2.fc27.x86_64.rpm          15 MB/s | 332 kB     00:00    
-(42/70): libsss_idmap-1.16.0-5.fc27.x86_64.rpm  5.8 MB/s |  87 kB     00:00    
-(43/70): libsss_nss_idmap-1.16.0-5.fc27.x86_64.  10 MB/s |  94 kB     00:00    
-(44/70): libsolv-0.6.30-2.fc27.x86_64.rpm        12 MB/s | 368 kB     00:00    
-(45/70): libzstd-1.3.3-1.fc27.x86_64.rpm         16 MB/s | 207 kB     00:00    
-(46/70): lua-libs-5.3.4-7.fc27.x86_64.rpm       7.8 MB/s | 116 kB     00:00    
-(47/70): nettle-3.4-1.fc27.x86_64.rpm            16 MB/s | 292 kB     00:00    
-(48/70): nss-softokn-3.34.0-1.0.fc27.x86_64.rpm  20 MB/s | 391 kB     00:00    
-(49/70): nss-util-3.34.0-1.0.fc27.x86_64.rpm    7.9 MB/s |  89 kB     00:00    
-(50/70): nss-3.34.0-1.0.fc27.x86_64.rpm          26 MB/s | 856 kB     00:00    
-(51/70): nss-softokn-freebl-3.34.0-1.0.fc27.x86  14 MB/s | 235 kB     00:00    
-(52/70): nss-sysinit-3.34.0-1.0.fc27.x86_64.rpm 5.2 MB/s |  63 kB     00:00    
-(53/70): nss-tools-3.34.0-1.0.fc27.x86_64.rpm    17 MB/s | 519 kB     00:00    
-(54/70): nss-pem-1.0.3-6.fc27.x86_64.rpm        5.6 MB/s |  77 kB     00:00    
-(55/70): openldap-2.4.45-4.fc27.x86_64.rpm       20 MB/s | 360 kB     00:00    
-(56/70): p11-kit-trust-0.23.9-2.fc27.x86_64.rpm  11 MB/s | 134 kB     00:00    
-(57/70): p11-kit-0.23.9-2.fc27.x86_64.rpm        13 MB/s | 263 kB     00:00    
-(58/70): pcre-8.41-3.fc27.x86_64.rpm             13 MB/s | 204 kB     00:00    
-(59/70): publicsuffix-list-dafsa-20171228-1.fc2  11 MB/s |  46 kB     00:00    
-(60/70): pcre2-10.30-4.fc27.x86_64.rpm           15 MB/s | 234 kB     00:00    
-(61/70): python3-3.6.3-2.fc27.x86_64.rpm        8.2 MB/s |  68 kB     00:00    
-(62/70): python3-setuptools-37.0.0-1.fc27.noarc  17 MB/s | 604 kB     00:00    
-(63/70): python3-pip-9.0.1-14.fc27.noarch.rpm    29 MB/s | 1.8 MB     00:00    
-(64/70): sssd-client-1.16.0-5.fc27.x86_64.rpm   5.1 MB/s | 143 kB     00:00    
-(65/70): systemd-pam-234-9.fc27.x86_64.rpm      6.6 MB/s | 180 kB     00:00    
-(66/70): python3-libs-3.6.3-2.fc27.x86_64.rpm    43 MB/s | 8.6 MB     00:00    
-(67/70): systemd-libs-234-9.fc27.x86_64.rpm     4.5 MB/s | 465 kB     00:00    
-(68/70): systemd-234-9.fc27.x86_64.rpm           22 MB/s | 3.5 MB     00:00    
-(69/70): tzdata-2017c-1.fc27.noarch.rpm          14 MB/s | 444 kB     00:00    
-(70/70): vim-minimal-8.0.1427-1.fc27.x86_64.rpm  17 MB/s | 537 kB     00:00    
+(1/70): audit-libs-2.8.2-1.fc27.x86_64.rpm      3.7 MB/s | 111 kB     00:00
+(2/70): ca-certificates-2017.2.20-1.0.fc27.noar  10 MB/s | 406 kB     00:00
+(3/70): bash-4.4.12-13.fc27.x86_64.rpm           21 MB/s | 1.5 MB     00:00
+(4/70): compat-openssl10-1.0.2m-1.fc27.x86_64.r  18 MB/s | 1.1 MB     00:00
+(5/70): crypto-policies-20170816-2.gite0a4066.f 5.5 MB/s |  37 kB     00:00
+(6/70): curl-7.55.1-8.fc27.x86_64.rpm            24 MB/s | 311 kB     00:00
+(7/70): coreutils-8.27-17.fc27.x86_64.rpm        12 MB/s | 1.2 MB     00:00
+(8/70): libcurl-7.55.1-8.fc27.x86_64.rpm         14 MB/s | 272 kB     00:00
+(9/70): coreutils-common-8.27-17.fc27.x86_64.rp  23 MB/s | 1.9 MB     00:00
+(10/70): dbus-1.12.0-1.fc27.x86_64.rpm           11 MB/s | 266 kB     00:00
+(11/70): dbus-libs-1.12.0-1.fc27.x86_64.rpm      19 MB/s | 178 kB     00:00
+(12/70): openssl-libs-1.1.0g-1.fc27.x86_64.rpm   29 MB/s | 1.3 MB     00:00
+(13/70): device-mapper-1.02.144-1.fc27.x86_64.r  19 MB/s | 357 kB     00:00
+(14/70): device-mapper-libs-1.02.144-1.fc27.x86  17 MB/s | 390 kB     00:00
+(15/70): dnf-2.7.5-2.fc27.noarch.rpm             18 MB/s | 350 kB     00:00
+(16/70): dnf-conf-2.7.5-2.fc27.noarch.rpm       8.3 MB/s |  68 kB     00:00
+(17/70): dnf-yum-2.7.5-2.fc27.noarch.rpm         15 MB/s |  50 kB     00:00
+(18/70): python3-dnf-2.7.5-2.fc27.noarch.rpm     21 MB/s | 454 kB     00:00
+(19/70): expat-2.2.5-1.fc27.x86_64.rpm           16 MB/s | 103 kB     00:00
+(20/70): gdbm-1.14-1.fc27.x86_64.rpm             18 MB/s | 158 kB     00:00
+(21/70): gawk-4.1.4-8.fc27.x86_64.rpm            33 MB/s | 1.1 MB     00:00
+(22/70): glib2-2.54.2-1.fc27.x86_64.rpm          36 MB/s | 2.4 MB     00:00
+(23/70): glibc-common-2.26-21.fc27.x86_64.rpm    15 MB/s | 844 kB     00:00
+(24/70): glibc-langpack-en-2.26-21.fc27.x86_64.  13 MB/s | 276 kB     00:00
+(25/70): libcrypt-nss-2.26-21.fc27.x86_64.rpm   4.4 MB/s |  39 kB     00:00
+(26/70): glibc-2.26-21.fc27.x86_64.rpm           30 MB/s | 3.6 MB     00:00
+(27/70): gnupg2-smime-2.2.3-1.fc27.x86_64.rpm   6.2 MB/s | 276 kB     00:00
+(28/70): ima-evm-utils-1.0-2.fc27.x86_64.rpm    8.4 MB/s |  56 kB     00:00
+(29/70): gnutls-3.5.16-4.fc27.x86_64.rpm         23 MB/s | 761 kB     00:00
+(30/70): info-6.4-6.fc27.x86_64.rpm             6.9 MB/s | 192 kB     00:00
+(31/70): gnupg2-2.2.3-1.fc27.x86_64.rpm          20 MB/s | 2.3 MB     00:00
+(32/70): krb5-libs-1.15.2-4.fc27.x86_64.rpm      14 MB/s | 809 kB     00:00
+(33/70): libdb-utils-5.3.28-27.fc27.x86_64.rpm  6.2 MB/s | 144 kB     00:00
+(34/70): libdb-5.3.28-27.fc27.x86_64.rpm         11 MB/s | 753 kB     00:00
+(35/70): libdnf-0.11.1-1.fc27.x86_64.rpm        7.8 MB/s | 132 kB     00:00
+(36/70): python3-hawkey-0.11.1-1.fc27.x86_64.rp 4.6 MB/s |  57 kB     00:00
+(37/70): libreport-filesystem-2.9.3-1.fc27.x86_ 4.8 MB/s |  16 kB     00:00
+(38/70): libgcrypt-1.8.1-3.fc27.x86_64.rpm       44 MB/s | 453 kB     00:00
+(39/70): libselinux-2.7-3.fc27.x86_64.rpm        17 MB/s | 173 kB     00:00
+(40/70): libsemanage-2.7-2.fc27.x86_64.rpm       15 MB/s | 156 kB     00:00
+(41/70): libsepol-2.7-2.fc27.x86_64.rpm          15 MB/s | 332 kB     00:00
+(42/70): libsss_idmap-1.16.0-5.fc27.x86_64.rpm  5.8 MB/s |  87 kB     00:00
+(43/70): libsss_nss_idmap-1.16.0-5.fc27.x86_64.  10 MB/s |  94 kB     00:00
+(44/70): libsolv-0.6.30-2.fc27.x86_64.rpm        12 MB/s | 368 kB     00:00
+(45/70): libzstd-1.3.3-1.fc27.x86_64.rpm         16 MB/s | 207 kB     00:00
+(46/70): lua-libs-5.3.4-7.fc27.x86_64.rpm       7.8 MB/s | 116 kB     00:00
+(47/70): nettle-3.4-1.fc27.x86_64.rpm            16 MB/s | 292 kB     00:00
+(48/70): nss-softokn-3.34.0-1.0.fc27.x86_64.rpm  20 MB/s | 391 kB     00:00
+(49/70): nss-util-3.34.0-1.0.fc27.x86_64.rpm    7.9 MB/s |  89 kB     00:00
+(50/70): nss-3.34.0-1.0.fc27.x86_64.rpm          26 MB/s | 856 kB     00:00
+(51/70): nss-softokn-freebl-3.34.0-1.0.fc27.x86  14 MB/s | 235 kB     00:00
+(52/70): nss-sysinit-3.34.0-1.0.fc27.x86_64.rpm 5.2 MB/s |  63 kB     00:00
+(53/70): nss-tools-3.34.0-1.0.fc27.x86_64.rpm    17 MB/s | 519 kB     00:00
+(54/70): nss-pem-1.0.3-6.fc27.x86_64.rpm        5.6 MB/s |  77 kB     00:00
+(55/70): openldap-2.4.45-4.fc27.x86_64.rpm       20 MB/s | 360 kB     00:00
+(56/70): p11-kit-trust-0.23.9-2.fc27.x86_64.rpm  11 MB/s | 134 kB     00:00
+(57/70): p11-kit-0.23.9-2.fc27.x86_64.rpm        13 MB/s | 263 kB     00:00
+(58/70): pcre-8.41-3.fc27.x86_64.rpm             13 MB/s | 204 kB     00:00
+(59/70): publicsuffix-list-dafsa-20171228-1.fc2  11 MB/s |  46 kB     00:00
+(60/70): pcre2-10.30-4.fc27.x86_64.rpm           15 MB/s | 234 kB     00:00
+(61/70): python3-3.6.3-2.fc27.x86_64.rpm        8.2 MB/s |  68 kB     00:00
+(62/70): python3-setuptools-37.0.0-1.fc27.noarc  17 MB/s | 604 kB     00:00
+(63/70): python3-pip-9.0.1-14.fc27.noarch.rpm    29 MB/s | 1.8 MB     00:00
+(64/70): sssd-client-1.16.0-5.fc27.x86_64.rpm   5.1 MB/s | 143 kB     00:00
+(65/70): systemd-pam-234-9.fc27.x86_64.rpm      6.6 MB/s | 180 kB     00:00
+(66/70): python3-libs-3.6.3-2.fc27.x86_64.rpm    43 MB/s | 8.6 MB     00:00
+(67/70): systemd-libs-234-9.fc27.x86_64.rpm     4.5 MB/s | 465 kB     00:00
+(68/70): systemd-234-9.fc27.x86_64.rpm           22 MB/s | 3.5 MB     00:00
+(69/70): tzdata-2017c-1.fc27.noarch.rpm          14 MB/s | 444 kB     00:00
+(70/70): vim-minimal-8.0.1427-1.fc27.x86_64.rpm  17 MB/s | 537 kB     00:00
 --------------------------------------------------------------------------------
-Total                                            31 MB/s |  46 MB     00:01     
+Total                                            31 MB/s |  46 MB     00:01
 Running transaction check
 Transaction check succeeded.
 Running transaction test
 Transaction test succeeded.
 Running transaction
-  Running scriptlet: systemd                                                1/1 
-  Preparing        :                                                        1/1 
-  Upgrading        : tzdata-2017c-1.fc27.noarch                           1/140 
-  Upgrading        : glibc-langpack-en-2.26-21.fc27.x86_64                2/140 
-  Upgrading        : glibc-common-2.26-21.fc27.x86_64                     3/140 
-  Running scriptlet: glibc-2.26-21.fc27.x86_64                            4/140 
-  Upgrading        : glibc-2.26-21.fc27.x86_64                            4/140 
-  Running scriptlet: glibc-2.26-21.fc27.x86_64                            4/140 
-  Upgrading        : bash-4.4.12-13.fc27.x86_64                           5/140 
-  Running scriptlet: bash-4.4.12-13.fc27.x86_64                           5/140 
-  Upgrading        : libsepol-2.7-2.fc27.x86_64                           6/140 
-  Running scriptlet: libsepol-2.7-2.fc27.x86_64                           6/140 
-  Upgrading        : pcre2-10.30-4.fc27.x86_64                            7/140 
-  Running scriptlet: pcre2-10.30-4.fc27.x86_64                            7/140 
-  Upgrading        : libselinux-2.7-3.fc27.x86_64                         8/140 
-  Running scriptlet: libselinux-2.7-3.fc27.x86_64                         8/140 
-  Upgrading        : nss-util-3.34.0-1.0.fc27.x86_64                      9/140 
-  Running scriptlet: nss-util-3.34.0-1.0.fc27.x86_64                      9/140 
-  Upgrading        : info-6.4-6.fc27.x86_64                              10/140 
-  Running scriptlet: info-6.4-6.fc27.x86_64                              10/140 
-  Upgrading        : libgcrypt-1.8.1-3.fc27.x86_64                       11/140 
-  Running scriptlet: libgcrypt-1.8.1-3.fc27.x86_64                       11/140 
-  Upgrading        : systemd-libs-234-9.fc27.x86_64                      12/140 
-  Running scriptlet: systemd-libs-234-9.fc27.x86_64                      12/140 
-  Upgrading        : audit-libs-2.8.2-1.fc27.x86_64                      13/140 
-  Running scriptlet: audit-libs-2.8.2-1.fc27.x86_64                      13/140 
-  Upgrading        : p11-kit-0.23.9-2.fc27.x86_64                        14/140 
-  Running scriptlet: p11-kit-0.23.9-2.fc27.x86_64                        14/140 
-  Upgrading        : p11-kit-trust-0.23.9-2.fc27.x86_64                  15/140 
-  Running scriptlet: p11-kit-trust-0.23.9-2.fc27.x86_64                  15/140 
-  Upgrading        : nss-softokn-freebl-3.34.0-1.0.fc27.x86_64           16/140 
-  Upgrading        : libcrypt-nss-2.26-21.fc27.x86_64                    17/140 
-  Running scriptlet: libcrypt-nss-2.26-21.fc27.x86_64                    17/140 
-  Upgrading        : nss-softokn-3.34.0-1.0.fc27.x86_64                  18/140 
-  Running scriptlet: nss-softokn-3.34.0-1.0.fc27.x86_64                  18/140 
-  Upgrading        : expat-2.2.5-1.fc27.x86_64                           19/140 
-  Running scriptlet: expat-2.2.5-1.fc27.x86_64                           19/140 
-  Upgrading        : libdb-5.3.28-27.fc27.x86_64                         20/140 
-  Running scriptlet: libdb-5.3.28-27.fc27.x86_64                         20/140 
-  Upgrading        : libsolv-0.6.30-2.fc27.x86_64                        21/140 
-  Running scriptlet: libsolv-0.6.30-2.fc27.x86_64                        21/140 
-  Running scriptlet: ca-certificates-2017.2.20-1.0.fc27.noarch           22/140 
-  Upgrading        : ca-certificates-2017.2.20-1.0.fc27.noarch           22/140 
-  Running scriptlet: ca-certificates-2017.2.20-1.0.fc27.noarch           22/140 
-  Upgrading        : dbus-libs-1:1.12.0-1.fc27.x86_64                    23/140 
-  Running scriptlet: dbus-libs-1:1.12.0-1.fc27.x86_64                    23/140 
-  Upgrading        : coreutils-common-8.27-17.fc27.x86_64                24/140 
-  Running scriptlet: coreutils-common-8.27-17.fc27.x86_64                24/140 
-  Upgrading        : openssl-libs-1:1.1.0g-1.fc27.x86_64                 25/140 
-  Running scriptlet: openssl-libs-1:1.1.0g-1.fc27.x86_64                 25/140 
-  Upgrading        : coreutils-8.27-17.fc27.x86_64                       26/140 
-  Upgrading        : crypto-policies-20170816-2.gite0a4066.fc27.noarc    27/140 
-  Running scriptlet: crypto-policies-20170816-2.gite0a4066.fc27.noarc    27/140 
-  Upgrading        : systemd-pam-234-9.fc27.x86_64                       28/140 
-  Running scriptlet: systemd-234-9.fc27.x86_64                           29/140 
-  Upgrading        : systemd-234-9.fc27.x86_64                           29/140 
-  Running scriptlet: systemd-234-9.fc27.x86_64                           29/140 
-  Running scriptlet: dbus-1:1.12.0-1.fc27.x86_64                         30/140 
-  Upgrading        : dbus-1:1.12.0-1.fc27.x86_64                         30/140 
-  Running scriptlet: dbus-1:1.12.0-1.fc27.x86_64                         30/140 
-  Upgrading        : device-mapper-libs-1.02.144-1.fc27.x86_64           31/140 
-  Running scriptlet: device-mapper-libs-1.02.144-1.fc27.x86_64           31/140 
-  Upgrading        : device-mapper-1.02.144-1.fc27.x86_64                32/140 
-  Upgrading        : compat-openssl10-1:1.0.2m-1.fc27.x86_64             33/140 
-  Running scriptlet: compat-openssl10-1:1.0.2m-1.fc27.x86_64             33/140 
-  Upgrading        : nss-pem-1.0.3-6.fc27.x86_64                         34/140 
-  Upgrading        : nss-3.34.0-1.0.fc27.x86_64                          35/140 
-  Running scriptlet: nss-3.34.0-1.0.fc27.x86_64                          35/140 
-  Upgrading        : nss-sysinit-3.34.0-1.0.fc27.x86_64                  36/140 
-  Upgrading        : openldap-2.4.45-4.fc27.x86_64                       37/140 
-  Running scriptlet: openldap-2.4.45-4.fc27.x86_64                       37/140 
-  Upgrading        : gawk-4.1.4-8.fc27.x86_64                            38/140 
-  Running scriptlet: gawk-4.1.4-8.fc27.x86_64                            38/140 
+  Running scriptlet: systemd                                                1/1
+  Preparing        :                                                        1/1
+  Upgrading        : tzdata-2017c-1.fc27.noarch                           1/140
+  Upgrading        : glibc-langpack-en-2.26-21.fc27.x86_64                2/140
+  Upgrading        : glibc-common-2.26-21.fc27.x86_64                     3/140
+  Running scriptlet: glibc-2.26-21.fc27.x86_64                            4/140
+  Upgrading        : glibc-2.26-21.fc27.x86_64                            4/140
+  Running scriptlet: glibc-2.26-21.fc27.x86_64                            4/140
+  Upgrading        : bash-4.4.12-13.fc27.x86_64                           5/140
+  Running scriptlet: bash-4.4.12-13.fc27.x86_64                           5/140
+  Upgrading        : libsepol-2.7-2.fc27.x86_64                           6/140
+  Running scriptlet: libsepol-2.7-2.fc27.x86_64                           6/140
+  Upgrading        : pcre2-10.30-4.fc27.x86_64                            7/140
+  Running scriptlet: pcre2-10.30-4.fc27.x86_64                            7/140
+  Upgrading        : libselinux-2.7-3.fc27.x86_64                         8/140
+  Running scriptlet: libselinux-2.7-3.fc27.x86_64                         8/140
+  Upgrading        : nss-util-3.34.0-1.0.fc27.x86_64                      9/140
+  Running scriptlet: nss-util-3.34.0-1.0.fc27.x86_64                      9/140
+  Upgrading        : info-6.4-6.fc27.x86_64                              10/140
+  Running scriptlet: info-6.4-6.fc27.x86_64                              10/140
+  Upgrading        : libgcrypt-1.8.1-3.fc27.x86_64                       11/140
+  Running scriptlet: libgcrypt-1.8.1-3.fc27.x86_64                       11/140
+  Upgrading        : systemd-libs-234-9.fc27.x86_64                      12/140
+  Running scriptlet: systemd-libs-234-9.fc27.x86_64                      12/140
+  Upgrading        : audit-libs-2.8.2-1.fc27.x86_64                      13/140
+  Running scriptlet: audit-libs-2.8.2-1.fc27.x86_64                      13/140
+  Upgrading        : p11-kit-0.23.9-2.fc27.x86_64                        14/140
+  Running scriptlet: p11-kit-0.23.9-2.fc27.x86_64                        14/140
+  Upgrading        : p11-kit-trust-0.23.9-2.fc27.x86_64                  15/140
+  Running scriptlet: p11-kit-trust-0.23.9-2.fc27.x86_64                  15/140
+  Upgrading        : nss-softokn-freebl-3.34.0-1.0.fc27.x86_64           16/140
+  Upgrading        : libcrypt-nss-2.26-21.fc27.x86_64                    17/140
+  Running scriptlet: libcrypt-nss-2.26-21.fc27.x86_64                    17/140
+  Upgrading        : nss-softokn-3.34.0-1.0.fc27.x86_64                  18/140
+  Running scriptlet: nss-softokn-3.34.0-1.0.fc27.x86_64                  18/140
+  Upgrading        : expat-2.2.5-1.fc27.x86_64                           19/140
+  Running scriptlet: expat-2.2.5-1.fc27.x86_64                           19/140
+  Upgrading        : libdb-5.3.28-27.fc27.x86_64                         20/140
+  Running scriptlet: libdb-5.3.28-27.fc27.x86_64                         20/140
+  Upgrading        : libsolv-0.6.30-2.fc27.x86_64                        21/140
+  Running scriptlet: libsolv-0.6.30-2.fc27.x86_64                        21/140
+  Running scriptlet: ca-certificates-2017.2.20-1.0.fc27.noarch           22/140
+  Upgrading        : ca-certificates-2017.2.20-1.0.fc27.noarch           22/140
+  Running scriptlet: ca-certificates-2017.2.20-1.0.fc27.noarch           22/140
+  Upgrading        : dbus-libs-1:1.12.0-1.fc27.x86_64                    23/140
+  Running scriptlet: dbus-libs-1:1.12.0-1.fc27.x86_64                    23/140
+  Upgrading        : coreutils-common-8.27-17.fc27.x86_64                24/140
+  Running scriptlet: coreutils-common-8.27-17.fc27.x86_64                24/140
+  Upgrading        : openssl-libs-1:1.1.0g-1.fc27.x86_64                 25/140
+  Running scriptlet: openssl-libs-1:1.1.0g-1.fc27.x86_64                 25/140
+  Upgrading        : coreutils-8.27-17.fc27.x86_64                       26/140
+  Upgrading        : crypto-policies-20170816-2.gite0a4066.fc27.noarc    27/140
+  Running scriptlet: crypto-policies-20170816-2.gite0a4066.fc27.noarc    27/140
+  Upgrading        : systemd-pam-234-9.fc27.x86_64                       28/140
+  Running scriptlet: systemd-234-9.fc27.x86_64                           29/140
+  Upgrading        : systemd-234-9.fc27.x86_64                           29/140
+  Running scriptlet: systemd-234-9.fc27.x86_64                           29/140
+  Running scriptlet: dbus-1:1.12.0-1.fc27.x86_64                         30/140
+  Upgrading        : dbus-1:1.12.0-1.fc27.x86_64                         30/140
+  Running scriptlet: dbus-1:1.12.0-1.fc27.x86_64                         30/140
+  Upgrading        : device-mapper-libs-1.02.144-1.fc27.x86_64           31/140
+  Running scriptlet: device-mapper-libs-1.02.144-1.fc27.x86_64           31/140
+  Upgrading        : device-mapper-1.02.144-1.fc27.x86_64                32/140
+  Upgrading        : compat-openssl10-1:1.0.2m-1.fc27.x86_64             33/140
+  Running scriptlet: compat-openssl10-1:1.0.2m-1.fc27.x86_64             33/140
+  Upgrading        : nss-pem-1.0.3-6.fc27.x86_64                         34/140
+  Upgrading        : nss-3.34.0-1.0.fc27.x86_64                          35/140
+  Running scriptlet: nss-3.34.0-1.0.fc27.x86_64                          35/140
+  Upgrading        : nss-sysinit-3.34.0-1.0.fc27.x86_64                  36/140
+  Upgrading        : openldap-2.4.45-4.fc27.x86_64                       37/140
+  Running scriptlet: openldap-2.4.45-4.fc27.x86_64                       37/140
+  Upgrading        : gawk-4.1.4-8.fc27.x86_64                            38/140
+  Running scriptlet: gawk-4.1.4-8.fc27.x86_64                            38/140
 install-info: No such file or directory for /usr/share/info/gawk.info
-  Upgrading        : krb5-libs-1.15.2-4.fc27.x86_64                      39/140 
-  Running scriptlet: krb5-libs-1.15.2-4.fc27.x86_64                      39/140 
-  Upgrading        : libcurl-7.55.1-8.fc27.x86_64                        40/140 
-  Running scriptlet: libcurl-7.55.1-8.fc27.x86_64                        40/140 
-  Upgrading        : nettle-3.4-1.fc27.x86_64                            41/140 
-  Running scriptlet: nettle-3.4-1.fc27.x86_64                            41/140 
+  Upgrading        : krb5-libs-1.15.2-4.fc27.x86_64                      39/140
+  Running scriptlet: krb5-libs-1.15.2-4.fc27.x86_64                      39/140
+  Upgrading        : libcurl-7.55.1-8.fc27.x86_64                        40/140
+  Running scriptlet: libcurl-7.55.1-8.fc27.x86_64                        40/140
+  Upgrading        : nettle-3.4-1.fc27.x86_64                            41/140
+  Running scriptlet: nettle-3.4-1.fc27.x86_64                            41/140
 install-info: No such file or directory for /usr/share/info/nettle.info
-  Upgrading        : gnutls-3.5.16-4.fc27.x86_64                         42/140 
-  Running scriptlet: gnutls-3.5.16-4.fc27.x86_64                         42/140 
-  Upgrading        : gnupg2-2.2.3-1.fc27.x86_64                          43/140 
-  Running scriptlet: gnupg2-2.2.3-1.fc27.x86_64                          43/140 
+  Upgrading        : gnutls-3.5.16-4.fc27.x86_64                         42/140
+  Running scriptlet: gnutls-3.5.16-4.fc27.x86_64                         42/140
+  Upgrading        : gnupg2-2.2.3-1.fc27.x86_64                          43/140
+  Running scriptlet: gnupg2-2.2.3-1.fc27.x86_64                          43/140
 install-info: No such file or directory for /usr/share/info/gnupg.info
-  Upgrading        : gdbm-1.14-1.fc27.x86_64                             44/140 
-  Running scriptlet: gdbm-1.14-1.fc27.x86_64                             44/140 
-  Upgrading        : python3-pip-9.0.1-14.fc27.noarch                    45/140 
-  Upgrading        : python3-setuptools-37.0.0-1.fc27.noarch             46/140 
-  Upgrading        : python3-3.6.3-2.fc27.x86_64                         47/140 
-  Running scriptlet: python3-3.6.3-2.fc27.x86_64                         47/140 
-  Upgrading        : python3-libs-3.6.3-2.fc27.x86_64                    48/140 
-  Running scriptlet: python3-libs-3.6.3-2.fc27.x86_64                    48/140 
-  Upgrading        : libsss_idmap-1.16.0-5.fc27.x86_64                   49/140 
-  Running scriptlet: libsss_idmap-1.16.0-5.fc27.x86_64                   49/140 
-  Upgrading        : libsss_nss_idmap-1.16.0-5.fc27.x86_64               50/140 
-  Running scriptlet: libsss_nss_idmap-1.16.0-5.fc27.x86_64               50/140 
-  Upgrading        : pcre-8.41-3.fc27.x86_64                             51/140 
-  Running scriptlet: pcre-8.41-3.fc27.x86_64                             51/140 
-  Upgrading        : glib2-2.54.2-1.fc27.x86_64                          52/140 
-  Running scriptlet: glib2-2.54.2-1.fc27.x86_64                          52/140 
-  Upgrading        : libdnf-0.11.1-1.fc27.x86_64                         53/140 
-  Running scriptlet: libdnf-0.11.1-1.fc27.x86_64                         53/140 
-  Upgrading        : python3-hawkey-0.11.1-1.fc27.x86_64                 54/140 
-  Upgrading        : libreport-filesystem-2.9.3-1.fc27.x86_64            55/140 
-  Upgrading        : dnf-conf-2.7.5-2.fc27.noarch                        56/140 
-  Upgrading        : python3-dnf-2.7.5-2.fc27.noarch                     57/140 
-  Upgrading        : dnf-2.7.5-2.fc27.noarch                             58/140 
-  Running scriptlet: dnf-2.7.5-2.fc27.noarch                             58/140 
-  Upgrading        : dnf-yum-2.7.5-2.fc27.noarch                         59/140 
-  Upgrading        : sssd-client-1.16.0-5.fc27.x86_64                    60/140 
-  Running scriptlet: sssd-client-1.16.0-5.fc27.x86_64                    60/140 
-  Upgrading        : gnupg2-smime-2.2.3-1.fc27.x86_64                    61/140 
-  Upgrading        : curl-7.55.1-8.fc27.x86_64                           62/140 
-  Upgrading        : nss-tools-3.34.0-1.0.fc27.x86_64                    63/140 
-  Upgrading        : ima-evm-utils-1.0-2.fc27.x86_64                     64/140 
-  Upgrading        : libdb-utils-5.3.28-27.fc27.x86_64                   65/140 
-  Upgrading        : libsemanage-2.7-2.fc27.x86_64                       66/140 
-  Running scriptlet: libsemanage-2.7-2.fc27.x86_64                       66/140 
-  Upgrading        : vim-minimal-2:8.0.1427-1.fc27.x86_64                67/140 
-  Upgrading        : libzstd-1.3.3-1.fc27.x86_64                         68/140 
-  Running scriptlet: libzstd-1.3.3-1.fc27.x86_64                         68/140 
-  Upgrading        : lua-libs-5.3.4-7.fc27.x86_64                        69/140 
-  Upgrading        : publicsuffix-list-dafsa-20171228-1.fc27.noarch      70/140 
-  Cleanup          : nss-tools-3.33.0-1.0.fc27.x86_64                    71/140 
-  Cleanup          : device-mapper-1.02.142-4.fc27.x86_64                72/140 
-  Cleanup          : device-mapper-libs-1.02.142-4.fc27.x86_64           73/140 
-  Running scriptlet: device-mapper-libs-1.02.142-4.fc27.x86_64           73/140 
-  Running scriptlet: sssd-client-1.15.3-5.fc27.x86_64                    74/140 
-  Cleanup          : sssd-client-1.15.3-5.fc27.x86_64                    74/140 
-  Running scriptlet: sssd-client-1.15.3-5.fc27.x86_64                    74/140 
-  Cleanup          : libsemanage-2.7-1.fc27.x86_64                       75/140 
-  Running scriptlet: libsemanage-2.7-1.fc27.x86_64                       75/140 
-  Cleanup          : curl-7.55.1-5.fc27.x86_64                           76/140 
-  Cleanup          : dnf-yum-2.7.3-1.fc27.noarch                         77/140 
-  Cleanup          : libcurl-7.55.1-5.fc27.x86_64                        78/140 
-  Running scriptlet: libcurl-7.55.1-5.fc27.x86_64                        78/140 
-  Cleanup          : krb5-libs-1.15.2-2.fc27.x86_64                      79/140 
-  Running scriptlet: krb5-libs-1.15.2-2.fc27.x86_64                      79/140 
-  Running scriptlet: gawk-4.1.4-7.fc27.x86_64                            80/140 
-  Cleanup          : gawk-4.1.4-7.fc27.x86_64                            80/140 
-  Cleanup          : gnupg2-smime-2.2.0-1.fc27.x86_64                    81/140 
-  Running scriptlet: gnupg2-2.2.0-1.fc27.x86_64                          82/140 
-  Cleanup          : gnupg2-2.2.0-1.fc27.x86_64                          82/140 
-  Cleanup          : openldap-2.4.45-3.fc27.x86_64                       83/140 
-  Running scriptlet: openldap-2.4.45-3.fc27.x86_64                       83/140 
-  Cleanup          : nss-3.33.0-1.0.fc27.x86_64                          84/140 
-  Running scriptlet: nss-3.33.0-1.0.fc27.x86_64                          84/140 
-  Cleanup          : nss-softokn-3.33.0-1.0.fc27.x86_64                  85/140 
-  Running scriptlet: nss-softokn-3.33.0-1.0.fc27.x86_64                  85/140 
-  Cleanup          : gnutls-3.5.15-1.fc27.x86_64                         86/140 
-  Running scriptlet: gnutls-3.5.15-1.fc27.x86_64                         86/140 
-  Cleanup          : nss-sysinit-3.33.0-1.0.fc27.x86_64                  87/140 
-  Running scriptlet: nettle-3.3-5.fc27.x86_64                            88/140 
-  Cleanup          : nettle-3.3-5.fc27.x86_64                            88/140 
-  Running scriptlet: nettle-3.3-5.fc27.x86_64                            88/140 
-  Cleanup          : lua-libs-5.3.4-5.fc27.x86_64                        89/140 
-  Cleanup          : nss-pem-1.0.3-5.fc27.x86_64                         90/140 
-  Cleanup          : nss-util-3.33.0-1.0.fc27.x86_64                     91/140 
-  Running scriptlet: nss-util-3.33.0-1.0.fc27.x86_64                     91/140 
-  Cleanup          : libsss_idmap-1.15.3-5.fc27.x86_64                   92/140 
-  Running scriptlet: libsss_idmap-1.15.3-5.fc27.x86_64                   92/140 
-  Cleanup          : libdb-utils-5.3.28-26.fc27.x86_64                   93/140 
-  Cleanup          : ima-evm-utils-1.0-1.fc27.x86_64                     94/140 
-  Cleanup          : compat-openssl10-1:1.0.2j-9.fc27.x86_64             95/140 
-  Running scriptlet: compat-openssl10-1:1.0.2j-9.fc27.x86_64             95/140 
-  Cleanup          : vim-minimal-2:8.0.1176-1.fc27.x86_64                96/140 
-  Cleanup          : libsss_nss_idmap-1.15.3-5.fc27.x86_64               97/140 
-  Running scriptlet: libsss_nss_idmap-1.15.3-5.fc27.x86_64               97/140 
-  Cleanup          : libzstd-1.3.1-1.fc27.x86_64                         98/140 
-  Running scriptlet: libzstd-1.3.1-1.fc27.x86_64                         98/140 
-  Running scriptlet: dnf-2.7.3-1.fc27.noarch                             99/140 
-  Cleanup          : dnf-2.7.3-1.fc27.noarch                             99/140 
+  Upgrading        : gdbm-1.14-1.fc27.x86_64                             44/140
+  Running scriptlet: gdbm-1.14-1.fc27.x86_64                             44/140
+  Upgrading        : python3-pip-9.0.1-14.fc27.noarch                    45/140
+  Upgrading        : python3-setuptools-37.0.0-1.fc27.noarch             46/140
+  Upgrading        : python3-3.6.3-2.fc27.x86_64                         47/140
+  Running scriptlet: python3-3.6.3-2.fc27.x86_64                         47/140
+  Upgrading        : python3-libs-3.6.3-2.fc27.x86_64                    48/140
+  Running scriptlet: python3-libs-3.6.3-2.fc27.x86_64                    48/140
+  Upgrading        : libsss_idmap-1.16.0-5.fc27.x86_64                   49/140
+  Running scriptlet: libsss_idmap-1.16.0-5.fc27.x86_64                   49/140
+  Upgrading        : libsss_nss_idmap-1.16.0-5.fc27.x86_64               50/140
+  Running scriptlet: libsss_nss_idmap-1.16.0-5.fc27.x86_64               50/140
+  Upgrading        : pcre-8.41-3.fc27.x86_64                             51/140
+  Running scriptlet: pcre-8.41-3.fc27.x86_64                             51/140
+  Upgrading        : glib2-2.54.2-1.fc27.x86_64                          52/140
+  Running scriptlet: glib2-2.54.2-1.fc27.x86_64                          52/140
+  Upgrading        : libdnf-0.11.1-1.fc27.x86_64                         53/140
+  Running scriptlet: libdnf-0.11.1-1.fc27.x86_64                         53/140
+  Upgrading        : python3-hawkey-0.11.1-1.fc27.x86_64                 54/140
+  Upgrading        : libreport-filesystem-2.9.3-1.fc27.x86_64            55/140
+  Upgrading        : dnf-conf-2.7.5-2.fc27.noarch                        56/140
+  Upgrading        : python3-dnf-2.7.5-2.fc27.noarch                     57/140
+  Upgrading        : dnf-2.7.5-2.fc27.noarch                             58/140
+  Running scriptlet: dnf-2.7.5-2.fc27.noarch                             58/140
+  Upgrading        : dnf-yum-2.7.5-2.fc27.noarch                         59/140
+  Upgrading        : sssd-client-1.16.0-5.fc27.x86_64                    60/140
+  Running scriptlet: sssd-client-1.16.0-5.fc27.x86_64                    60/140
+  Upgrading        : gnupg2-smime-2.2.3-1.fc27.x86_64                    61/140
+  Upgrading        : curl-7.55.1-8.fc27.x86_64                           62/140
+  Upgrading        : nss-tools-3.34.0-1.0.fc27.x86_64                    63/140
+  Upgrading        : ima-evm-utils-1.0-2.fc27.x86_64                     64/140
+  Upgrading        : libdb-utils-5.3.28-27.fc27.x86_64                   65/140
+  Upgrading        : libsemanage-2.7-2.fc27.x86_64                       66/140
+  Running scriptlet: libsemanage-2.7-2.fc27.x86_64                       66/140
+  Upgrading        : vim-minimal-2:8.0.1427-1.fc27.x86_64                67/140
+  Upgrading        : libzstd-1.3.3-1.fc27.x86_64                         68/140
+  Running scriptlet: libzstd-1.3.3-1.fc27.x86_64                         68/140
+  Upgrading        : lua-libs-5.3.4-7.fc27.x86_64                        69/140
+  Upgrading        : publicsuffix-list-dafsa-20171228-1.fc27.noarch      70/140
+  Cleanup          : nss-tools-3.33.0-1.0.fc27.x86_64                    71/140
+  Cleanup          : device-mapper-1.02.142-4.fc27.x86_64                72/140
+  Cleanup          : device-mapper-libs-1.02.142-4.fc27.x86_64           73/140
+  Running scriptlet: device-mapper-libs-1.02.142-4.fc27.x86_64           73/140
+  Running scriptlet: sssd-client-1.15.3-5.fc27.x86_64                    74/140
+  Cleanup          : sssd-client-1.15.3-5.fc27.x86_64                    74/140
+  Running scriptlet: sssd-client-1.15.3-5.fc27.x86_64                    74/140
+  Cleanup          : libsemanage-2.7-1.fc27.x86_64                       75/140
+  Running scriptlet: libsemanage-2.7-1.fc27.x86_64                       75/140
+  Cleanup          : curl-7.55.1-5.fc27.x86_64                           76/140
+  Cleanup          : dnf-yum-2.7.3-1.fc27.noarch                         77/140
+  Cleanup          : libcurl-7.55.1-5.fc27.x86_64                        78/140
+  Running scriptlet: libcurl-7.55.1-5.fc27.x86_64                        78/140
+  Cleanup          : krb5-libs-1.15.2-2.fc27.x86_64                      79/140
+  Running scriptlet: krb5-libs-1.15.2-2.fc27.x86_64                      79/140
+  Running scriptlet: gawk-4.1.4-7.fc27.x86_64                            80/140
+  Cleanup          : gawk-4.1.4-7.fc27.x86_64                            80/140
+  Cleanup          : gnupg2-smime-2.2.0-1.fc27.x86_64                    81/140
+  Running scriptlet: gnupg2-2.2.0-1.fc27.x86_64                          82/140
+  Cleanup          : gnupg2-2.2.0-1.fc27.x86_64                          82/140
+  Cleanup          : openldap-2.4.45-3.fc27.x86_64                       83/140
+  Running scriptlet: openldap-2.4.45-3.fc27.x86_64                       83/140
+  Cleanup          : nss-3.33.0-1.0.fc27.x86_64                          84/140
+  Running scriptlet: nss-3.33.0-1.0.fc27.x86_64                          84/140
+  Cleanup          : nss-softokn-3.33.0-1.0.fc27.x86_64                  85/140
+  Running scriptlet: nss-softokn-3.33.0-1.0.fc27.x86_64                  85/140
+  Cleanup          : gnutls-3.5.15-1.fc27.x86_64                         86/140
+  Running scriptlet: gnutls-3.5.15-1.fc27.x86_64                         86/140
+  Cleanup          : nss-sysinit-3.33.0-1.0.fc27.x86_64                  87/140
+  Running scriptlet: nettle-3.3-5.fc27.x86_64                            88/140
+  Cleanup          : nettle-3.3-5.fc27.x86_64                            88/140
+  Running scriptlet: nettle-3.3-5.fc27.x86_64                            88/140
+  Cleanup          : lua-libs-5.3.4-5.fc27.x86_64                        89/140
+  Cleanup          : nss-pem-1.0.3-5.fc27.x86_64                         90/140
+  Cleanup          : nss-util-3.33.0-1.0.fc27.x86_64                     91/140
+  Running scriptlet: nss-util-3.33.0-1.0.fc27.x86_64                     91/140
+  Cleanup          : libsss_idmap-1.15.3-5.fc27.x86_64                   92/140
+  Running scriptlet: libsss_idmap-1.15.3-5.fc27.x86_64                   92/140
+  Cleanup          : libdb-utils-5.3.28-26.fc27.x86_64                   93/140
+  Cleanup          : ima-evm-utils-1.0-1.fc27.x86_64                     94/140
+  Cleanup          : compat-openssl10-1:1.0.2j-9.fc27.x86_64             95/140
+  Running scriptlet: compat-openssl10-1:1.0.2j-9.fc27.x86_64             95/140
+  Cleanup          : vim-minimal-2:8.0.1176-1.fc27.x86_64                96/140
+  Cleanup          : libsss_nss_idmap-1.15.3-5.fc27.x86_64               97/140
+  Running scriptlet: libsss_nss_idmap-1.15.3-5.fc27.x86_64               97/140
+  Cleanup          : libzstd-1.3.1-1.fc27.x86_64                         98/140
+  Running scriptlet: libzstd-1.3.1-1.fc27.x86_64                         98/140
+  Running scriptlet: dnf-2.7.3-1.fc27.noarch                             99/140
+  Cleanup          : dnf-2.7.3-1.fc27.noarch                             99/140
   Running scriptlet: dnf-2.7.3-1.fc27.noarch                             99/140[91mFailed to connect to bus: No such file or directory
-[0m 
-  Cleanup          : python3-dnf-2.7.3-1.fc27.noarch                    100/140 
-  Cleanup          : dnf-conf-2.7.3-1.fc27.noarch                       101/140 
-  Cleanup          : libreport-filesystem-2.9.2-1.fc27.x86_64           102/140 
-  Cleanup          : publicsuffix-list-dafsa-20170828-1.fc27.noarch     103/140 
-  Running scriptlet: dbus-1:1.11.20-1.fc27.x86_64                       104/140 
-  Cleanup          : dbus-1:1.11.20-1.fc27.x86_64                       104/140 
-  Running scriptlet: dbus-1:1.11.20-1.fc27.x86_64                       104/140 
-  Running scriptlet: systemd-234-8.fc27.x86_64                          105/140 
-  Cleanup          : systemd-234-8.fc27.x86_64                          105/140 
-  Running scriptlet: systemd-234-8.fc27.x86_64                          105/140 
-  Cleanup          : systemd-pam-234-8.fc27.x86_64                      106/140 
-  Cleanup          : dbus-libs-1:1.11.20-1.fc27.x86_64                  107/140 
-  Running scriptlet: dbus-libs-1:1.11.20-1.fc27.x86_64                  107/140 
-  Cleanup          : systemd-libs-234-8.fc27.x86_64                     108/140 
-  Running scriptlet: systemd-libs-234-8.fc27.x86_64                     108/140 
-  Cleanup          : python3-hawkey-0.11.0-1.fc27.x86_64                109/140 
-  Cleanup          : libdnf-0.11.0-1.fc27.x86_64                        110/140 
-  Running scriptlet: libdnf-0.11.0-1.fc27.x86_64                        110/140 
-  Cleanup          : glib2-2.54.1-1.fc27.x86_64                         111/140 
-  Running scriptlet: glib2-2.54.1-1.fc27.x86_64                         111/140 
-  Cleanup          : python3-pip-9.0.1-11.fc27.noarch                   112/140 
-  Cleanup          : python3-setuptools-36.2.0-7.fc27.noarch            113/140 
-  Cleanup          : python3-3.6.2-13.fc27.x86_64                       114/140 
-  Running scriptlet: python3-3.6.2-13.fc27.x86_64                       114/140 
-  Cleanup          : python3-libs-3.6.2-13.fc27.x86_64                  115/140 
-  Running scriptlet: python3-libs-3.6.2-13.fc27.x86_64                  115/140 
-  Cleanup          : openssl-libs-1:1.1.0f-9.fc27.x86_64                116/140 
-  Running scriptlet: openssl-libs-1:1.1.0f-9.fc27.x86_64                116/140 
-  Cleanup          : crypto-policies-20170816-1.git2618a6c.fc27.noarc   117/140 
-  Cleanup          : coreutils-8.27-16.fc27.x86_64                      118/140 
-  Cleanup          : libsolv-0.6.29-2.fc27.x86_64                       119/140 
-  Running scriptlet: libsolv-0.6.29-2.fc27.x86_64                       119/140 
-  Cleanup          : libdb-5.3.28-26.fc27.x86_64                        120/140 
-  Running scriptlet: libdb-5.3.28-26.fc27.x86_64                        120/140 
-  Cleanup          : libgcrypt-1.8.1-1.fc27.x86_64                      121/140 
-  Running scriptlet: libgcrypt-1.8.1-1.fc27.x86_64                      121/140 
-  Cleanup          : libcrypt-nss-2.26-15.fc27.x86_64                   122/140 
-  Running scriptlet: libcrypt-nss-2.26-15.fc27.x86_64                   122/140 
-  Cleanup          : nss-softokn-freebl-3.33.0-1.0.fc27.x86_64          123/140 
-  Cleanup          : gdbm-1.13-3.fc27.x86_64                            124/140 
-  Running scriptlet: gdbm-1.13-3.fc27.x86_64                            124/140 
-  Cleanup          : audit-libs-2.7.8-1.fc27.x86_64                     125/140 
-  Running scriptlet: audit-libs-2.7.8-1.fc27.x86_64                     125/140 
-  Cleanup          : expat-2.2.4-1.fc27.x86_64                          126/140 
-  Running scriptlet: expat-2.2.4-1.fc27.x86_64                          126/140 
-  Cleanup          : ca-certificates-2017.2.16-4.fc27.noarch            127/140 
-  Running scriptlet: coreutils-common-8.27-16.fc27.x86_64               128/140 
-  Cleanup          : coreutils-common-8.27-16.fc27.x86_64               128/140 
-  Cleanup          : p11-kit-trust-0.23.8-1.fc27.x86_64                 129/140 
-  Running scriptlet: p11-kit-trust-0.23.8-1.fc27.x86_64                 129/140 
-  Cleanup          : p11-kit-0.23.8-1.fc27.x86_64                       130/140 
-  Running scriptlet: p11-kit-0.23.8-1.fc27.x86_64                       130/140 
-  Running scriptlet: info-6.4-5.fc27.x86_64                             131/140 
-  Cleanup          : info-6.4-5.fc27.x86_64                             131/140 
-  Cleanup          : glibc-langpack-en-2.26-15.fc27.x86_64              132/140 
-  Cleanup          : glibc-common-2.26-15.fc27.x86_64                   133/140 
-  Cleanup          : libselinux-2.7-2.fc27.x86_64                       134/140 
-  Running scriptlet: libselinux-2.7-2.fc27.x86_64                       134/140 
-  Cleanup          : pcre2-10.30-1.fc27.x86_64                          135/140 
-  Running scriptlet: pcre2-10.30-1.fc27.x86_64                          135/140 
-  Cleanup          : pcre-8.41-1.fc27.2.x86_64                          136/140 
-  Running scriptlet: pcre-8.41-1.fc27.2.x86_64                          136/140 
-  Cleanup          : libsepol-2.7-1.fc27.x86_64                         137/140 
-  Running scriptlet: libsepol-2.7-1.fc27.x86_64                         137/140 
-  Cleanup          : bash-4.4.12-12.fc27.x86_64                         138/140 
-  Running scriptlet: bash-4.4.12-12.fc27.x86_64                         138/140 
-  Cleanup          : glibc-2.26-15.fc27.x86_64                          139/140 
-  Running scriptlet: glibc-2.26-15.fc27.x86_64                          139/140 
-  Cleanup          : tzdata-2017b-2.fc27.noarch                         140/140 
-  Running scriptlet: python3-3.6.3-2.fc27.x86_64                        140/140 
+[0m
+  Cleanup          : python3-dnf-2.7.3-1.fc27.noarch                    100/140
+  Cleanup          : dnf-conf-2.7.3-1.fc27.noarch                       101/140
+  Cleanup          : libreport-filesystem-2.9.2-1.fc27.x86_64           102/140
+  Cleanup          : publicsuffix-list-dafsa-20170828-1.fc27.noarch     103/140
+  Running scriptlet: dbus-1:1.11.20-1.fc27.x86_64                       104/140
+  Cleanup          : dbus-1:1.11.20-1.fc27.x86_64                       104/140
+  Running scriptlet: dbus-1:1.11.20-1.fc27.x86_64                       104/140
+  Running scriptlet: systemd-234-8.fc27.x86_64                          105/140
+  Cleanup          : systemd-234-8.fc27.x86_64                          105/140
+  Running scriptlet: systemd-234-8.fc27.x86_64                          105/140
+  Cleanup          : systemd-pam-234-8.fc27.x86_64                      106/140
+  Cleanup          : dbus-libs-1:1.11.20-1.fc27.x86_64                  107/140
+  Running scriptlet: dbus-libs-1:1.11.20-1.fc27.x86_64                  107/140
+  Cleanup          : systemd-libs-234-8.fc27.x86_64                     108/140
+  Running scriptlet: systemd-libs-234-8.fc27.x86_64                     108/140
+  Cleanup          : python3-hawkey-0.11.0-1.fc27.x86_64                109/140
+  Cleanup          : libdnf-0.11.0-1.fc27.x86_64                        110/140
+  Running scriptlet: libdnf-0.11.0-1.fc27.x86_64                        110/140
+  Cleanup          : glib2-2.54.1-1.fc27.x86_64                         111/140
+  Running scriptlet: glib2-2.54.1-1.fc27.x86_64                         111/140
+  Cleanup          : python3-pip-9.0.1-11.fc27.noarch                   112/140
+  Cleanup          : python3-setuptools-36.2.0-7.fc27.noarch            113/140
+  Cleanup          : python3-3.6.2-13.fc27.x86_64                       114/140
+  Running scriptlet: python3-3.6.2-13.fc27.x86_64                       114/140
+  Cleanup          : python3-libs-3.6.2-13.fc27.x86_64                  115/140
+  Running scriptlet: python3-libs-3.6.2-13.fc27.x86_64                  115/140
+  Cleanup          : openssl-libs-1:1.1.0f-9.fc27.x86_64                116/140
+  Running scriptlet: openssl-libs-1:1.1.0f-9.fc27.x86_64                116/140
+  Cleanup          : crypto-policies-20170816-1.git2618a6c.fc27.noarc   117/140
+  Cleanup          : coreutils-8.27-16.fc27.x86_64                      118/140
+  Cleanup          : libsolv-0.6.29-2.fc27.x86_64                       119/140
+  Running scriptlet: libsolv-0.6.29-2.fc27.x86_64                       119/140
+  Cleanup          : libdb-5.3.28-26.fc27.x86_64                        120/140
+  Running scriptlet: libdb-5.3.28-26.fc27.x86_64                        120/140
+  Cleanup          : libgcrypt-1.8.1-1.fc27.x86_64                      121/140
+  Running scriptlet: libgcrypt-1.8.1-1.fc27.x86_64                      121/140
+  Cleanup          : libcrypt-nss-2.26-15.fc27.x86_64                   122/140
+  Running scriptlet: libcrypt-nss-2.26-15.fc27.x86_64                   122/140
+  Cleanup          : nss-softokn-freebl-3.33.0-1.0.fc27.x86_64          123/140
+  Cleanup          : gdbm-1.13-3.fc27.x86_64                            124/140
+  Running scriptlet: gdbm-1.13-3.fc27.x86_64                            124/140
+  Cleanup          : audit-libs-2.7.8-1.fc27.x86_64                     125/140
+  Running scriptlet: audit-libs-2.7.8-1.fc27.x86_64                     125/140
+  Cleanup          : expat-2.2.4-1.fc27.x86_64                          126/140
+  Running scriptlet: expat-2.2.4-1.fc27.x86_64                          126/140
+  Cleanup          : ca-certificates-2017.2.16-4.fc27.noarch            127/140
+  Running scriptlet: coreutils-common-8.27-16.fc27.x86_64               128/140
+  Cleanup          : coreutils-common-8.27-16.fc27.x86_64               128/140
+  Cleanup          : p11-kit-trust-0.23.8-1.fc27.x86_64                 129/140
+  Running scriptlet: p11-kit-trust-0.23.8-1.fc27.x86_64                 129/140
+  Cleanup          : p11-kit-0.23.8-1.fc27.x86_64                       130/140
+  Running scriptlet: p11-kit-0.23.8-1.fc27.x86_64                       130/140
+  Running scriptlet: info-6.4-5.fc27.x86_64                             131/140
+  Cleanup          : info-6.4-5.fc27.x86_64                             131/140
+  Cleanup          : glibc-langpack-en-2.26-15.fc27.x86_64              132/140
+  Cleanup          : glibc-common-2.26-15.fc27.x86_64                   133/140
+  Cleanup          : libselinux-2.7-2.fc27.x86_64                       134/140
+  Running scriptlet: libselinux-2.7-2.fc27.x86_64                       134/140
+  Cleanup          : pcre2-10.30-1.fc27.x86_64                          135/140
+  Running scriptlet: pcre2-10.30-1.fc27.x86_64                          135/140
+  Cleanup          : pcre-8.41-1.fc27.2.x86_64                          136/140
+  Running scriptlet: pcre-8.41-1.fc27.2.x86_64                          136/140
+  Cleanup          : libsepol-2.7-1.fc27.x86_64                         137/140
+  Running scriptlet: libsepol-2.7-1.fc27.x86_64                         137/140
+  Cleanup          : bash-4.4.12-12.fc27.x86_64                         138/140
+  Running scriptlet: bash-4.4.12-12.fc27.x86_64                         138/140
+  Cleanup          : glibc-2.26-15.fc27.x86_64                          139/140
+  Running scriptlet: glibc-2.26-15.fc27.x86_64                          139/140
+  Cleanup          : tzdata-2017b-2.fc27.noarch                         140/140
+  Running scriptlet: python3-3.6.3-2.fc27.x86_64                        140/140
   Running scriptlet: systemd-234-9.fc27.x86_64                          140/140[91mFailed to connect to bus: No such file or directory
-[0m 
+[0m
   Running scriptlet: glib2-2.54.2-1.fc27.x86_64                         140/140[91mBDB1539 Build signature doesn't match environment
-[0m 
-  Verifying        : audit-libs-2.8.2-1.fc27.x86_64                       1/140 
-  Verifying        : bash-4.4.12-13.fc27.x86_64                           2/140 
-  Verifying        : ca-certificates-2017.2.20-1.0.fc27.noarch            3/140 
-  Verifying        : compat-openssl10-1:1.0.2m-1.fc27.x86_64              4/140 
-  Verifying        : coreutils-8.27-17.fc27.x86_64                        5/140 
-  Verifying        : coreutils-common-8.27-17.fc27.x86_64                 6/140 
-  Verifying        : crypto-policies-20170816-2.gite0a4066.fc27.noarc     7/140 
-  Verifying        : curl-7.55.1-8.fc27.x86_64                            8/140 
-  Verifying        : libcurl-7.55.1-8.fc27.x86_64                         9/140 
-  Verifying        : openssl-libs-1:1.1.0g-1.fc27.x86_64                 10/140 
-  Verifying        : dbus-1:1.12.0-1.fc27.x86_64                         11/140 
-  Verifying        : dbus-libs-1:1.12.0-1.fc27.x86_64                    12/140 
-  Verifying        : device-mapper-1.02.144-1.fc27.x86_64                13/140 
-  Verifying        : device-mapper-libs-1.02.144-1.fc27.x86_64           14/140 
-  Verifying        : dnf-2.7.5-2.fc27.noarch                             15/140 
-  Verifying        : python3-dnf-2.7.5-2.fc27.noarch                     16/140 
-  Verifying        : dnf-conf-2.7.5-2.fc27.noarch                        17/140 
-  Verifying        : dnf-yum-2.7.5-2.fc27.noarch                         18/140 
-  Verifying        : expat-2.2.5-1.fc27.x86_64                           19/140 
-  Verifying        : gawk-4.1.4-8.fc27.x86_64                            20/140 
-  Verifying        : gdbm-1.14-1.fc27.x86_64                             21/140 
-  Verifying        : glib2-2.54.2-1.fc27.x86_64                          22/140 
-  Verifying        : glibc-2.26-21.fc27.x86_64                           23/140 
-  Verifying        : glibc-common-2.26-21.fc27.x86_64                    24/140 
-  Verifying        : glibc-langpack-en-2.26-21.fc27.x86_64               25/140 
-  Verifying        : libcrypt-nss-2.26-21.fc27.x86_64                    26/140 
-  Verifying        : gnupg2-2.2.3-1.fc27.x86_64                          27/140 
-  Verifying        : gnupg2-smime-2.2.3-1.fc27.x86_64                    28/140 
-  Verifying        : gnutls-3.5.16-4.fc27.x86_64                         29/140 
-  Verifying        : ima-evm-utils-1.0-2.fc27.x86_64                     30/140 
-  Verifying        : info-6.4-6.fc27.x86_64                              31/140 
-  Verifying        : krb5-libs-1.15.2-4.fc27.x86_64                      32/140 
-  Verifying        : libdb-5.3.28-27.fc27.x86_64                         33/140 
-  Verifying        : libdb-utils-5.3.28-27.fc27.x86_64                   34/140 
-  Verifying        : libdnf-0.11.1-1.fc27.x86_64                         35/140 
-  Verifying        : python3-hawkey-0.11.1-1.fc27.x86_64                 36/140 
-  Verifying        : libgcrypt-1.8.1-3.fc27.x86_64                       37/140 
-  Verifying        : libreport-filesystem-2.9.3-1.fc27.x86_64            38/140 
-  Verifying        : libselinux-2.7-3.fc27.x86_64                        39/140 
-  Verifying        : libsepol-2.7-2.fc27.x86_64                          40/140 
-  Verifying        : libsemanage-2.7-2.fc27.x86_64                       41/140 
-  Verifying        : libsolv-0.6.30-2.fc27.x86_64                        42/140 
-  Verifying        : libsss_idmap-1.16.0-5.fc27.x86_64                   43/140 
-  Verifying        : libsss_nss_idmap-1.16.0-5.fc27.x86_64               44/140 
-  Verifying        : libzstd-1.3.3-1.fc27.x86_64                         45/140 
-  Verifying        : lua-libs-5.3.4-7.fc27.x86_64                        46/140 
-  Verifying        : nettle-3.4-1.fc27.x86_64                            47/140 
-  Verifying        : nss-3.34.0-1.0.fc27.x86_64                          48/140 
-  Verifying        : nss-softokn-3.34.0-1.0.fc27.x86_64                  49/140 
-  Verifying        : nss-util-3.34.0-1.0.fc27.x86_64                     50/140 
-  Verifying        : nss-softokn-freebl-3.34.0-1.0.fc27.x86_64           51/140 
-  Verifying        : nss-tools-3.34.0-1.0.fc27.x86_64                    52/140 
-  Verifying        : nss-sysinit-3.34.0-1.0.fc27.x86_64                  53/140 
-  Verifying        : nss-pem-1.0.3-6.fc27.x86_64                         54/140 
-  Verifying        : openldap-2.4.45-4.fc27.x86_64                       55/140 
-  Verifying        : p11-kit-0.23.9-2.fc27.x86_64                        56/140 
-  Verifying        : p11-kit-trust-0.23.9-2.fc27.x86_64                  57/140 
-  Verifying        : pcre-8.41-3.fc27.x86_64                             58/140 
-  Verifying        : pcre2-10.30-4.fc27.x86_64                           59/140 
-  Verifying        : publicsuffix-list-dafsa-20171228-1.fc27.noarch      60/140 
-  Verifying        : python3-3.6.3-2.fc27.x86_64                         61/140 
-  Verifying        : python3-libs-3.6.3-2.fc27.x86_64                    62/140 
-  Verifying        : python3-pip-9.0.1-14.fc27.noarch                    63/140 
-  Verifying        : python3-setuptools-37.0.0-1.fc27.noarch             64/140 
-  Verifying        : sssd-client-1.16.0-5.fc27.x86_64                    65/140 
-  Verifying        : systemd-234-9.fc27.x86_64                           66/140 
-  Verifying        : systemd-pam-234-9.fc27.x86_64                       67/140 
-  Verifying        : systemd-libs-234-9.fc27.x86_64                      68/140 
-  Verifying        : tzdata-2017c-1.fc27.noarch                          69/140 
-  Verifying        : vim-minimal-2:8.0.1427-1.fc27.x86_64                70/140 
-  Verifying        : audit-libs-2.7.8-1.fc27.x86_64                      71/140 
-  Verifying        : bash-4.4.12-12.fc27.x86_64                          72/140 
-  Verifying        : ca-certificates-2017.2.16-4.fc27.noarch             73/140 
-  Verifying        : compat-openssl10-1:1.0.2j-9.fc27.x86_64             74/140 
-  Verifying        : coreutils-8.27-16.fc27.x86_64                       75/140 
-  Verifying        : coreutils-common-8.27-16.fc27.x86_64                76/140 
-  Verifying        : crypto-policies-20170816-1.git2618a6c.fc27.noarc    77/140 
-  Verifying        : curl-7.55.1-5.fc27.x86_64                           78/140 
-  Verifying        : dbus-1:1.11.20-1.fc27.x86_64                        79/140 
-  Verifying        : dbus-libs-1:1.11.20-1.fc27.x86_64                   80/140 
-  Verifying        : device-mapper-1.02.142-4.fc27.x86_64                81/140 
-  Verifying        : device-mapper-libs-1.02.142-4.fc27.x86_64           82/140 
-  Verifying        : dnf-2.7.3-1.fc27.noarch                             83/140 
-  Verifying        : dnf-conf-2.7.3-1.fc27.noarch                        84/140 
-  Verifying        : dnf-yum-2.7.3-1.fc27.noarch                         85/140 
-  Verifying        : expat-2.2.4-1.fc27.x86_64                           86/140 
-  Verifying        : gawk-4.1.4-7.fc27.x86_64                            87/140 
-  Verifying        : gdbm-1.13-3.fc27.x86_64                             88/140 
-  Verifying        : glib2-2.54.1-1.fc27.x86_64                          89/140 
-  Verifying        : glibc-2.26-15.fc27.x86_64                           90/140 
-  Verifying        : glibc-common-2.26-15.fc27.x86_64                    91/140 
-  Verifying        : glibc-langpack-en-2.26-15.fc27.x86_64               92/140 
-  Verifying        : gnupg2-2.2.0-1.fc27.x86_64                          93/140 
-  Verifying        : gnupg2-smime-2.2.0-1.fc27.x86_64                    94/140 
-  Verifying        : gnutls-3.5.15-1.fc27.x86_64                         95/140 
-  Verifying        : ima-evm-utils-1.0-1.fc27.x86_64                     96/140 
-  Verifying        : info-6.4-5.fc27.x86_64                              97/140 
-  Verifying        : krb5-libs-1.15.2-2.fc27.x86_64                      98/140 
-  Verifying        : libcrypt-nss-2.26-15.fc27.x86_64                    99/140 
-  Verifying        : libcurl-7.55.1-5.fc27.x86_64                       100/140 
-  Verifying        : libdb-5.3.28-26.fc27.x86_64                        101/140 
-  Verifying        : libdb-utils-5.3.28-26.fc27.x86_64                  102/140 
-  Verifying        : libdnf-0.11.0-1.fc27.x86_64                        103/140 
-  Verifying        : libgcrypt-1.8.1-1.fc27.x86_64                      104/140 
-  Verifying        : libreport-filesystem-2.9.2-1.fc27.x86_64           105/140 
-  Verifying        : libselinux-2.7-2.fc27.x86_64                       106/140 
-  Verifying        : libsemanage-2.7-1.fc27.x86_64                      107/140 
-  Verifying        : libsepol-2.7-1.fc27.x86_64                         108/140 
-  Verifying        : libsolv-0.6.29-2.fc27.x86_64                       109/140 
-  Verifying        : libsss_idmap-1.15.3-5.fc27.x86_64                  110/140 
-  Verifying        : libsss_nss_idmap-1.15.3-5.fc27.x86_64              111/140 
-  Verifying        : libzstd-1.3.1-1.fc27.x86_64                        112/140 
-  Verifying        : lua-libs-5.3.4-5.fc27.x86_64                       113/140 
-  Verifying        : nettle-3.3-5.fc27.x86_64                           114/140 
-  Verifying        : nss-3.33.0-1.0.fc27.x86_64                         115/140 
-  Verifying        : nss-pem-1.0.3-5.fc27.x86_64                        116/140 
-  Verifying        : nss-softokn-3.33.0-1.0.fc27.x86_64                 117/140 
-  Verifying        : nss-softokn-freebl-3.33.0-1.0.fc27.x86_64          118/140 
-  Verifying        : nss-sysinit-3.33.0-1.0.fc27.x86_64                 119/140 
-  Verifying        : nss-tools-3.33.0-1.0.fc27.x86_64                   120/140 
-  Verifying        : nss-util-3.33.0-1.0.fc27.x86_64                    121/140 
-  Verifying        : openldap-2.4.45-3.fc27.x86_64                      122/140 
-  Verifying        : openssl-libs-1:1.1.0f-9.fc27.x86_64                123/140 
-  Verifying        : p11-kit-0.23.8-1.fc27.x86_64                       124/140 
-  Verifying        : p11-kit-trust-0.23.8-1.fc27.x86_64                 125/140 
-  Verifying        : pcre-8.41-1.fc27.2.x86_64                          126/140 
-  Verifying        : pcre2-10.30-1.fc27.x86_64                          127/140 
-  Verifying        : publicsuffix-list-dafsa-20170828-1.fc27.noarch     128/140 
-  Verifying        : python3-3.6.2-13.fc27.x86_64                       129/140 
-  Verifying        : python3-dnf-2.7.3-1.fc27.noarch                    130/140 
-  Verifying        : python3-hawkey-0.11.0-1.fc27.x86_64                131/140 
-  Verifying        : python3-libs-3.6.2-13.fc27.x86_64                  132/140 
-  Verifying        : python3-pip-9.0.1-11.fc27.noarch                   133/140 
-  Verifying        : python3-setuptools-36.2.0-7.fc27.noarch            134/140 
-  Verifying        : sssd-client-1.15.3-5.fc27.x86_64                   135/140 
-  Verifying        : systemd-234-8.fc27.x86_64                          136/140 
-  Verifying        : systemd-libs-234-8.fc27.x86_64                     137/140 
-  Verifying        : systemd-pam-234-8.fc27.x86_64                      138/140 
-  Verifying        : tzdata-2017b-2.fc27.noarch                         139/140 
-  Verifying        : vim-minimal-2:8.0.1176-1.fc27.x86_64               140/140 
+[0m
+  Verifying        : audit-libs-2.8.2-1.fc27.x86_64                       1/140
+  Verifying        : bash-4.4.12-13.fc27.x86_64                           2/140
+  Verifying        : ca-certificates-2017.2.20-1.0.fc27.noarch            3/140
+  Verifying        : compat-openssl10-1:1.0.2m-1.fc27.x86_64              4/140
+  Verifying        : coreutils-8.27-17.fc27.x86_64                        5/140
+  Verifying        : coreutils-common-8.27-17.fc27.x86_64                 6/140
+  Verifying        : crypto-policies-20170816-2.gite0a4066.fc27.noarc     7/140
+  Verifying        : curl-7.55.1-8.fc27.x86_64                            8/140
+  Verifying        : libcurl-7.55.1-8.fc27.x86_64                         9/140
+  Verifying        : openssl-libs-1:1.1.0g-1.fc27.x86_64                 10/140
+  Verifying        : dbus-1:1.12.0-1.fc27.x86_64                         11/140
+  Verifying        : dbus-libs-1:1.12.0-1.fc27.x86_64                    12/140
+  Verifying        : device-mapper-1.02.144-1.fc27.x86_64                13/140
+  Verifying        : device-mapper-libs-1.02.144-1.fc27.x86_64           14/140
+  Verifying        : dnf-2.7.5-2.fc27.noarch                             15/140
+  Verifying        : python3-dnf-2.7.5-2.fc27.noarch                     16/140
+  Verifying        : dnf-conf-2.7.5-2.fc27.noarch                        17/140
+  Verifying        : dnf-yum-2.7.5-2.fc27.noarch                         18/140
+  Verifying        : expat-2.2.5-1.fc27.x86_64                           19/140
+  Verifying        : gawk-4.1.4-8.fc27.x86_64                            20/140
+  Verifying        : gdbm-1.14-1.fc27.x86_64                             21/140
+  Verifying        : glib2-2.54.2-1.fc27.x86_64                          22/140
+  Verifying        : glibc-2.26-21.fc27.x86_64                           23/140
+  Verifying        : glibc-common-2.26-21.fc27.x86_64                    24/140
+  Verifying        : glibc-langpack-en-2.26-21.fc27.x86_64               25/140
+  Verifying        : libcrypt-nss-2.26-21.fc27.x86_64                    26/140
+  Verifying        : gnupg2-2.2.3-1.fc27.x86_64                          27/140
+  Verifying        : gnupg2-smime-2.2.3-1.fc27.x86_64                    28/140
+  Verifying        : gnutls-3.5.16-4.fc27.x86_64                         29/140
+  Verifying        : ima-evm-utils-1.0-2.fc27.x86_64                     30/140
+  Verifying        : info-6.4-6.fc27.x86_64                              31/140
+  Verifying        : krb5-libs-1.15.2-4.fc27.x86_64                      32/140
+  Verifying        : libdb-5.3.28-27.fc27.x86_64                         33/140
+  Verifying        : libdb-utils-5.3.28-27.fc27.x86_64                   34/140
+  Verifying        : libdnf-0.11.1-1.fc27.x86_64                         35/140
+  Verifying        : python3-hawkey-0.11.1-1.fc27.x86_64                 36/140
+  Verifying        : libgcrypt-1.8.1-3.fc27.x86_64                       37/140
+  Verifying        : libreport-filesystem-2.9.3-1.fc27.x86_64            38/140
+  Verifying        : libselinux-2.7-3.fc27.x86_64                        39/140
+  Verifying        : libsepol-2.7-2.fc27.x86_64                          40/140
+  Verifying        : libsemanage-2.7-2.fc27.x86_64                       41/140
+  Verifying        : libsolv-0.6.30-2.fc27.x86_64                        42/140
+  Verifying        : libsss_idmap-1.16.0-5.fc27.x86_64                   43/140
+  Verifying        : libsss_nss_idmap-1.16.0-5.fc27.x86_64               44/140
+  Verifying        : libzstd-1.3.3-1.fc27.x86_64                         45/140
+  Verifying        : lua-libs-5.3.4-7.fc27.x86_64                        46/140
+  Verifying        : nettle-3.4-1.fc27.x86_64                            47/140
+  Verifying        : nss-3.34.0-1.0.fc27.x86_64                          48/140
+  Verifying        : nss-softokn-3.34.0-1.0.fc27.x86_64                  49/140
+  Verifying        : nss-util-3.34.0-1.0.fc27.x86_64                     50/140
+  Verifying        : nss-softokn-freebl-3.34.0-1.0.fc27.x86_64           51/140
+  Verifying        : nss-tools-3.34.0-1.0.fc27.x86_64                    52/140
+  Verifying        : nss-sysinit-3.34.0-1.0.fc27.x86_64                  53/140
+  Verifying        : nss-pem-1.0.3-6.fc27.x86_64                         54/140
+  Verifying        : openldap-2.4.45-4.fc27.x86_64                       55/140
+  Verifying        : p11-kit-0.23.9-2.fc27.x86_64                        56/140
+  Verifying        : p11-kit-trust-0.23.9-2.fc27.x86_64                  57/140
+  Verifying        : pcre-8.41-3.fc27.x86_64                             58/140
+  Verifying        : pcre2-10.30-4.fc27.x86_64                           59/140
+  Verifying        : publicsuffix-list-dafsa-20171228-1.fc27.noarch      60/140
+  Verifying        : python3-3.6.3-2.fc27.x86_64                         61/140
+  Verifying        : python3-libs-3.6.3-2.fc27.x86_64                    62/140
+  Verifying        : python3-pip-9.0.1-14.fc27.noarch                    63/140
+  Verifying        : python3-setuptools-37.0.0-1.fc27.noarch             64/140
+  Verifying        : sssd-client-1.16.0-5.fc27.x86_64                    65/140
+  Verifying        : systemd-234-9.fc27.x86_64                           66/140
+  Verifying        : systemd-pam-234-9.fc27.x86_64                       67/140
+  Verifying        : systemd-libs-234-9.fc27.x86_64                      68/140
+  Verifying        : tzdata-2017c-1.fc27.noarch                          69/140
+  Verifying        : vim-minimal-2:8.0.1427-1.fc27.x86_64                70/140
+  Verifying        : audit-libs-2.7.8-1.fc27.x86_64                      71/140
+  Verifying        : bash-4.4.12-12.fc27.x86_64                          72/140
+  Verifying        : ca-certificates-2017.2.16-4.fc27.noarch             73/140
+  Verifying        : compat-openssl10-1:1.0.2j-9.fc27.x86_64             74/140
+  Verifying        : coreutils-8.27-16.fc27.x86_64                       75/140
+  Verifying        : coreutils-common-8.27-16.fc27.x86_64                76/140
+  Verifying        : crypto-policies-20170816-1.git2618a6c.fc27.noarc    77/140
+  Verifying        : curl-7.55.1-5.fc27.x86_64                           78/140
+  Verifying        : dbus-1:1.11.20-1.fc27.x86_64                        79/140
+  Verifying        : dbus-libs-1:1.11.20-1.fc27.x86_64                   80/140
+  Verifying        : device-mapper-1.02.142-4.fc27.x86_64                81/140
+  Verifying        : device-mapper-libs-1.02.142-4.fc27.x86_64           82/140
+  Verifying        : dnf-2.7.3-1.fc27.noarch                             83/140
+  Verifying        : dnf-conf-2.7.3-1.fc27.noarch                        84/140
+  Verifying        : dnf-yum-2.7.3-1.fc27.noarch                         85/140
+  Verifying        : expat-2.2.4-1.fc27.x86_64                           86/140
+  Verifying        : gawk-4.1.4-7.fc27.x86_64                            87/140
+  Verifying        : gdbm-1.13-3.fc27.x86_64                             88/140
+  Verifying        : glib2-2.54.1-1.fc27.x86_64                          89/140
+  Verifying        : glibc-2.26-15.fc27.x86_64                           90/140
+  Verifying        : glibc-common-2.26-15.fc27.x86_64                    91/140
+  Verifying        : glibc-langpack-en-2.26-15.fc27.x86_64               92/140
+  Verifying        : gnupg2-2.2.0-1.fc27.x86_64                          93/140
+  Verifying        : gnupg2-smime-2.2.0-1.fc27.x86_64                    94/140
+  Verifying        : gnutls-3.5.15-1.fc27.x86_64                         95/140
+  Verifying        : ima-evm-utils-1.0-1.fc27.x86_64                     96/140
+  Verifying        : info-6.4-5.fc27.x86_64                              97/140
+  Verifying        : krb5-libs-1.15.2-2.fc27.x86_64                      98/140
+  Verifying        : libcrypt-nss-2.26-15.fc27.x86_64                    99/140
+  Verifying        : libcurl-7.55.1-5.fc27.x86_64                       100/140
+  Verifying        : libdb-5.3.28-26.fc27.x86_64                        101/140
+  Verifying        : libdb-utils-5.3.28-26.fc27.x86_64                  102/140
+  Verifying        : libdnf-0.11.0-1.fc27.x86_64                        103/140
+  Verifying        : libgcrypt-1.8.1-1.fc27.x86_64                      104/140
+  Verifying        : libreport-filesystem-2.9.2-1.fc27.x86_64           105/140
+  Verifying        : libselinux-2.7-2.fc27.x86_64                       106/140
+  Verifying        : libsemanage-2.7-1.fc27.x86_64                      107/140
+  Verifying        : libsepol-2.7-1.fc27.x86_64                         108/140
+  Verifying        : libsolv-0.6.29-2.fc27.x86_64                       109/140
+  Verifying        : libsss_idmap-1.15.3-5.fc27.x86_64                  110/140
+  Verifying        : libsss_nss_idmap-1.15.3-5.fc27.x86_64              111/140
+  Verifying        : libzstd-1.3.1-1.fc27.x86_64                        112/140
+  Verifying        : lua-libs-5.3.4-5.fc27.x86_64                       113/140
+  Verifying        : nettle-3.3-5.fc27.x86_64                           114/140
+  Verifying        : nss-3.33.0-1.0.fc27.x86_64                         115/140
+  Verifying        : nss-pem-1.0.3-5.fc27.x86_64                        116/140
+  Verifying        : nss-softokn-3.33.0-1.0.fc27.x86_64                 117/140
+  Verifying        : nss-softokn-freebl-3.33.0-1.0.fc27.x86_64          118/140
+  Verifying        : nss-sysinit-3.33.0-1.0.fc27.x86_64                 119/140
+  Verifying        : nss-tools-3.33.0-1.0.fc27.x86_64                   120/140
+  Verifying        : nss-util-3.33.0-1.0.fc27.x86_64                    121/140
+  Verifying        : openldap-2.4.45-3.fc27.x86_64                      122/140
+  Verifying        : openssl-libs-1:1.1.0f-9.fc27.x86_64                123/140
+  Verifying        : p11-kit-0.23.8-1.fc27.x86_64                       124/140
+  Verifying        : p11-kit-trust-0.23.8-1.fc27.x86_64                 125/140
+  Verifying        : pcre-8.41-1.fc27.2.x86_64                          126/140
+  Verifying        : pcre2-10.30-1.fc27.x86_64                          127/140
+  Verifying        : publicsuffix-list-dafsa-20170828-1.fc27.noarch     128/140
+  Verifying        : python3-3.6.2-13.fc27.x86_64                       129/140
+  Verifying        : python3-dnf-2.7.3-1.fc27.noarch                    130/140
+  Verifying        : python3-hawkey-0.11.0-1.fc27.x86_64                131/140
+  Verifying        : python3-libs-3.6.2-13.fc27.x86_64                  132/140
+  Verifying        : python3-pip-9.0.1-11.fc27.noarch                   133/140
+  Verifying        : python3-setuptools-36.2.0-7.fc27.noarch            134/140
+  Verifying        : sssd-client-1.15.3-5.fc27.x86_64                   135/140
+  Verifying        : systemd-234-8.fc27.x86_64                          136/140
+  Verifying        : systemd-libs-234-8.fc27.x86_64                     137/140
+  Verifying        : systemd-pam-234-8.fc27.x86_64                      138/140
+  Verifying        : tzdata-2017b-2.fc27.noarch                         139/140
+  Verifying        : vim-minimal-2:8.0.1176-1.fc27.x86_64               140/140
 
 Upgraded:
-  audit-libs.x86_64 2.8.2-1.fc27                                                
-  bash.x86_64 4.4.12-13.fc27                                                    
-  ca-certificates.noarch 2017.2.20-1.0.fc27                                     
-  compat-openssl10.x86_64 1:1.0.2m-1.fc27                                       
-  coreutils.x86_64 8.27-17.fc27                                                 
-  coreutils-common.x86_64 8.27-17.fc27                                          
-  crypto-policies.noarch 20170816-2.gite0a4066.fc27                             
-  curl.x86_64 7.55.1-8.fc27                                                     
-  dbus.x86_64 1:1.12.0-1.fc27                                                   
-  dbus-libs.x86_64 1:1.12.0-1.fc27                                              
-  device-mapper.x86_64 1.02.144-1.fc27                                          
-  device-mapper-libs.x86_64 1.02.144-1.fc27                                     
-  dnf.noarch 2.7.5-2.fc27                                                       
-  dnf-conf.noarch 2.7.5-2.fc27                                                  
-  dnf-yum.noarch 2.7.5-2.fc27                                                   
-  expat.x86_64 2.2.5-1.fc27                                                     
-  gawk.x86_64 4.1.4-8.fc27                                                      
-  gdbm.x86_64 1.14-1.fc27                                                       
-  glib2.x86_64 2.54.2-1.fc27                                                    
-  glibc.x86_64 2.26-21.fc27                                                     
-  glibc-common.x86_64 2.26-21.fc27                                              
-  glibc-langpack-en.x86_64 2.26-21.fc27                                         
-  gnupg2.x86_64 2.2.3-1.fc27                                                    
-  gnupg2-smime.x86_64 2.2.3-1.fc27                                              
-  gnutls.x86_64 3.5.16-4.fc27                                                   
-  ima-evm-utils.x86_64 1.0-2.fc27                                               
-  info.x86_64 6.4-6.fc27                                                        
-  krb5-libs.x86_64 1.15.2-4.fc27                                                
-  libcrypt-nss.x86_64 2.26-21.fc27                                              
-  libcurl.x86_64 7.55.1-8.fc27                                                  
-  libdb.x86_64 5.3.28-27.fc27                                                   
-  libdb-utils.x86_64 5.3.28-27.fc27                                             
-  libdnf.x86_64 0.11.1-1.fc27                                                   
-  libgcrypt.x86_64 1.8.1-3.fc27                                                 
-  libreport-filesystem.x86_64 2.9.3-1.fc27                                      
-  libselinux.x86_64 2.7-3.fc27                                                  
-  libsemanage.x86_64 2.7-2.fc27                                                 
-  libsepol.x86_64 2.7-2.fc27                                                    
-  libsolv.x86_64 0.6.30-2.fc27                                                  
-  libsss_idmap.x86_64 1.16.0-5.fc27                                             
-  libsss_nss_idmap.x86_64 1.16.0-5.fc27                                         
-  libzstd.x86_64 1.3.3-1.fc27                                                   
-  lua-libs.x86_64 5.3.4-7.fc27                                                  
-  nettle.x86_64 3.4-1.fc27                                                      
-  nss.x86_64 3.34.0-1.0.fc27                                                    
-  nss-pem.x86_64 1.0.3-6.fc27                                                   
-  nss-softokn.x86_64 3.34.0-1.0.fc27                                            
-  nss-softokn-freebl.x86_64 3.34.0-1.0.fc27                                     
-  nss-sysinit.x86_64 3.34.0-1.0.fc27                                            
-  nss-tools.x86_64 3.34.0-1.0.fc27                                              
-  nss-util.x86_64 3.34.0-1.0.fc27                                               
-  openldap.x86_64 2.4.45-4.fc27                                                 
-  openssl-libs.x86_64 1:1.1.0g-1.fc27                                           
-  p11-kit.x86_64 0.23.9-2.fc27                                                  
-  p11-kit-trust.x86_64 0.23.9-2.fc27                                            
-  pcre.x86_64 8.41-3.fc27                                                       
-  pcre2.x86_64 10.30-4.fc27                                                     
-  publicsuffix-list-dafsa.noarch 20171228-1.fc27                                
-  python3.x86_64 3.6.3-2.fc27                                                   
-  python3-dnf.noarch 2.7.5-2.fc27                                               
-  python3-hawkey.x86_64 0.11.1-1.fc27                                           
-  python3-libs.x86_64 3.6.3-2.fc27                                              
-  python3-pip.noarch 9.0.1-14.fc27                                              
-  python3-setuptools.noarch 37.0.0-1.fc27                                       
-  sssd-client.x86_64 1.16.0-5.fc27                                              
-  systemd.x86_64 234-9.fc27                                                     
-  systemd-libs.x86_64 234-9.fc27                                                
-  systemd-pam.x86_64 234-9.fc27                                                 
-  tzdata.noarch 2017c-1.fc27                                                    
-  vim-minimal.x86_64 2:8.0.1427-1.fc27                                          
+  audit-libs.x86_64 2.8.2-1.fc27
+  bash.x86_64 4.4.12-13.fc27
+  ca-certificates.noarch 2017.2.20-1.0.fc27
+  compat-openssl10.x86_64 1:1.0.2m-1.fc27
+  coreutils.x86_64 8.27-17.fc27
+  coreutils-common.x86_64 8.27-17.fc27
+  crypto-policies.noarch 20170816-2.gite0a4066.fc27
+  curl.x86_64 7.55.1-8.fc27
+  dbus.x86_64 1:1.12.0-1.fc27
+  dbus-libs.x86_64 1:1.12.0-1.fc27
+  device-mapper.x86_64 1.02.144-1.fc27
+  device-mapper-libs.x86_64 1.02.144-1.fc27
+  dnf.noarch 2.7.5-2.fc27
+  dnf-conf.noarch 2.7.5-2.fc27
+  dnf-yum.noarch 2.7.5-2.fc27
+  expat.x86_64 2.2.5-1.fc27
+  gawk.x86_64 4.1.4-8.fc27
+  gdbm.x86_64 1.14-1.fc27
+  glib2.x86_64 2.54.2-1.fc27
+  glibc.x86_64 2.26-21.fc27
+  glibc-common.x86_64 2.26-21.fc27
+  glibc-langpack-en.x86_64 2.26-21.fc27
+  gnupg2.x86_64 2.2.3-1.fc27
+  gnupg2-smime.x86_64 2.2.3-1.fc27
+  gnutls.x86_64 3.5.16-4.fc27
+  ima-evm-utils.x86_64 1.0-2.fc27
+  info.x86_64 6.4-6.fc27
+  krb5-libs.x86_64 1.15.2-4.fc27
+  libcrypt-nss.x86_64 2.26-21.fc27
+  libcurl.x86_64 7.55.1-8.fc27
+  libdb.x86_64 5.3.28-27.fc27
+  libdb-utils.x86_64 5.3.28-27.fc27
+  libdnf.x86_64 0.11.1-1.fc27
+  libgcrypt.x86_64 1.8.1-3.fc27
+  libreport-filesystem.x86_64 2.9.3-1.fc27
+  libselinux.x86_64 2.7-3.fc27
+  libsemanage.x86_64 2.7-2.fc27
+  libsepol.x86_64 2.7-2.fc27
+  libsolv.x86_64 0.6.30-2.fc27
+  libsss_idmap.x86_64 1.16.0-5.fc27
+  libsss_nss_idmap.x86_64 1.16.0-5.fc27
+  libzstd.x86_64 1.3.3-1.fc27
+  lua-libs.x86_64 5.3.4-7.fc27
+  nettle.x86_64 3.4-1.fc27
+  nss.x86_64 3.34.0-1.0.fc27
+  nss-pem.x86_64 1.0.3-6.fc27
+  nss-softokn.x86_64 3.34.0-1.0.fc27
+  nss-softokn-freebl.x86_64 3.34.0-1.0.fc27
+  nss-sysinit.x86_64 3.34.0-1.0.fc27
+  nss-tools.x86_64 3.34.0-1.0.fc27
+  nss-util.x86_64 3.34.0-1.0.fc27
+  openldap.x86_64 2.4.45-4.fc27
+  openssl-libs.x86_64 1:1.1.0g-1.fc27
+  p11-kit.x86_64 0.23.9-2.fc27
+  p11-kit-trust.x86_64 0.23.9-2.fc27
+  pcre.x86_64 8.41-3.fc27
+  pcre2.x86_64 10.30-4.fc27
+  publicsuffix-list-dafsa.noarch 20171228-1.fc27
+  python3.x86_64 3.6.3-2.fc27
+  python3-dnf.noarch 2.7.5-2.fc27
+  python3-hawkey.x86_64 0.11.1-1.fc27
+  python3-libs.x86_64 3.6.3-2.fc27
+  python3-pip.noarch 9.0.1-14.fc27
+  python3-setuptools.noarch 37.0.0-1.fc27
+  sssd-client.x86_64 1.16.0-5.fc27
+  systemd.x86_64 234-9.fc27
+  systemd-libs.x86_64 234-9.fc27
+  systemd-pam.x86_64 234-9.fc27
+  tzdata.noarch 2017c-1.fc27
+  vim-minimal.x86_64 2:8.0.1427-1.fc27
 
 Complete!
 Last metadata expiration check: 0:00:56 ago on Tue Jan 16 08:30:24 2018.
@@ -679,161 +679,161 @@ Install  33 Packages
 Total download size: 42 M
 Installed size: 115 M
 Downloading Packages:
-(1/33): binutils-2.29-6.fc27.x86_64.rpm          25 MB/s | 5.9 MB     00:00    
-(2/33): cpp-7.2.1-2.fc27.x86_64.rpm              27 MB/s | 9.2 MB     00:00    
-(3/33): isl-0.16.1-3.fc27.x86_64.rpm            6.6 MB/s | 835 kB     00:00    
-(4/33): libgomp-7.2.1-2.fc27.x86_64.rpm         7.5 MB/s | 198 kB     00:00    
-(5/33): libmpc-1.0.2-8.fc27.x86_64.rpm          3.7 MB/s |  56 kB     00:00    
-(6/33): python3-devel-3.6.3-2.fc27.x86_64.rpm    14 MB/s | 866 kB     00:00    
-(7/33): glibc-devel-2.26-21.fc27.x86_64.rpm      13 MB/s | 988 kB     00:00    
-(8/33): pkgconf-pkg-config-1.3.12-2.fc27.x86_64 1.7 MB/s |  13 kB     00:00    
-(9/33): glibc-headers-2.26-21.fc27.x86_64.rpm    10 MB/s | 502 kB     00:00    
-(10/33): pkgconf-1.3.12-2.fc27.x86_64.rpm       1.9 MB/s |  31 kB     00:00    
-(11/33): pkgconf-m4-1.3.12-2.fc27.noarch.rpm    1.6 MB/s |  13 kB     00:00    
-(12/33): libpkgconf-1.3.12-2.fc27.x86_64.rpm    2.8 MB/s |  31 kB     00:00    
-(13/33): python-rpm-macros-3-23.fc27.noarch.rpm 1.5 MB/s |  10 kB     00:00    
-(14/33): python3-rpm-generators-4.14.0-1.fc27.n 6.5 MB/s |  25 kB     00:00    
-(15/33): python3-rpm-macros-3-23.fc27.noarch.rp 3.9 MB/s | 9.5 kB     00:00    
-(16/33): cmake-rpm-macros-3.10.1-4.fc27.noarch.  12 MB/s |  36 kB     00:00    
-(17/33): redhat-rpm-config-67-2.fc27.noarch.rpm  11 MB/s |  62 kB     00:00    
-(18/33): gcc-7.2.1-2.fc27.x86_64.rpm             35 MB/s |  21 MB     00:00    
-(19/33): dwz-0.12-5.fc27.x86_64.rpm             1.1 MB/s | 106 kB     00:00    
-(20/33): fedora-rpm-macros-26-3.fc27.noarch.rpm  70 kB/s | 6.7 kB     00:00    
-(21/33): fpc-srpm-macros-1.1-3.fc27.noarch.rpm  2.6 MB/s | 7.1 kB     00:00    
-(22/33): ghc-srpm-macros-1.4.2-6.fc27.noarch.rp 4.1 MB/s | 7.9 kB     00:00    
-(23/33): gnat-srpm-macros-4-4.fc27.noarch.rpm   3.5 MB/s | 8.4 kB     00:00    
-(24/33): go-srpm-macros-2-10.fc27.noarch.rpm    3.9 MB/s | 8.0 kB     00:00    
-(25/33): ocaml-srpm-macros-5-2.fc27.noarch.rpm  3.3 MB/s | 7.8 kB     00:00    
-(26/33): openblas-srpm-macros-2-2.fc27.noarch.r 3.5 MB/s | 6.6 kB     00:00    
-(27/33): perl-srpm-macros-1-24.fc27.noarch.rpm  4.2 MB/s | 9.3 kB     00:00    
-(28/33): qt5-srpm-macros-5.9.1-2.fc27.noarch.rp 4.3 MB/s | 8.5 kB     00:00    
-(29/33): rust-srpm-macros-4-3.fc27.noarch.rpm   3.4 MB/s | 7.7 kB     00:00    
-(30/33): python-srpm-macros-3-23.fc27.noarch.rp 4.5 MB/s | 9.7 kB     00:00    
-(31/33): zip-3.0-20.fc27.x86_64.rpm              42 MB/s | 270 kB     00:00    
-(32/33): unzip-6.0-36.fc27.x86_64.rpm            20 MB/s | 189 kB     00:00    
-(33/33): kernel-headers-4.14.13-300.fc27.x86_64  40 MB/s | 1.2 MB     00:00    
+(1/33): binutils-2.29-6.fc27.x86_64.rpm          25 MB/s | 5.9 MB     00:00
+(2/33): cpp-7.2.1-2.fc27.x86_64.rpm              27 MB/s | 9.2 MB     00:00
+(3/33): isl-0.16.1-3.fc27.x86_64.rpm            6.6 MB/s | 835 kB     00:00
+(4/33): libgomp-7.2.1-2.fc27.x86_64.rpm         7.5 MB/s | 198 kB     00:00
+(5/33): libmpc-1.0.2-8.fc27.x86_64.rpm          3.7 MB/s |  56 kB     00:00
+(6/33): python3-devel-3.6.3-2.fc27.x86_64.rpm    14 MB/s | 866 kB     00:00
+(7/33): glibc-devel-2.26-21.fc27.x86_64.rpm      13 MB/s | 988 kB     00:00
+(8/33): pkgconf-pkg-config-1.3.12-2.fc27.x86_64 1.7 MB/s |  13 kB     00:00
+(9/33): glibc-headers-2.26-21.fc27.x86_64.rpm    10 MB/s | 502 kB     00:00
+(10/33): pkgconf-1.3.12-2.fc27.x86_64.rpm       1.9 MB/s |  31 kB     00:00
+(11/33): pkgconf-m4-1.3.12-2.fc27.noarch.rpm    1.6 MB/s |  13 kB     00:00
+(12/33): libpkgconf-1.3.12-2.fc27.x86_64.rpm    2.8 MB/s |  31 kB     00:00
+(13/33): python-rpm-macros-3-23.fc27.noarch.rpm 1.5 MB/s |  10 kB     00:00
+(14/33): python3-rpm-generators-4.14.0-1.fc27.n 6.5 MB/s |  25 kB     00:00
+(15/33): python3-rpm-macros-3-23.fc27.noarch.rp 3.9 MB/s | 9.5 kB     00:00
+(16/33): cmake-rpm-macros-3.10.1-4.fc27.noarch.  12 MB/s |  36 kB     00:00
+(17/33): redhat-rpm-config-67-2.fc27.noarch.rpm  11 MB/s |  62 kB     00:00
+(18/33): gcc-7.2.1-2.fc27.x86_64.rpm             35 MB/s |  21 MB     00:00
+(19/33): dwz-0.12-5.fc27.x86_64.rpm             1.1 MB/s | 106 kB     00:00
+(20/33): fedora-rpm-macros-26-3.fc27.noarch.rpm  70 kB/s | 6.7 kB     00:00
+(21/33): fpc-srpm-macros-1.1-3.fc27.noarch.rpm  2.6 MB/s | 7.1 kB     00:00
+(22/33): ghc-srpm-macros-1.4.2-6.fc27.noarch.rp 4.1 MB/s | 7.9 kB     00:00
+(23/33): gnat-srpm-macros-4-4.fc27.noarch.rpm   3.5 MB/s | 8.4 kB     00:00
+(24/33): go-srpm-macros-2-10.fc27.noarch.rpm    3.9 MB/s | 8.0 kB     00:00
+(25/33): ocaml-srpm-macros-5-2.fc27.noarch.rpm  3.3 MB/s | 7.8 kB     00:00
+(26/33): openblas-srpm-macros-2-2.fc27.noarch.r 3.5 MB/s | 6.6 kB     00:00
+(27/33): perl-srpm-macros-1-24.fc27.noarch.rpm  4.2 MB/s | 9.3 kB     00:00
+(28/33): qt5-srpm-macros-5.9.1-2.fc27.noarch.rp 4.3 MB/s | 8.5 kB     00:00
+(29/33): rust-srpm-macros-4-3.fc27.noarch.rpm   3.4 MB/s | 7.7 kB     00:00
+(30/33): python-srpm-macros-3-23.fc27.noarch.rp 4.5 MB/s | 9.7 kB     00:00
+(31/33): zip-3.0-20.fc27.x86_64.rpm              42 MB/s | 270 kB     00:00
+(32/33): unzip-6.0-36.fc27.x86_64.rpm            20 MB/s | 189 kB     00:00
+(33/33): kernel-headers-4.14.13-300.fc27.x86_64  40 MB/s | 1.2 MB     00:00
 --------------------------------------------------------------------------------
-Total                                            19 MB/s |  42 MB     00:02     
+Total                                            19 MB/s |  42 MB     00:02
 Running transaction check
 Transaction check succeeded.
 Running transaction test
 Transaction test succeeded.
 Running transaction
-  Preparing        :                                                        1/1 
-  Installing       : python-srpm-macros-3-23.fc27.noarch                   1/33 
-  Installing       : libmpc-1.0.2-8.fc27.x86_64                            2/33 
-  Running scriptlet: libmpc-1.0.2-8.fc27.x86_64                            2/33 
-  Installing       : cpp-7.2.1-2.fc27.x86_64                               3/33 
-  Running scriptlet: cpp-7.2.1-2.fc27.x86_64                               3/33 
-  Installing       : python-rpm-macros-3-23.fc27.noarch                    4/33 
-  Installing       : unzip-6.0-36.fc27.x86_64                              5/33 
-  Installing       : zip-3.0-20.fc27.x86_64                                6/33 
-  Installing       : kernel-headers-4.14.13-300.fc27.x86_64                7/33 
-  Running scriptlet: glibc-headers-2.26-21.fc27.x86_64                     8/33 
-  Installing       : glibc-headers-2.26-21.fc27.x86_64                     8/33 
-  Installing       : glibc-devel-2.26-21.fc27.x86_64                       9/33 
-  Running scriptlet: glibc-devel-2.26-21.fc27.x86_64                       9/33 
-  Installing       : rust-srpm-macros-4-3.fc27.noarch                     10/33 
-  Installing       : qt5-srpm-macros-5.9.1-2.fc27.noarch                  11/33 
-  Installing       : perl-srpm-macros-1-24.fc27.noarch                    12/33 
-  Installing       : openblas-srpm-macros-2-2.fc27.noarch                 13/33 
-  Installing       : ocaml-srpm-macros-5-2.fc27.noarch                    14/33 
-  Installing       : go-srpm-macros-2-10.fc27.noarch                      15/33 
-  Installing       : gnat-srpm-macros-4-4.fc27.noarch                     16/33 
-  Installing       : ghc-srpm-macros-1.4.2-6.fc27.noarch                  17/33 
-  Installing       : fpc-srpm-macros-1.1-3.fc27.noarch                    18/33 
-  Installing       : fedora-rpm-macros-26-3.fc27.noarch                   19/33 
-  Installing       : dwz-0.12-5.fc27.x86_64                               20/33 
-  Installing       : cmake-rpm-macros-3.10.1-4.fc27.noarch                21/33 
-  Installing       : redhat-rpm-config-67-2.fc27.noarch                   22/33 
-  Installing       : python3-rpm-macros-3-23.fc27.noarch                  23/33 
-  Installing       : python3-rpm-generators-4.14.0-1.fc27.noarch          24/33 
-  Installing       : libpkgconf-1.3.12-2.fc27.x86_64                      25/33 
-  Running scriptlet: libpkgconf-1.3.12-2.fc27.x86_64                      25/33 
-  Installing       : pkgconf-1.3.12-2.fc27.x86_64                         26/33 
-  Installing       : pkgconf-m4-1.3.12-2.fc27.noarch                      27/33 
-  Installing       : pkgconf-pkg-config-1.3.12-2.fc27.x86_64              28/33 
-  Installing       : libgomp-7.2.1-2.fc27.x86_64                          29/33 
-  Running scriptlet: libgomp-7.2.1-2.fc27.x86_64                          29/33 
-  Installing       : isl-0.16.1-3.fc27.x86_64                             30/33 
-  Running scriptlet: isl-0.16.1-3.fc27.x86_64                             30/33 
-  Installing       : binutils-2.29-6.fc27.x86_64                          31/33 
-  Running scriptlet: binutils-2.29-6.fc27.x86_64                          31/33 
+  Preparing        :                                                        1/1
+  Installing       : python-srpm-macros-3-23.fc27.noarch                   1/33
+  Installing       : libmpc-1.0.2-8.fc27.x86_64                            2/33
+  Running scriptlet: libmpc-1.0.2-8.fc27.x86_64                            2/33
+  Installing       : cpp-7.2.1-2.fc27.x86_64                               3/33
+  Running scriptlet: cpp-7.2.1-2.fc27.x86_64                               3/33
+  Installing       : python-rpm-macros-3-23.fc27.noarch                    4/33
+  Installing       : unzip-6.0-36.fc27.x86_64                              5/33
+  Installing       : zip-3.0-20.fc27.x86_64                                6/33
+  Installing       : kernel-headers-4.14.13-300.fc27.x86_64                7/33
+  Running scriptlet: glibc-headers-2.26-21.fc27.x86_64                     8/33
+  Installing       : glibc-headers-2.26-21.fc27.x86_64                     8/33
+  Installing       : glibc-devel-2.26-21.fc27.x86_64                       9/33
+  Running scriptlet: glibc-devel-2.26-21.fc27.x86_64                       9/33
+  Installing       : rust-srpm-macros-4-3.fc27.noarch                     10/33
+  Installing       : qt5-srpm-macros-5.9.1-2.fc27.noarch                  11/33
+  Installing       : perl-srpm-macros-1-24.fc27.noarch                    12/33
+  Installing       : openblas-srpm-macros-2-2.fc27.noarch                 13/33
+  Installing       : ocaml-srpm-macros-5-2.fc27.noarch                    14/33
+  Installing       : go-srpm-macros-2-10.fc27.noarch                      15/33
+  Installing       : gnat-srpm-macros-4-4.fc27.noarch                     16/33
+  Installing       : ghc-srpm-macros-1.4.2-6.fc27.noarch                  17/33
+  Installing       : fpc-srpm-macros-1.1-3.fc27.noarch                    18/33
+  Installing       : fedora-rpm-macros-26-3.fc27.noarch                   19/33
+  Installing       : dwz-0.12-5.fc27.x86_64                               20/33
+  Installing       : cmake-rpm-macros-3.10.1-4.fc27.noarch                21/33
+  Installing       : redhat-rpm-config-67-2.fc27.noarch                   22/33
+  Installing       : python3-rpm-macros-3-23.fc27.noarch                  23/33
+  Installing       : python3-rpm-generators-4.14.0-1.fc27.noarch          24/33
+  Installing       : libpkgconf-1.3.12-2.fc27.x86_64                      25/33
+  Running scriptlet: libpkgconf-1.3.12-2.fc27.x86_64                      25/33
+  Installing       : pkgconf-1.3.12-2.fc27.x86_64                         26/33
+  Installing       : pkgconf-m4-1.3.12-2.fc27.noarch                      27/33
+  Installing       : pkgconf-pkg-config-1.3.12-2.fc27.x86_64              28/33
+  Installing       : libgomp-7.2.1-2.fc27.x86_64                          29/33
+  Running scriptlet: libgomp-7.2.1-2.fc27.x86_64                          29/33
+  Installing       : isl-0.16.1-3.fc27.x86_64                             30/33
+  Running scriptlet: isl-0.16.1-3.fc27.x86_64                             30/33
+  Installing       : binutils-2.29-6.fc27.x86_64                          31/33
+  Running scriptlet: binutils-2.29-6.fc27.x86_64                          31/33
 install-info: No such file or directory for /usr/share/info/as.info.gz
 install-info: No such file or directory for /usr/share/info/binutils.info.gz
 install-info: No such file or directory for /usr/share/info/gprof.info.gz
 install-info: No such file or directory for /usr/share/info/ld.info.gz
-  Installing       : gcc-7.2.1-2.fc27.x86_64                              32/33 
-  Running scriptlet: gcc-7.2.1-2.fc27.x86_64                              32/33 
-  Installing       : python3-devel-3.6.3-2.fc27.x86_64                    33/33 
-  Verifying        : gcc-7.2.1-2.fc27.x86_64                               1/33 
-  Verifying        : binutils-2.29-6.fc27.x86_64                           2/33 
-  Verifying        : cpp-7.2.1-2.fc27.x86_64                               3/33 
-  Verifying        : isl-0.16.1-3.fc27.x86_64                              4/33 
-  Verifying        : libgomp-7.2.1-2.fc27.x86_64                           5/33 
-  Verifying        : libmpc-1.0.2-8.fc27.x86_64                            6/33 
-  Verifying        : python3-devel-3.6.3-2.fc27.x86_64                     7/33 
-  Verifying        : glibc-devel-2.26-21.fc27.x86_64                       8/33 
-  Verifying        : glibc-headers-2.26-21.fc27.x86_64                     9/33 
-  Verifying        : pkgconf-pkg-config-1.3.12-2.fc27.x86_64              10/33 
-  Verifying        : pkgconf-1.3.12-2.fc27.x86_64                         11/33 
-  Verifying        : pkgconf-m4-1.3.12-2.fc27.noarch                      12/33 
-  Verifying        : libpkgconf-1.3.12-2.fc27.x86_64                      13/33 
-  Verifying        : python-rpm-macros-3-23.fc27.noarch                   14/33 
-  Verifying        : python3-rpm-generators-4.14.0-1.fc27.noarch          15/33 
-  Verifying        : python3-rpm-macros-3-23.fc27.noarch                  16/33 
-  Verifying        : redhat-rpm-config-67-2.fc27.noarch                   17/33 
-  Verifying        : cmake-rpm-macros-3.10.1-4.fc27.noarch                18/33 
-  Verifying        : dwz-0.12-5.fc27.x86_64                               19/33 
-  Verifying        : fedora-rpm-macros-26-3.fc27.noarch                   20/33 
-  Verifying        : fpc-srpm-macros-1.1-3.fc27.noarch                    21/33 
-  Verifying        : ghc-srpm-macros-1.4.2-6.fc27.noarch                  22/33 
-  Verifying        : gnat-srpm-macros-4-4.fc27.noarch                     23/33 
-  Verifying        : go-srpm-macros-2-10.fc27.noarch                      24/33 
-  Verifying        : ocaml-srpm-macros-5-2.fc27.noarch                    25/33 
-  Verifying        : openblas-srpm-macros-2-2.fc27.noarch                 26/33 
-  Verifying        : perl-srpm-macros-1-24.fc27.noarch                    27/33 
-  Verifying        : qt5-srpm-macros-5.9.1-2.fc27.noarch                  28/33 
-  Verifying        : rust-srpm-macros-4-3.fc27.noarch                     29/33 
-  Verifying        : zip-3.0-20.fc27.x86_64                               30/33 
-  Verifying        : python-srpm-macros-3-23.fc27.noarch                  31/33 
-  Verifying        : kernel-headers-4.14.13-300.fc27.x86_64               32/33 
-  Verifying        : unzip-6.0-36.fc27.x86_64                             33/33 
+  Installing       : gcc-7.2.1-2.fc27.x86_64                              32/33
+  Running scriptlet: gcc-7.2.1-2.fc27.x86_64                              32/33
+  Installing       : python3-devel-3.6.3-2.fc27.x86_64                    33/33
+  Verifying        : gcc-7.2.1-2.fc27.x86_64                               1/33
+  Verifying        : binutils-2.29-6.fc27.x86_64                           2/33
+  Verifying        : cpp-7.2.1-2.fc27.x86_64                               3/33
+  Verifying        : isl-0.16.1-3.fc27.x86_64                              4/33
+  Verifying        : libgomp-7.2.1-2.fc27.x86_64                           5/33
+  Verifying        : libmpc-1.0.2-8.fc27.x86_64                            6/33
+  Verifying        : python3-devel-3.6.3-2.fc27.x86_64                     7/33
+  Verifying        : glibc-devel-2.26-21.fc27.x86_64                       8/33
+  Verifying        : glibc-headers-2.26-21.fc27.x86_64                     9/33
+  Verifying        : pkgconf-pkg-config-1.3.12-2.fc27.x86_64              10/33
+  Verifying        : pkgconf-1.3.12-2.fc27.x86_64                         11/33
+  Verifying        : pkgconf-m4-1.3.12-2.fc27.noarch                      12/33
+  Verifying        : libpkgconf-1.3.12-2.fc27.x86_64                      13/33
+  Verifying        : python-rpm-macros-3-23.fc27.noarch                   14/33
+  Verifying        : python3-rpm-generators-4.14.0-1.fc27.noarch          15/33
+  Verifying        : python3-rpm-macros-3-23.fc27.noarch                  16/33
+  Verifying        : redhat-rpm-config-67-2.fc27.noarch                   17/33
+  Verifying        : cmake-rpm-macros-3.10.1-4.fc27.noarch                18/33
+  Verifying        : dwz-0.12-5.fc27.x86_64                               19/33
+  Verifying        : fedora-rpm-macros-26-3.fc27.noarch                   20/33
+  Verifying        : fpc-srpm-macros-1.1-3.fc27.noarch                    21/33
+  Verifying        : ghc-srpm-macros-1.4.2-6.fc27.noarch                  22/33
+  Verifying        : gnat-srpm-macros-4-4.fc27.noarch                     23/33
+  Verifying        : go-srpm-macros-2-10.fc27.noarch                      24/33
+  Verifying        : ocaml-srpm-macros-5-2.fc27.noarch                    25/33
+  Verifying        : openblas-srpm-macros-2-2.fc27.noarch                 26/33
+  Verifying        : perl-srpm-macros-1-24.fc27.noarch                    27/33
+  Verifying        : qt5-srpm-macros-5.9.1-2.fc27.noarch                  28/33
+  Verifying        : rust-srpm-macros-4-3.fc27.noarch                     29/33
+  Verifying        : zip-3.0-20.fc27.x86_64                               30/33
+  Verifying        : python-srpm-macros-3-23.fc27.noarch                  31/33
+  Verifying        : kernel-headers-4.14.13-300.fc27.x86_64               32/33
+  Verifying        : unzip-6.0-36.fc27.x86_64                             33/33
 
 Installed:
-  gcc.x86_64 7.2.1-2.fc27                                                       
-  python3-devel.x86_64 3.6.3-2.fc27                                             
-  binutils.x86_64 2.29-6.fc27                                                   
-  cmake-rpm-macros.noarch 3.10.1-4.fc27                                         
-  cpp.x86_64 7.2.1-2.fc27                                                       
-  dwz.x86_64 0.12-5.fc27                                                        
-  fedora-rpm-macros.noarch 26-3.fc27                                            
-  fpc-srpm-macros.noarch 1.1-3.fc27                                             
-  ghc-srpm-macros.noarch 1.4.2-6.fc27                                           
-  glibc-devel.x86_64 2.26-21.fc27                                               
-  glibc-headers.x86_64 2.26-21.fc27                                             
-  gnat-srpm-macros.noarch 4-4.fc27                                              
-  go-srpm-macros.noarch 2-10.fc27                                               
-  isl.x86_64 0.16.1-3.fc27                                                      
-  kernel-headers.x86_64 4.14.13-300.fc27                                        
-  libgomp.x86_64 7.2.1-2.fc27                                                   
-  libmpc.x86_64 1.0.2-8.fc27                                                    
-  libpkgconf.x86_64 1.3.12-2.fc27                                               
-  ocaml-srpm-macros.noarch 5-2.fc27                                             
-  openblas-srpm-macros.noarch 2-2.fc27                                          
-  perl-srpm-macros.noarch 1-24.fc27                                             
-  pkgconf.x86_64 1.3.12-2.fc27                                                  
-  pkgconf-m4.noarch 1.3.12-2.fc27                                               
-  pkgconf-pkg-config.x86_64 1.3.12-2.fc27                                       
-  python-rpm-macros.noarch 3-23.fc27                                            
-  python-srpm-macros.noarch 3-23.fc27                                           
-  python3-rpm-generators.noarch 4.14.0-1.fc27                                   
-  python3-rpm-macros.noarch 3-23.fc27                                           
-  qt5-srpm-macros.noarch 5.9.1-2.fc27                                           
-  redhat-rpm-config.noarch 67-2.fc27                                            
-  rust-srpm-macros.noarch 4-3.fc27                                              
-  unzip.x86_64 6.0-36.fc27                                                      
-  zip.x86_64 3.0-20.fc27                                                        
+  gcc.x86_64 7.2.1-2.fc27
+  python3-devel.x86_64 3.6.3-2.fc27
+  binutils.x86_64 2.29-6.fc27
+  cmake-rpm-macros.noarch 3.10.1-4.fc27
+  cpp.x86_64 7.2.1-2.fc27
+  dwz.x86_64 0.12-5.fc27
+  fedora-rpm-macros.noarch 26-3.fc27
+  fpc-srpm-macros.noarch 1.1-3.fc27
+  ghc-srpm-macros.noarch 1.4.2-6.fc27
+  glibc-devel.x86_64 2.26-21.fc27
+  glibc-headers.x86_64 2.26-21.fc27
+  gnat-srpm-macros.noarch 4-4.fc27
+  go-srpm-macros.noarch 2-10.fc27
+  isl.x86_64 0.16.1-3.fc27
+  kernel-headers.x86_64 4.14.13-300.fc27
+  libgomp.x86_64 7.2.1-2.fc27
+  libmpc.x86_64 1.0.2-8.fc27
+  libpkgconf.x86_64 1.3.12-2.fc27
+  ocaml-srpm-macros.noarch 5-2.fc27
+  openblas-srpm-macros.noarch 2-2.fc27
+  perl-srpm-macros.noarch 1-24.fc27
+  pkgconf.x86_64 1.3.12-2.fc27
+  pkgconf-m4.noarch 1.3.12-2.fc27
+  pkgconf-pkg-config.x86_64 1.3.12-2.fc27
+  python-rpm-macros.noarch 3-23.fc27
+  python-srpm-macros.noarch 3-23.fc27
+  python3-rpm-generators.noarch 4.14.0-1.fc27
+  python3-rpm-macros.noarch 3-23.fc27
+  qt5-srpm-macros.noarch 5.9.1-2.fc27
+  redhat-rpm-config.noarch 67-2.fc27
+  rust-srpm-macros.noarch 4-3.fc27
+  unzip.x86_64 6.0-36.fc27
+  zip.x86_64 3.0-20.fc27
 
 Complete!
  ---> e2d91ff4f136
