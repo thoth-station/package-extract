@@ -61,14 +61,14 @@ def _normalize_mercator_output(path: str, output: dict) -> dict:
 
         # Now point to the correct path, absolute inside the image.
         if "path" in entry:
-            entry["path"] = entry["path"][len(path):]
+            entry["path"] = entry["path"][len(path) :]
 
     return output.get("items", [])
 
 
 def _parse_repoquery(output: str) -> dict:
     """Parse repoquery output."""
-    result = {}
+    result: dict = {}
 
     package = None
     for line in output.split("\n"):
@@ -78,12 +78,12 @@ def _parse_repoquery(output: str) -> dict:
             continue
 
         if line.startswith("package: "):
-            package = line[len("package: "):]
+            package = line[len("package: ") :]
             if package in result:
                 _LOGGER.warning(
                     "Package %r was already stated in the repoquery output, "
                     "dependencies will be appended",
-                    package
+                    package,
                 )
                 continue
             result[package] = []
@@ -91,9 +91,9 @@ def _parse_repoquery(output: str) -> dict:
             if not package:
                 _LOGGER.error(
                     "Stated dependency %r has no package associated (parser error?), this error is not fatal",
-                    package
+                    package,
                 )
-            result[package].append(line[len("dependency: "):])
+            result[package].append(line[len("dependency: ") :])
 
     return result
 
@@ -176,7 +176,9 @@ def _run_dpkg_query(path: str, timeout: int = None) -> typing.List[dict]:
     return result
 
 
-def _parse_deb_dependency_line(line_str: str) -> typing.List[tuple]:
+def _parse_deb_dependency_line(
+    line_str: str,
+) -> typing.List[typing.Tuple[typing.Any, typing.Any]]:
     """Parse deb dependency line respecting name of package and the given version range provided."""
     result = []
     for entry in line_str.split(", "):
@@ -185,7 +187,7 @@ def _parse_deb_dependency_line(line_str: str) -> typing.List[tuple]:
             result.append((parts[0], parts[1][:-1]))  # -1 to remove ending ')'
         else:
             # No version range specification defined.
-            result.append((parts[0], None))
+            result.append((parts[0], ""))
     return result
 
 
@@ -194,22 +196,24 @@ def _gather_python_file_digests(path: str) -> typing.List[dict]:
     digests = []
     for root, dirs, files in os.walk(path):
         for file_ in files:
-            if file_.endswith('.py'):
+            if file_.endswith(".py"):
                 filepath = os.path.join(root, file_)
                 if os.path.isfile(filepath):
                     digest = hashlib.sha256()
-                    with open(filepath, 'rb') as afile:
+                    with open(filepath, "rb") as afile:
                         digest.update(afile.read())
-                    digests.append({
-                        'filepath': filepath[len(path):],
-                        'sha256': digest.hexdigest()
-                    })
+                    digests.append(
+                        {
+                            "filepath": filepath[len(path) :],
+                            "sha256": digest.hexdigest(),
+                        }
+                    )
     return digests
 
 
 def _gather_os_info(path: str) -> dict:
     """Gather information about operating system used."""
-    result = {}
+    result: dict = {}
     os_release_file = Path(path) / "etc/os-release"
     if os_release_file.exists():
         try:
@@ -217,7 +221,7 @@ def _gather_os_info(path: str) -> dict:
         except Exception as exc:
             _LOGGER.warning(
                 "Failed to read /etc/os-release file to gather operating system information: %s",
-                str(exc)
+                str(exc),
             )
             return result
 
@@ -276,13 +280,13 @@ def _run_apt_cache_show(
         entry["pre-depends"], entry["depends"], entry["replaces"] = [], [], []
         for line in output.splitlines():
             if line.startswith("Pre-Depends: "):
-                deps = _parse_deb_dependency_line(line[len("Pre-Depends: "):])
+                deps = _parse_deb_dependency_line(line[len("Pre-Depends: ") :])
                 entry["pre-depends"] = [{"name": d[0], "version": d[1]} for d in deps]
             elif line.startswith("Depends: "):
-                deps = _parse_deb_dependency_line(line[len("Depends: "):])
+                deps = _parse_deb_dependency_line(line[len("Depends: ") :])
                 entry["depends"] = [{"name": d[0], "version": d[1]} for d in deps]
             elif line.startswith("Replaces: "):
-                deps = _parse_deb_dependency_line(line[len("Replaces: "):])
+                deps = _parse_deb_dependency_line(line[len("Replaces: ") :])
                 entry["replaces"] = [{"name": d[0], "version": d[1]} for d in deps]
 
         result.append(entry)
@@ -300,7 +304,7 @@ def _get_lib_dir_symbols(result: dict, container_path: str, path: str) -> None:
         command = f"nm -D {so_file_path!r} | grep '0 A'"
 
         # Drop path to the extracted container in the output.
-        so_file_path = so_file_path[len(container_path):]
+        so_file_path = so_file_path[len(container_path) :]
 
         _LOGGER.debug("Gathering symbols from %r", so_file_path)
         command_result = run_command(command, timeout=120, raise_on_error=False)
@@ -309,7 +313,7 @@ def _get_lib_dir_symbols(result: dict, container_path: str, path: str) -> None:
                 "Failed to obtain library symbols from %r; stderr: %s, stdout: %s",
                 so_file_path,
                 command_result.stderr,
-                command_result.stdout
+                command_result.stdout,
             )
             continue
 
@@ -317,7 +321,7 @@ def _get_lib_dir_symbols(result: dict, container_path: str, path: str) -> None:
             result[so_file_path] = set()
 
         for line in command_result.stdout.splitlines():
-            columns = line.split(' ')
+            columns = line.split(" ")
             if len(columns) > 2:
                 result[so_file_path].add(columns[2])
 
@@ -332,7 +336,7 @@ def _ld_config_entries(path: str) -> Generator[str, None, None]:
             with open(os.path.join(path, relative_path, conf_file), "r") as f:
                 for line in f.readlines():
                     if line.startswith("include "):
-                        line = line[len("include "):]
+                        line = line[len("include ") :]
                         # Includes are relative to /etc/
                         if not line.startswith("/"):
                             line = os.path.join("etc", line)
@@ -352,12 +356,24 @@ def _ld_config_entries(path: str) -> Generator[str, None, None]:
                             # ld.so.conf can point to another configuration files.
                             # "foo/nar"
                             stack.append(
-                                (os.path.dirname(os.path.join(relative_path, conf_file)), os.path.basename(entry_path))
+                                (
+                                    os.path.dirname(
+                                        os.path.join(relative_path, conf_file)
+                                    ),
+                                    os.path.basename(entry_path),
+                                )
                             )
                         else:
-                            _LOGGER.warning("Skipping entry %r from symbols extraction not a file or directory", line)
+                            _LOGGER.warning(
+                                "Skipping entry %r from symbols extraction not a file or directory",
+                                line,
+                            )
         except Exception as exc:
-            _LOGGER.warning("Failed to analyze file %r for available symbols: %s", conf_file, str(exc))
+            _LOGGER.warning(
+                "Failed to analyze file %r for available symbols: %s",
+                conf_file,
+                str(exc),
+            )
 
 
 def _ld_config_symbols(result: dict, path: str) -> None:
@@ -367,7 +383,11 @@ def _ld_config_symbols(result: dict, path: str) -> None:
         try:
             _get_lib_dir_symbols(result, path, entry)
         except Exception as exc:
-            _LOGGER.warning("Cannot load symbols from %r (based on ld.so.conf configuration): %s", entry, str(exc))
+            _LOGGER.warning(
+                "Cannot load symbols from %r (based on ld.so.conf configuration): %s",
+                entry,
+                str(exc),
+            )
 
 
 def _ld_env_symbols(result: dict, path: str) -> None:
@@ -384,7 +404,7 @@ def _ld_env_symbols(result: dict, path: str) -> None:
 
 def _get_system_symbols(path: str) -> Dict[str, List[str]]:
     """Get library symbols found in relevant directories, configuration and environment variables."""
-    result = {}
+    result: dict = {}
     _get_lib_dir_symbols(result, path, "usr/lib64")
     _get_lib_dir_symbols(result, path, "lib64")
     _get_lib_dir_symbols(result, path, "usr/lib32")
@@ -430,7 +450,9 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     else:
         raise NotSupported(
             "Invalid schema version in manifest.json file: {} "
-            "(currently supported are schema versions 1 and 2)".format(manifest.get("schemaVersion"))
+            "(currently supported are schema versions 1 and 2)".format(
+                manifest.get("schemaVersion")
+            )
         )
 
     layers = []
@@ -477,7 +499,7 @@ def _get_absolute_link(root_path: str, path: str, iter: int) -> Optional[str]:
         if not os.path.isfile(path):
             _LOGGER.warning(
                 "Python link refers to %s, but this file is not present on filesystem.",
-                path
+                path,
             )
         return path
 
@@ -486,11 +508,11 @@ def _get_python_interpreters(path: str) -> List[dict]:
     """Find all python interpreters and symlinks."""
     result = []
 
-    for py_path in glob.glob('{}/usr/bin/python*'.format(path)):
+    for py_path in glob.glob("{}/usr/bin/python*".format(path)):
         version_ = None
         try:
             os.chmod(py_path, stat.S_IEXEC)
-            line = run_command('{} --version'.format(py_path), timeout=2).stdout
+            line = run_command("{} --version".format(py_path), timeout=2).stdout
             parts = line.split(maxsplit=2)
             if len(parts) == 2 and parts[0] == "Python":
                 version_ = line.rstrip()
@@ -498,16 +520,16 @@ def _get_python_interpreters(path: str) -> List[dict]:
             _LOGGER.warning(
                 "Failed to run %s --version to gather python interpreter version: %s",
                 py_path,
-                str(exc)
+                str(exc),
             )
 
         absolute_link = _get_absolute_link(path, py_path, 0)
         if absolute_link is not None:
-            absolute_link = absolute_link[len(path):]
+            absolute_link = absolute_link[len(path) :]
         py_interpret = {
-            "path": py_path[len(path):],
+            "path": py_path[len(path) :],
             "link": absolute_link,
-            "version": version_
+            "version": version_,
         }
 
         result.append(py_interpret)
@@ -555,33 +577,47 @@ def _get_cuda_version(path: str) -> dict:
         with open(version_path, "r") as f:
             for line in f.readlines():
                 if line.startswith("CUDA Version"):
-                    res["/usr/local/cuda/version.txt"] = line[len("CUDA Version"):].strip()
+                    res["/usr/local/cuda/version.txt"] = line[
+                        len("CUDA Version") :
+                    ].strip()
                     break
         if res.get("/usr/local/cuda/version.txt") is not None:
-            _LOGGER.info("CUDA version %s was identified in file version.txt", res["/usr/local/cuda/version.txt"])
+            _LOGGER.info(
+                "CUDA version %s was identified in file version.txt",
+                res["/usr/local/cuda/version.txt"],
+            )
         else:
             _LOGGER.warning("No CUDA version identifier was found in file version.txt")
     else:
         _LOGGER.info("No version.txt file was found to detect CUDA version")
 
     # Gathering version from nvcc command
-    nvcc_path = os.path.join(path + '/usr/local/cuda/bin/nvcc')
+    nvcc_path = os.path.join(path + "/usr/local/cuda/bin/nvcc")
     if os.path.exists(nvcc_path):
         st = os.stat(nvcc_path)
         os.chmod(nvcc_path, st.st_mode | stat.S_IEXEC)
         result = run_command("{} --version".format(nvcc_path), raise_on_error=False)
         if result.return_code != 0:
-            _LOGGER.warning("Unable to detect CUDA version - nvcc returned non-zero exit code: %s", result.to_dict())
+            _LOGGER.warning(
+                "Unable to detect CUDA version - nvcc returned non-zero exit code: %s",
+                result.to_dict(),
+            )
         else:
             for line in result.stdout.splitlines():
                 version = line.rsplit(", ", maxsplit=1)[-1]
-                if line.startswith("Cuda compilation tools") and version.startswith("V"):
+                if line.startswith("Cuda compilation tools") and version.startswith(
+                    "V"
+                ):
                     res["nvcc_version"] = version[1:]
                     break
             if res.get("nvcc_version") is not None:
-                _LOGGER.info("Detected CUDA version %s from nvcc output", res["nvcc_version"])
+                _LOGGER.info(
+                    "Detected CUDA version %s from nvcc output", res["nvcc_version"]
+                )
             else:
-                _LOGGER.debug("Unable to detect CUDA version from nvcc output: %r", result.stdout)
+                _LOGGER.debug(
+                    "Unable to detect CUDA version from nvcc output: %r", result.stdout
+                )
     else:
         _LOGGER.info("No nvcc executable was found to detect CUDA version")
 
@@ -607,5 +643,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "operating-system": _gather_os_info(path),
         "system-symbols": _get_system_symbols(path),
         "python-interpreters": _get_python_interpreters(path),
-        "cuda-version": _get_cuda_version(path)
+        "cuda-version": _get_cuda_version(path),
     }

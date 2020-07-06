@@ -38,12 +38,13 @@ def extract_buildlog(input_text: str) -> typing.List[dict]:
     """Extract Docker image build log and get all installed packages based on ecosystem."""
     result = []
     for handler in HandlerBase.instantiate_handlers():
-        result.append(
-            {
-                "handler": handler.__class__.__name__.lower(),
-                "result": handler.run(input_text),
-            }
-        )
+        if hasattr(handler, "__class__") and hasattr(handler, "run"):
+            result.append(
+                {
+                    "handler": handler.__class__.__name__.lower(),
+                    "result": handler.run(input_text),
+                }
+            )
 
     return result
 
@@ -82,11 +83,11 @@ def extract_image(
         result["layers"] = layers
         result["image_size"] = image_size
 
-    _PUSH_GATEWAY_HOST = os.getenv("PROMETHEUS_PUSHGATEWAY_HOST")
-    _PUSH_GATEWAY_PORT = os.getenv("PROMETHEUS_PUSHGATEWAY_PORT")
-    if _PUSH_GATEWAY_HOST and _PUSH_GATEWAY_PORT:
+    _push_gateway_host = os.getenv("PROMETHEUS_PUSHGATEWAY_HOST")
+    _push_gateway_port = os.getenv("PROMETHEUS_PUSHGATEWAY_PORT")
+    if _push_gateway_host and _push_gateway_port:
         try:
-            push_gateway = f"{_PUSH_GATEWAY_HOST:_PUSH_GATEWAY_PORT}"
+            push_gateway = f"{_push_gateway_host:_push_gateway_port}"
             _LOGGER.debug(
                 f"Submitting metrics to Prometheus push gateway {push_gateway}"
             )

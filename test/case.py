@@ -23,15 +23,18 @@ import os
 
 class TestCase:
     """A base class for test cases."""
-    DATA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
+
+    DATA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data")
 
     def get_handler_output(self, handler, subdir):
         """Check output for handlers - yields output and expected output so callee can check all test files present."""
         subdir_path = os.path.join(self.DATA_DIR, subdir)
 
-        for input_file_name in os.listdir(os.path.join(subdir_path, 'input')):
-            input_file_path = os.path.join(subdir_path, 'input', input_file_name)
-            output_file_path = os.path.join(subdir_path, 'output', input_file_name + '.json')
+        for input_file_name in os.listdir(os.path.join(subdir_path, "input")):
+            input_file_path = os.path.join(subdir_path, "input", input_file_name)
+            output_file_path = os.path.join(
+                subdir_path, "output", input_file_name + ".json"
+            )
 
             with open(output_file_path) as output_file:
                 expected_output = json.load(output_file)
@@ -46,7 +49,7 @@ class TestCase:
 
 
 def raw_and_recover_changes(func):
-    """A decorator that prevents from modifying library global context."""
+    """Use Decorator that prevents from modifying library global context."""
     # Prevent from cyclic dependencies.
     from thoth.package_extract.handlers import HandlerBase
 
