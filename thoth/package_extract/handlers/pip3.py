@@ -50,7 +50,7 @@ class PIP3(HandlerBase):
 
     @staticmethod
     def _do_parse_package(
-        package_specifier: str
+        package_specifier: str,
     ) -> typing.Tuple[str, typing.Optional[str]]:
         """Parse packages from a report line and return them in a tuple describing also version, version specifier."""
         if package_specifier.startswith("git+"):
@@ -207,7 +207,7 @@ class PIP3(HandlerBase):
                 continue
 
             if line.startswith("Successfully installed "):
-                packages = line[len("Successfully installed "):].split(" ")
+                packages = line[len("Successfully installed ") :].split(" ")
                 for package in packages:
                     package_name, version = package.rsplit("-", maxsplit=1)
                     self._check_entry(result, package_name, version)
