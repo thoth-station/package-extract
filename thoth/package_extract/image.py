@@ -624,6 +624,14 @@ def _get_cuda_version(path: str) -> dict:
     return res
 
 
+def _gather_skopeo_inspect(path, timeout) -> Dict[str, str]:
+    """Gether information from skopeo inspect."""
+    path = os.path.dirname(path)  # Remove rootfs.
+    cmd = f"{_SKOPEO_EXEC_PATH} inspect dir:{path}"
+    output = run_command(cmd, timeout=timeout, is_json=True).stdout
+    return output
+
+
 def run_analyzers(path: str, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
     path = quote(path)
@@ -641,6 +649,7 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "deb-dependencies": _run_apt_cache_show(path, deb_packages, timeout=timeout),
         "python-files": _gather_python_file_digests(path),
         "operating-system": _gather_os_info(path),
+        "skopeo-inspect": _gather_skopeo_inspect(path, timeout=timeout),
         "system-symbols": _get_system_symbols(path),
         "python-interpreters": _get_python_interpreters(path),
         "cuda-version": _get_cuda_version(path),
