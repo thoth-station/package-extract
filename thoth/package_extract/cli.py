@@ -24,11 +24,18 @@ import time
 import click
 
 from thoth.common import init_logging
+from thoth.common import __version__ as __common_version__
 from thoth.analyzer import print_command_result
+from thoth.analyzer import __version__ as __analyzer_version__
 from thoth.package_extract import __title__ as analyzer
 from thoth.package_extract import __version__ as analyzer_version
 from thoth.package_extract.core import extract_buildlog
 from thoth.package_extract.core import extract_image
+
+__component_version__ = (
+    f"{analyzer_version}+"
+    f"common.{__common_version__}.analyzer.{__analyzer_version__}"
+)
 
 init_logging()
 _LOG = logging.getLogger("thoth.package_extract")
@@ -67,6 +74,7 @@ def cli(ctx=None, verbose: bool = False, metadata: str = None):
 
     _LOG.setLevel(logging.DEBUG if verbose else logging.INFO)
     _LOG.debug("Debug mode is on")
+    _LOG.info("Running thoth-package-extract in version %r", __component_version__)
 
     # This value is unused here, but is reported from click context.
     metadata = metadata
