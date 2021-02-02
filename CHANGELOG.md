@@ -483,3 +483,7 @@
 * Print version information to logs (#437)
 ### Improvements
 * Fix: use dockerfile strategy for package-extract build (#440)
+
+## Release 1.1.2 (2021-02-02T16:02:00)
+### Features
+* upgrade the base image from f28 to f32 (#443)
