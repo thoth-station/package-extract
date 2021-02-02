@@ -3,8 +3,8 @@ check:
   - thoth-precommit
   - thoth-pytest-py38
 build:
-  base-image: quay.io/thoth-station/s2i-thoth-ubi8-py38:latest
-  build-stratergy: Source
+  build-stratergy: Dockerfile
+  dockerfile-path: Dockerfile
   registry: quay.io
   registry-org: thoth-station
   registry-project: package-extract
