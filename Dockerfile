@@ -1,4 +1,4 @@
-FROM fedora:28
+FROM fedora:32
 
 ENV PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
