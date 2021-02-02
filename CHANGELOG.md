@@ -476,3 +476,10 @@
 * Automatic update of dependency pytest from 3.6.0 to 3.6.1
 * Automatic update of dependency requests from 2.18.4 to 2.19.1
 * Automatic update of dependency pytest from 3.5.1 to 3.6.0
+
+## Release 1.1.1 (2021-02-02T14:39:22)
+### Features
+* Add missing Thoth GitHub templates (#438)
+* Print version information to logs (#437)
+### Improvements
+* Fix: use dockerfile strategy for package-extract build (#440)
