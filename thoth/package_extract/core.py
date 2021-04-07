@@ -25,7 +25,6 @@ from shlex import quote
 
 from prometheus_client import CollectorRegistry, pushadd_to_gateway, Gauge
 
-from .handlers import HandlerBase
 from .image import construct_rootfs
 from .image import download_image
 from .image import run_analyzers
@@ -34,26 +33,11 @@ from .image import get_image_size
 _LOGGER = logging.getLogger(__name__)
 
 
-def extract_buildlog(input_text: str) -> typing.List[dict]:
-    """Extract Docker image build log and get all installed packages based on ecosystem."""
-    result = []
-    for handler in HandlerBase.instantiate_handlers():
-        if hasattr(handler, "__class__") and hasattr(handler, "run"):
-            result.append(
-                {
-                    "handler": handler.__class__.__name__.lower(),
-                    "result": handler.run(input_text),
-                }
-            )
-
-    return result
-
-
 def extract_image(
     image_name: str,
-    timeout: int = None,
+    timeout: typing.Optional[int] = None,
     *,
-    registry_credentials: str = None,
+    registry_credentials: typing.Optional[str] = None,
     tls_verify: bool = True,
 ) -> dict:
     """Extract dependencies from an image."""

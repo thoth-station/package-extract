@@ -1,22 +1,7 @@
 Thoth Package Extract
 ---------------------
 
-A tool to extract dependencies from an image and image build logs.
-
-Extracting installed packages from install logs
-===============================================
-
-You can use this tool to get information about installed packages from install logs. Currently, there is supported parsing of install logs from ``pip``, ``pip3``, ``dnf`` and ``yum`` output. The tool automatically detects based on the output which package manager was used and provides a structured output of installed packages.
-
-.. warning::
-
-  Tools ``dnf`` and ``yum`` suppress output of already installed dependencies. This means that already satisfied dependencies do not occur in the resulting JSON.
-
-.. warning::
-
-  When installing packages using ``pip`` (or ``pip3``) the package manager reports already satisfied dependencies but does not report version information. Thus the version information is not available in these cases in the resulting output.
-
-It's completely fine to use install log extraction for docker build logs. Note however that the already installed packages in the base image will be missing in the output.
+A tool to extract installed packages from container images.
 
 Extracting dependencies directly from an image
 ==============================================
