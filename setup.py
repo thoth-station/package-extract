@@ -30,7 +30,10 @@ setup(
     entry_points={
         "console_scripts": ["thoth-package-extract=thoth.package_extract.cli:cli"]
     },
-    packages=["thoth.package_extract", "thoth.package_extract.handlers",],
+    packages=[
+        "thoth.package_extract",
+        "thoth.package_extract.handlers",
+    ],
     package_data={"thoth.package_extract": [os.path.join("bin", "skopeo")]},
     zip_safe=False,
     install_requires=get_requirements(),

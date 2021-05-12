@@ -1,7 +1,5 @@
 check:
   - thoth-build
-  - thoth-precommit
-  - thoth-pytest-py38
 build:
   build-stratergy: Dockerfile
   dockerfile-path: Dockerfile
