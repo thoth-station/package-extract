@@ -29,7 +29,6 @@ from thoth.analyzer import print_command_result
 from thoth.analyzer import __version__ as __analyzer_version__
 from thoth.package_extract import __title__ as analyzer
 from thoth.package_extract import __version__ as analyzer_version
-from thoth.package_extract.core import extract_buildlog
 from thoth.package_extract.core import extract_image
 
 __component_version__ = (
@@ -78,39 +77,6 @@ def cli(ctx=None, verbose: bool = False, metadata: str = None):
 
     # This value is unused here, but is reported from click context.
     metadata = metadata
-
-
-@cli.command("extract-buildlog")
-@click.pass_context
-@click.option(
-    "--input-file",
-    "-i",
-    type=click.File("r"),
-    required=True,
-    help="Input file - build logs to be checked.",
-)
-@click.option("--no-pretty", is_flag=True, help="Do not print results nicely.")
-@click.option(
-    "--output",
-    "-o",
-    type=str,
-    envvar="THOTH_ANALYZER_OUTPUT",
-    default=None,
-    help="Output file or remote API to print results to, in case of URL a POST request is issued.",
-)
-def cli_extract_buildlog(click_ctx, input_file, no_pretty=False, output=None):
-    """Extract installed packages from a build log."""
-    start_time = time.monotonic()
-    result = extract_buildlog(input_file.read())
-    print_command_result(
-        click_ctx,
-        result,
-        analyzer=analyzer,
-        analyzer_version=analyzer_version,
-        output=output or "-",
-        duration=time.monotonic() - start_time,
-        pretty=not no_pretty,
-    )
 
 
 @cli.command("extract-image")
