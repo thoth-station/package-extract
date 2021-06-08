@@ -46,19 +46,3 @@ class TestCase:
             # Return results instead.
             output = handler().run(input_content)
             yield output, expected_output
-
-
-def raw_and_recover_changes(func):
-    """Use Decorator that prevents from modifying library global context."""
-    # Prevent from cyclic dependencies.
-    from thoth.package_extract.handlers import HandlerBase
-
-    def wrapper(*args, **kwargs):
-        base_handlers = HandlerBase.handlers
-        HandlerBase.handlers = []
-        try:
-            func(*args, **kwargs)
-        finally:
-            HandlerBase.handlers = base_handlers
-
-    return wrapper
