@@ -27,6 +27,7 @@ from shlex import quote
 import hashlib
 from pathlib import Path
 import glob
+from typing import Any
 from typing import Dict
 from typing import List
 from typing import Generator
@@ -35,6 +36,7 @@ from collections import deque
 
 from thoth.analyzer import run_command
 from thoth.common import cwd
+from pip._internal.operations.freeze import freeze
 
 from .exceptions import InvalidImageError
 from .exceptions import NotSupported
@@ -632,6 +634,33 @@ def _gather_skopeo_inspect(path, timeout) -> Dict[str, str]:
     return output
 
 
+def _get_python_packages(path: str) -> List[Dict[str, Any]]:
+    """Get installed Python packages in the container image."""
+    _LOGGER.debug("Detecting installed Python packages")
+    result = []
+    for location, _, _ in os.walk(path):
+        if os.path.basename(location) != "site-packages":
+            _LOGGER.debug(
+                "Excluding %r from checking Python modules installed: not a site-packages directory",
+                location,
+            )
+            continue
+
+        for dist in freeze(paths=[location]):
+            package_name, package_version = dist.split("==", maxsplit=1)
+            result.append(
+                {
+                    "package_name": package_name,
+                    "package_version": package_version,
+                    "location": location[len(path) :]
+                    if location.startswith(path)
+                    else location,
+                }
+            )
+
+    return result
+
+
 def run_analyzers(path: str, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
     path = quote(path)
@@ -653,4 +682,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "system-symbols": _get_system_symbols(path),
         "python-interpreters": _get_python_interpreters(path),
         "cuda-version": _get_cuda_version(path),
+        "python-packages": _get_python_packages(path),
     }
