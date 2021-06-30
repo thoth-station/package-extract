@@ -487,3 +487,12 @@
 ## Release 1.1.2 (2021-02-02T16:02:00)
 ### Features
 * upgrade the base image from f28 to f32 (#443)
+
+## Release 1.2.0 (2021-06-30T08:18:23)
+### Features
+* Detect Python packages installed inside container images
+* Remove unused pytest
+### Improvements
+* :robot: ci updates w.r.t prow, thoth and aicoe-ci (#447)
+### Non-functional
+* Remove unused log parsing part and improve docs (#446)
