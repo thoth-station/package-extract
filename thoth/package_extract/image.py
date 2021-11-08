@@ -34,6 +34,7 @@ from typing import Generator
 from typing import Optional
 from collections import deque
 
+import toml
 from thoth.analyzer import run_command
 from thoth.common import cwd
 from pip._internal.operations.freeze import freeze
@@ -661,6 +662,40 @@ def _get_python_packages(path: str) -> List[Dict[str, Any]]:
     return result
 
 
+def _get_aicoe_ci(path: str) -> Dict[str, Any]:
+    """Obtain information propagated from AICoE-CI during the image build."""
+    aicoe_ci_path = os.path.join(path, "opt", "aicoe-ci")
+
+    pipfile_content = None
+    pipfile_path = os.path.join(aicoe_ci_path, "Pipfile")
+    if os.path.exists(pipfile_path):
+        try:
+            with open(pipfile_path) as f:
+                pipfile_content = toml.load(f)
+        except Exception:
+            _LOGGER.exception(
+                "Failed to obtain dependency information from Pipfile located at %r",
+                pipfile_path,
+            )
+
+    pipfile_lock_content = None
+    pipfile_lock_path = os.path.join(aicoe_ci_path, "Pipfile.lock")
+    if os.path.exists(pipfile_lock_path):
+        try:
+            with open(pipfile_lock_path) as f:
+                pipfile_lock_content = json.load(f)
+        except Exception:
+            _LOGGER.exception(
+                "Failed to obtain dependency information from Pipfile.lock located at %r",
+                pipfile_lock_path,
+            )
+
+    return {
+        "requirements": pipfile_content,
+        "requirements_lock": pipfile_lock_content,
+    }
+
+
 def run_analyzers(path: str, timeout: int = None) -> dict:
     """Run analyzers on the given path (directory) and extract found packages."""
     path = quote(path)
@@ -683,4 +718,5 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
         "python-interpreters": _get_python_interpreters(path),
         "cuda-version": _get_cuda_version(path),
         "python-packages": _get_python_packages(path),
+        "aicoe-ci": _get_aicoe_ci(path),
     }

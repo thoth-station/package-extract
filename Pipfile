@@ -12,6 +12,7 @@ thoth-common = "*"
 thoth-analyzer = "*"
 prometheus-client = "*"
 pip = "*"
+toml = "*"
 
 [dev-packages]
 pytest = "*"
