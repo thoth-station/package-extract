@@ -18,17 +18,17 @@
 """Exception hierarchy in thoth-package-extract tool."""
 
 
-class ThothPkgdepsException(Exception):
+class ThothPkgdepsException(Exception):  # noqa: N818
     """A base exception in the thoth-package-extract exception hierarchy."""
 
 
-class InvalidImageError(ThothPkgdepsException):
+class InvalidImageError(ThothPkgdepsException):  # noqa: N818
     """Raised on invalid Docker image."""
 
 
-class NotSupported(ThothPkgdepsException):
+class NotSupported(ThothPkgdepsException):  # noqa: N818
     """Raised on requesting an unsupported operation."""
 
 
-class TimeoutExpired(ThothPkgdepsException):
+class TimeoutExpired(ThothPkgdepsException):  # noqa: N818
     """Raised on command timeout."""
