@@ -1,4 +1,8 @@
 
+## Release 1.3.0 (2021-12-16T17:53:54)
+* Ignore flake8 exception naming complains
+* Propagate requirements info as used by AICoE-CI
+
 ## Release 1.1.0 (2021-01-28T10:05:00)
 ### Features
 * Gather image metadata during package-extract runs (#431)
