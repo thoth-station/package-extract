@@ -3,7 +3,7 @@ tls_verify: true
 requirements_format: pipenv
 
 runtime_environments:
-  - name: 'fedora:32'
+  - name: fedora32
     operating_system:
       name: fedora
       version: "32"
