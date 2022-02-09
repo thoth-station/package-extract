@@ -30,6 +30,7 @@ import glob
 from typing import Any
 from typing import Dict
 from typing import List
+from typing import Tuple
 from typing import Generator
 from typing import Optional
 from collections import deque
@@ -490,21 +491,24 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
     return layers
 
 
-def _get_absolute_link(root_path: str, path: str, iter: int) -> Optional[str]:
+def _get_absolute_link(
+    root_path: str, path: str, iter: int
+) -> Tuple[Optional[str], Optional[str]]:
     """Find the absolute link of the given link."""
     if iter > _MAX_SYMLINKS:
         _LOGGER.warning("Maximum symlink traversal reached.")
-        return None
+        return None, None
     elif os.path.islink(path):
         next_path = os.path.normpath(os.path.join(root_path, os.readlink(path)))
-        return _get_absolute_link(root_path, next_path, iter + 1)
+        abs_link, _ = _get_absolute_link(root_path, next_path, iter + 1)
+        return abs_link, "present"
     else:
         if not os.path.isfile(path):
             _LOGGER.warning(
                 "Python link refers to %s, but this file is not present on filesystem.",
                 path,
             )
-        return path
+        return path, "not-present"
 
 
 def _get_python_interpreters(path: str) -> List[dict]:
@@ -526,9 +530,11 @@ def _get_python_interpreters(path: str) -> List[dict]:
                 str(exc),
             )
 
-        absolute_link = _get_absolute_link(path, py_path, 0)
+        absolute_link, status = _get_absolute_link(path, py_path, 0)
         if absolute_link is not None:
-            absolute_link = absolute_link[len(path) :]
+            if status == "not-present":
+                absolute_link = absolute_link[len(path) :]
+
         py_interpret = {
             "path": py_path[len(path) :],
             "link": absolute_link,
