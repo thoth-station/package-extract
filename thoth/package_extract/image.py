@@ -493,22 +493,22 @@ def construct_rootfs(dir_path: str, rootfs_path: str) -> list:
 
 def _get_absolute_link(
     root_path: str, path: str, iter: int
-) -> Tuple[Optional[str], Optional[str]]:
+) -> Tuple[Optional[str], bool]:
     """Find the absolute link of the given link."""
     if iter > _MAX_SYMLINKS:
         _LOGGER.warning("Maximum symlink traversal reached.")
-        return None, None
+        return None, True
     elif os.path.islink(path):
         next_path = os.path.normpath(os.path.join(root_path, os.readlink(path)))
         abs_link, _ = _get_absolute_link(root_path, next_path, iter + 1)
-        return abs_link, "present"
+        return abs_link, True
     else:
         if not os.path.isfile(path):
             _LOGGER.warning(
                 "Python link refers to %s, but this file is not present on filesystem.",
                 path,
             )
-        return path, "not-present"
+        return path, False
 
 
 def _get_python_interpreters(path: str) -> List[dict]:
@@ -530,9 +530,9 @@ def _get_python_interpreters(path: str) -> List[dict]:
                 str(exc),
             )
 
-        absolute_link, status = _get_absolute_link(path, py_path, 0)
+        absolute_link, is_file_present = _get_absolute_link(path, py_path, 0)
         if absolute_link is not None:
-            if status == "not-present":
+            if not is_file_present:
                 absolute_link = absolute_link[len(path) :]
 
         py_interpret = {
