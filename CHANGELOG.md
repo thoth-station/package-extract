@@ -1,4 +1,19 @@
 
+## Release 1.3.1 (2022-02-10T11:34:54)
+* Add Sesheta for releases
+* :arrow_up: Automatic update of dependencies by Kebechet for the fedora32 environment
+* use bool and not str
+* Fix absolut link extraction
+* :arrow_up: Automatic update of dependencies by Kebechet for the fedora32 environment
+* :arrow_up: Automatic update of dependencies by Kebechet for the fedora32 environment
+* Remove colon from the runtime environment name
+* :arrow_up: Automatic update of dependencies by Kebechet for the fedora:32 environment (#466)
+* Remove unused .thothTemplate.yaml
+* Enable TLS verification
+* :arrow_up: Automatic update of dependencies by Kebechet for the fedora:32 environment
+* :arrow_up: Automatic update of dependencies by Kebechet for the fedora:32 environment
+* add kebechet to crossroads in docs
+
 ## Release 1.3.0 (2021-12-16T17:53:54)
 * Ignore flake8 exception naming complains
 * Propagate requirements info as used by AICoE-CI
