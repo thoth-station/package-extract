@@ -1,6 +1,14 @@
 Thoth Package Extract
 ---------------------
 
+.. image:: https://img.shields.io/github/v/tag/thoth-station/package-extract?style=plastic
+  :target: https://github.com/thoth-station/package-extract/tags
+  :alt: GitHub tag (latest by date)
+
+.. image:: https://quay.io/repository/thoth-station/package-extract/status
+  :target: https://quay.io/repository/thoth-station/package-extract?tab=tags
+  :alt: Quay - Build
+
 A tool to extract installed packages from container images.
 
 Extracting dependencies directly from an image
