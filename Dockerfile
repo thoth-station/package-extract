@@ -10,10 +10,11 @@ ENV PATH=$HOME/.local/bin/:$PATH \
 
 LABEL io.k8s.description="Thoth Package Extract Base" \
     io.k8s.display-name="Thoth: Package Extract Base" \
-    io.openshift.tags="thoth,python,go,mercator,package-extract" \
+    io.openshift.tags="thoth,python,go,package-extract" \
     architecture=x86_64 \
     vendor="Red Hat Office of the CTO - AI CoE" \
     license="GPLv3"
+
 
 RUN dnf update -y --setopt='tsflags=nodocs' && \
     dnf install -y --setopt='tsflags=nodocs' python-pip go git make skopeo dnf-utils fakeroot fakechroot && \

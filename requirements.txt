@@ -7,3 +7,4 @@ thoth-analyzer
 thoth-common
 pip
 toml
+kubernetes~=12.0.1

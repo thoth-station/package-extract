@@ -45,29 +45,11 @@ from .exceptions import NotSupported
 from .rpmlib import parse_nvra
 
 _LOGGER = logging.getLogger(__name__)
-
-_MERCATOR_BIN = os.getenv("MERCATOR_BIN", "mercator")
-_MERCATOR_HANDLERS_YAML = os.getenv(
-    "MERCATOR_HANDLERS_YAML", "/usr/local/share/mercator/handlers.yml"
-)
 _HERE_DIR = os.path.dirname(os.path.abspath(__file__))
 _SKOPEO_EXEC_PATH = os.getenv(
     "SKOPEO_EXEC_PATH", os.path.join(_HERE_DIR, "bin", "skopeo")
 )
 _MAX_SYMLINKS = 50
-
-
-def _normalize_mercator_output(path: str, output: dict) -> dict:
-    """Normalize and filter mercator output."""
-    output = output or {}
-    for entry in output.get("items") or []:
-        entry.pop("time", None)
-
-        # Now point to the correct path, absolute inside the image.
-        if "path" in entry:
-            entry["path"] = entry["path"][len(path) :]
-
-    return output.get("items", [])
 
 
 def _parse_repoquery(output: str) -> dict:
@@ -117,19 +99,6 @@ def _run_rpm_repoquery(path: str, timeout: int = None) -> list:
         result.append(rpm_package)
 
     return result
-
-
-def _run_mercator(path: str, timeout: int = None) -> dict:
-    """Run mercator-go to find all packages that were installed inside an image."""
-    cmd = "{mercator_bin} -config {mercator_handlers_yaml} {path}".format(
-        mercator_bin=_MERCATOR_BIN,
-        mercator_handlers_yaml=_MERCATOR_HANDLERS_YAML,
-        path=path,
-    )
-    output = run_command(
-        cmd, env={"MERCATOR_INTERPRET_SETUP_PY": "true"}, timeout=timeout, is_json=True
-    ).stdout
-    return _normalize_mercator_output(path, output)
 
 
 def _run_rpm(path: str, timeout: int = None) -> typing.List[str]:
@@ -712,7 +681,6 @@ def run_analyzers(path: str, timeout: int = None) -> dict:
     deb_packages = _run_dpkg_query(path, timeout=timeout)
 
     return {
-        "mercator": _run_mercator(path, timeout=timeout),
         "rpm": _run_rpm(path, timeout=timeout),
         "rpm-dependencies": _run_rpm_repoquery(path, timeout=timeout),
         "deb": deb_packages,
