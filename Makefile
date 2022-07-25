@@ -1,5 +1,5 @@
 TEMPFILE := $(shell mktemp -u)
-GOAPTH ?= go env GOPATH
+GOPATH ?= go env GOPATH
 MERCATOR_GO_PATH = $(GOPATH)/src/github.com/fabric8-analytics/mercator-go
 
 all: install
