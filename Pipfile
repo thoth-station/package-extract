@@ -13,6 +13,7 @@ thoth-analyzer = "*"
 prometheus-client = "*"
 pip = "*"
 toml = "*"
+kubernetes = "~=11.0.0"
 
 [dev-packages]
 pytest = "*"
