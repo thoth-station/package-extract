@@ -22,9 +22,11 @@ RUN dnf update -y --setopt='tsflags=nodocs' && \
     dnf install -y binutils
 
 COPY ./ /tmp/package-extract
-RUN cd /tmp/package-extract && \
-    make all && \
-    rm -rf /tmp/package-extract
+RUN pip install micropipenv \
+        && cd /tmp/package-extract \
+        && micropipenv install \
+        && pip install --no-deps . \
+        && rm -rf /tmp/package-extract
 
 USER 1042
 

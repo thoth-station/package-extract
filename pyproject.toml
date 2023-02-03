@@ -1,0 +1,48 @@
+[project]
+name = "thoth-package-extract"
+description = "Tool and library for extracting packages from a docker build log"
+license = {file = "LICENSE"}
+authors = [
+ {name = "Fridolin Pokorny", email = "fridolin@redhat.com"}
+]
+maintainers = [
+ {name = "The Thoth Developers"}
+]
+dynamic = ["version", "dependencies"]
+readme = "README.rst"
+keywords = [
+    "docker",
+    "image",
+    "openshift",
+    "tool",
+    "library",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License:: OSI Approved:: GNU General Public License v3 or later(GPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[project.urls]
+Documentation = "https://github.com/thoth-station/package-extract"
+Source = "https://github.com/thoth-station/package-extract"
+
+[project.scripts]
+thoth-package-extract = "thoth.package_extract.cli:cli"
+
+[build-system]
+requires = ["setuptools", "wheel", "setuptools-pipfile"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools-pipfile]
+
+[tool.setuptools.dynamic]
+version = {attr = "thoth.package_extract.__version__"}
