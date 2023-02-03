@@ -1,0 +1,10 @@
+attrs
+click
+daiquiri
+kubernetes~=11.0.0
+pip
+prometheus-client
+requests
+thoth-analyzer
+thoth-common
+toml
